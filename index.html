@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0f172a"><meta name="mobile-web-app-capable" content="yes"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
-    <title>Moio Training Hub - Dashboard v38.6.0 Android fix</title>
+    <title>Moio Training Hub - Dashboard v38.6.1 Android layout</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -100,6 +100,25 @@
           #mobile-registrate-cards:empty::after,#mobile-piano-cards:empty::after,#mobile-wellness-cards:empty::after{content:'Nessun dato nel periodo selezionato';display:block;padding:18px;text-align:center;color:#94a3b8;border:1px dashed #475569;border-radius:12px}
           #mobile-wellness-cards article> b{font-size:15px;color:#7dd3fc} #mobile-wellness-cards article small{font-size:11px!important} #mobile-wellness-cards article span{font-size:14px!important;font-weight:600}
         }
+
+        @media (max-width: 767px) {
+            header > div:last-child{display:grid!important;grid-template-columns:minmax(0,44%) minmax(0,56%);gap:6px!important}
+            header > div:last-child > div:first-child{grid-column:1;width:100%!important;min-width:0;overflow:visible!important;gap:3px}
+            #btn-range-prev,#btn-range-next{min-width:34px!important;width:34px;padding:0!important;font-size:10px!important}
+            #mobile-range-selector{min-width:0!important;width:calc(100% - 72px)!important;flex:1!important;padding:0 2px!important;font-size:10px!important}
+            header > div:last-child > div:nth-child(2){grid-column:2;width:100%!important;min-width:0;padding:3px!important;gap:2px!important}
+            header > div:last-child > div:nth-child(2) span{font-size:9px;margin-left:0!important}
+            #filtro-da,#filtro-a{width:calc(50% - 13px)!important;min-width:0!important;padding:2px 0!important;font-size:9px!important}
+            #sync-controls{grid-column:2;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-self:end;width:86px;gap:3px!important}
+            #sync-status{position:static!important;width:100%;text-align:center;font-size:9px!important;padding:3px 2px!important;white-space:nowrap}
+            #btn-aggiorna-attivita{width:100%!important;min-height:30px!important;padding:4px!important;font-size:11px!important}
+            .desktop-sync-label{display:none!important}
+            #desktop-registrate-table-wrapper{display:none!important}
+            #mobile-registrate-cards{background:transparent!important;border:0!important}
+            .mobile-history-header{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:1.35fr 1.1fr repeat(4,.85fr);gap:2px;padding:7px 4px;border:1px solid #475569;border-radius:9px 9px 0 0;background:#0f172a;color:#94a3b8;font-size:9px;font-weight:700;text-transform:uppercase;text-align:center}
+            .mobile-history-row{display:grid;grid-template-columns:1.35fr 1.1fr repeat(4,.85fr);gap:2px;padding:9px 4px;border-left:1px solid #334155;border-right:1px solid #334155;border-bottom:1px solid #334155;background:rgba(30,41,59,.72);font-size:11px;text-align:center;align-items:center}
+            .mobile-history-details{grid-column:1/-1;text-align:left;padding-top:4px}
+        }
 </style>
 </head>
 <body class="page-bg-container bg-slate-900 text-slate-100 font-sans h-screen overflow-hidden flex flex-col">
@@ -147,12 +166,10 @@
                 <span class="text-slate-400 ml-2">A:</span>
                 <input type="date" id="filtro-a" onchange="onChangeFiltroDataGlobale()" class="bg-slate-900 text-slate-200 border border-slate-700 rounded px-1 py-0.5 text-xs">
             </div>
-
-            <span id="sync-status" class="px-2.5 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">In attesa...</span>
-            
-            <button onclick="aggiornaAttivita()" id="btn-aggiorna-attivita" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition shadow">
-                Aggiorna attività
-            </button>
+            <div id="sync-controls" class="flex items-center gap-2">
+                <span id="sync-status" class="px-2.5 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">In attesa...</span>
+                <button onclick="aggiornaAttivita()" id="btn-aggiorna-attivita" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition shadow"><span class="desktop-sync-label">Aggiorna attività</span><span class="mobile-only">Sync</span></button>
+            </div>
         </div>
     </header>
 
@@ -180,7 +197,7 @@
                 <span id="layout-save-status" class="font-mono text-slate-400"></span>
             </div>
 
-            <div class="flex-1 overflow-hidden border border-slate-700/60 rounded-xl bg-slate-800/50 shadow-lg flex flex-col">
+            <div id="desktop-registrate-table-wrapper" class="flex-1 overflow-hidden border border-slate-700/60 rounded-xl bg-slate-800/50 shadow-lg flex flex-col">
                 <!-- Intestazione delle colonne fissa sopra l'elenco, con tasto "+" in alto a sinistra -->
                 <div id="table-header-scroll" class="overflow-x-auto bg-slate-900 border-b border-slate-700 shrink-0">
                     <div class="flex items-stretch min-w-max">
@@ -4791,7 +4808,13 @@ Cooldown
         function escapeHtmlMobile(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
         function aggiornaMobileRangeSelector(){const el=document.getElementById('mobile-range-selector');if(el)el.value=intervalloSelezionatoPerSezione[sezioneAttiva]||'1m';}
         function renderMobilePianoCards(rows){const box=document.getElementById('mobile-piano-cards');if(!box)return;box.innerHTML=rows.map((r,i)=>`<article onclick="onPianoRowClick(${i})" class="rounded-xl border ${r.modificatoDalCoach?'border-violet-500/60':'border-slate-700'} bg-slate-800/70 p-3"><div class="flex justify-between gap-2"><div><b>${r.giornoNome} ${r.dataFormattata}</b><div class="text-[11px] text-slate-400">Sett. ${r.settimana}</div></div><div class="text-lg">${r.completato?'✓ ':''}${r.modificatoDalCoach?'🤖 ':''}${r.rimodulato?'↻ ':''}${r.limitatoDaConstraint?'⛔ ':''}${r.deficitSettimana>0?'⚠':''}</div></div><div class="grid grid-cols-2 gap-2 mt-3"><div><select onclick="event.stopPropagation()" onchange="onChangePianoAttivitaGiorno('${r.isoDate}',this.value,event)" class="w-full bg-slate-950 border border-slate-700 rounded p-2"><option value="bici" ${r.attivita==='bici'?'selected':''}>Bici</option><option value="corsa" ${r.attivita==='corsa'?'selected':''}>Corsa</option><option value="camminata" ${r.attivita==='camminata'?'selected':''}>Camminata</option></select></div><div><select onclick="event.stopPropagation()" onchange="onChangePianoTipoAllenamentoGiorno('${r.isoDate}',this.value,event)" class="w-full bg-slate-950 border border-slate-700 rounded p-2"><option value="fondo" ${r.tipoAllenamento==='fondo'?'selected':''}>Fondo</option><option value="qualita" ${r.tipoAllenamento==='qualita'?'selected':''}>Qualità</option><option value="recupero" ${r.tipoAllenamento==='recupero'?'selected':''}>Recupero</option></select></div></div><div class="grid grid-cols-3 gap-2 mt-3 text-center"><div class="bg-slate-950 rounded p-2"><small class="text-slate-500 block">Prog.</small><b>${r.carico}</b></div><div class="bg-slate-950 rounded p-2"><small class="text-slate-500 block">Fatto</small><b>${r.caricoCompletato??'-'}</b></div><div class="bg-slate-950 rounded p-2"><small class="text-slate-500 block">Conf.</small><b>${r.conformita!=null?r.conformita.toFixed(0)+'%':'-'}</b></div></div><div class="grid grid-cols-3 gap-2 mt-2 text-[11px] font-mono"><span class="text-blue-400">CTL ${r.ctl.toFixed(1)}</span><span class="text-red-400">ATL ${r.atl.toFixed(1)}</span><span style="color:${getColoreZonaTsb(r.tsb)}">TSB ${r.tsb.toFixed(1)}</span></div><div class="mt-3 text-xs leading-relaxed text-slate-200">${escapeHtmlMobile(r.allenamento)}</div></article>`).join('');}
-        function renderMobileRegistrateCards(rows){const box=document.getElementById('mobile-registrate-cards');if(!box)return;const {idxData,idxCtl,idxAtl,idxTsb,idxCarico}=trovaIndiciColonne();box.innerHTML=rows.slice().reverse().map(r=>`<article class="rounded-xl border border-slate-700 bg-slate-800/70 p-3"><div class="flex justify-between"><b>${formattaDataCustom(r[idxData])}</b><span class="text-slate-400">${getGiornoSettimanaDaData(r[idxData])}</span></div><div class="grid grid-cols-4 gap-1 mt-3 text-center text-[11px]"><div><small class="block text-slate-500">Carico</small>${idxCarico>=0?r[idxCarico]:'-'}</div><div class="text-blue-400"><small class="block text-slate-500">CTL</small>${idxCtl>=0?r[idxCtl]:'-'}</div><div class="text-red-400"><small class="block text-slate-500">ATL</small>${idxAtl>=0?r[idxAtl]:'-'}</div><div style="color:${idxTsb>=0?getColoreZonaTsb(r[idxTsb]):'#94a3b8'}"><small class="block text-slate-500">TSB</small>${idxTsb>=0?r[idxTsb]:'-'}</div></div><details class="mt-2"><summary class="text-emerald-400 text-xs">Dettagli</summary><div class="grid grid-cols-2 gap-1 mt-2 text-[10px]">${intestazioniFoglio.map((h,i)=>`<div class="text-slate-500">${escapeHtmlMobile(h)}</div><div class="text-right">${escapeHtmlMobile(formattaValoreCell(r[i],h))}</div>`).join('')}</div></details></article>`).join('');}
+        function renderMobileRegistrateCards(rows){
+            const box=document.getElementById('mobile-registrate-cards');if(!box)return;
+            const {idxData,idxCtl,idxAtl,idxTsb,idxCarico}=trovaIndiciColonne();
+            const header=`<div class="mobile-history-header"><span>Data</span><span>Giorno</span><span>Carico</span><span>CTL</span><span>ATL</span><span>TSB</span></div>`;
+            const righe=rows.slice().reverse().map(r=>`<div class="mobile-history-row"><b>${formattaDataCustom(r[idxData])}</b><span>${getGiornoSettimanaDaData(r[idxData]).slice(0,3)}</span><span>${idxCarico>=0?formattaValoreCell(r[idxCarico],intestazioniFoglio[idxCarico]):'-'}</span><span class="text-blue-400">${idxCtl>=0?formattaValoreCell(r[idxCtl],intestazioniFoglio[idxCtl]):'-'}</span><span class="text-red-400">${idxAtl>=0?formattaValoreCell(r[idxAtl],intestazioniFoglio[idxAtl]):'-'}</span><span style="color:${idxTsb>=0?getColoreZonaTsb(r[idxTsb]):'#94a3b8'}">${idxTsb>=0?formattaValoreCell(r[idxTsb],intestazioniFoglio[idxTsb]):'-'}</span><details class="mobile-history-details"><summary class="text-emerald-400 text-[10px] cursor-pointer">Dettagli attività</summary><div class="grid grid-cols-2 gap-1 mt-2 text-[10px] bg-slate-950/60 rounded p-2">${intestazioniFoglio.map((h,i)=>`<div class="text-slate-500">${escapeHtmlMobile(h)}</div><div class="text-right text-slate-200">${escapeHtmlMobile(formattaValoreCell(r[i],h))}</div>`).join('')}</div></details></div>`).join('');
+            box.innerHTML=rows.length?header+righe:'';
+        }
         function renderMobileWellnessCards(rows){const box=document.getElementById('mobile-wellness-cards');if(!box)return;const idx=trovaIndiceDataWellness();box.innerHTML=`<button onclick="toggleMobileWellnessMetriche(true)" class="w-full mb-2 min-h-11 rounded-lg bg-sky-600 text-white text-xs font-semibold">⚙ Metriche da visualizzare</button>`+rows.slice().reverse().map(r=>`<article class="rounded-xl border border-sky-500/20 bg-slate-800/70 p-3"><b>${formattaDataCustom(r[idx])}</b><div class="grid grid-cols-2 gap-2 mt-2">${wellnessHeaders.map((h,i)=>i===idx?'':`<div class="bg-slate-950/70 rounded p-2"><small class="block text-slate-500">${escapeHtmlMobile(wellnessLabel(h))}</small><span class="text-sky-200">${escapeHtmlMobile(wellnessValore(r[i],h))}</span></div>`).join('')}</div></article>`).join('');renderMobileWellnessMetriche();}
         function renderMobileWellnessMetriche(){const list=document.getElementById('mobile-wellness-metriche-list'),sel=document.getElementById('wellness-colonne-grafico');if(!list||!sel)return;list.innerHTML=Array.from(sel.options).map(o=>`<label class="flex items-center gap-3 p-2 bg-slate-800 rounded"><input type="checkbox" ${o.selected?'checked':''} onchange="document.querySelector('#wellness-colonne-grafico option[value=\\'${o.value}\\']').selected=this.checked;onChangeColonneWellness();renderMobileWellnessMetriche();"><span>${escapeHtmlMobile(o.textContent)}</span></label>`).join('');}
         function toggleMobileWellnessMetriche(show){document.getElementById('mobile-wellness-metriche')?.classList.toggle('hidden',!show);}
