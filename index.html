@@ -2,8 +2,9 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moio Training Hub - Dashboard v38.5.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0f172a"><meta name="mobile-web-app-capable" content="yes"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+    <title>Moio Training Hub - Dashboard v38.6.0 Android fix</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -90,7 +91,16 @@
             #mobile-bottom-nav { display:grid!important; }
             .mobile-card-scroll { overflow-y:auto; -webkit-overflow-scrolling:touch; }
         }
-    </style>
+    
+        @media (max-width: 767px) {
+          body{min-height:100dvh;padding-bottom:calc(64px + env(safe-area-inset-bottom))} main{min-height:0}
+          #page-registrate,#page-piano,#page-wellness{min-height:0;overflow:hidden!important}
+          .chart-bg-container{height:22dvh!important;min-height:150px!important;max-height:210px!important}
+          #mobile-registrate-cards,#mobile-piano-cards,#mobile-wellness-cards{display:block!important;min-height:120px;flex:1 1 0!important;overflow-y:auto!important;padding-bottom:16px}
+          #mobile-registrate-cards:empty::after,#mobile-piano-cards:empty::after,#mobile-wellness-cards:empty::after{content:'Nessun dato nel periodo selezionato';display:block;padding:18px;text-align:center;color:#94a3b8;border:1px dashed #475569;border-radius:12px}
+          #mobile-wellness-cards article> b{font-size:15px;color:#7dd3fc} #mobile-wellness-cards article small{font-size:11px!important} #mobile-wellness-cards article span{font-size:14px!important;font-weight:600}
+        }
+</style>
 </head>
 <body class="page-bg-container bg-slate-900 text-slate-100 font-sans h-screen overflow-hidden flex flex-col">
 
@@ -198,6 +208,7 @@
                     </div>
                 </div>
             </div>
+        <div id="mobile-registrate-cards" class="mobile-only mobile-card-scroll flex-1 space-y-2"></div>
         </section>
 
         <!-- SEZIONE 2: PIANO DI ALLENAMENTO -->
@@ -272,6 +283,7 @@
                     </tbody>
                 </table>
             </div>
+        <div id="mobile-piano-cards" class="mobile-only mobile-card-scroll flex-1 space-y-2"></div>
         </section>
 
         <!-- SEZIONE 3: DATI WELLNESS -->
@@ -5937,6 +5949,7 @@ Cooldown
             finally { if(btn) btn.disabled=false; }
         }
         window.addEventListener('resize',()=>{aggiornaMobileRangeSelector(); if(sezioneAttiva==='piano')renderPianoAllenamento(); else if(sezioneAttiva==='registrate')renderTablesAndCharts(); else if(sezioneAttiva==='wellness')renderWellness();});
+        if ('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
         window.onload = async () => {
             inizializzaSchedeImpostazioni();
             caricaColonneWellnessLocali();
