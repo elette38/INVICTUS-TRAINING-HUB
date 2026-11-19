@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0f172a"><meta name="mobile-web-app-capable" content="yes"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
-    <title>Moio Training Hub - Dashboard v38.7.0 Android drawer</title>
+    <title>Moio Training Hub - Dashboard v38.8.0 Android preview</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -115,6 +115,8 @@
           #mobile-drawer-overlay.drawer-open{display:block!important}
           #mobile-drawer.drawer-open{transform:translateX(0)!important}
         }
+
+        @media (max-width:767px){#android-preview-button,#android-preview-modal{display:none!important}}
 </style>
 </head>
 <body class="page-bg-container bg-slate-900 text-slate-100 font-sans h-screen overflow-hidden flex flex-col">
@@ -169,7 +171,28 @@
                 Aggiorna attività
             </button>
         </div>
+        <button id="android-preview-button" type="button" onclick="apriAnteprimaAndroid()" title="Anteprima Android" class="fixed top-3 right-3 z-[60] bg-sky-600 hover:bg-sky-500 text-white px-3 py-2 rounded-lg text-xs font-semibold shadow-xl">📱 Android</button>
     </header>
+
+    <!-- Anteprima Android desktop -->
+    <div id="android-preview-modal" class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm p-3">
+      <div class="h-full flex flex-col">
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-2 text-xs">
+          <span class="font-semibold text-sky-300 mr-2">📱 Anteprima Android</span>
+          <button onclick="impostaLarghezzaAnteprimaAndroid(360)" class="android-size-btn px-3 py-1.5 rounded bg-slate-800 border border-slate-600">360 px</button>
+          <button onclick="impostaLarghezzaAnteprimaAndroid(393)" class="android-size-btn px-3 py-1.5 rounded bg-sky-600 border border-sky-400">393 px</button>
+          <button onclick="impostaLarghezzaAnteprimaAndroid(412)" class="android-size-btn px-3 py-1.5 rounded bg-slate-800 border border-slate-600">412 px</button>
+          <button onclick="ruotaAnteprimaAndroid()" class="px-3 py-1.5 rounded bg-slate-800 border border-slate-600">↻ Ruota</button>
+          <button onclick="ricaricaAnteprimaAndroid()" class="px-3 py-1.5 rounded bg-slate-800 border border-slate-600">↯ Ricarica</button>
+          <button onclick="chiudiAnteprimaAndroid()" class="px-3 py-1.5 rounded bg-red-700 hover:bg-red-600">✕ Chiudi</button>
+        </div>
+        <div class="flex-1 min-h-0 flex items-center justify-center overflow-auto">
+          <div id="android-device-frame" class="bg-slate-950 border-[8px] border-slate-800 rounded-[28px] shadow-2xl overflow-hidden transition-all duration-200" style="width:393px;height:min(852px,calc(100vh - 75px));">
+            <iframe id="android-preview-frame" title="Anteprima Android Training Hub" class="w-full h-full border-0 bg-slate-950"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Navigation drawer Android -->
     <div id="mobile-drawer-overlay" class="mobile-only hidden fixed inset-0 z-[70] bg-black/60" onclick="toggleMobileDrawer(false)"></div>
@@ -2854,6 +2877,14 @@ Cooldown
             root.dataset.settingsTabsReady = '1';
             selezionaSchedaImpostazioni(schedaImpostazioniAttiva);
         }
+        let androidPreviewWidth=393,androidPreviewLandscape=false;
+        function urlAnteprimaAndroid(){const u=new URL(window.location.href);u.searchParams.set('androidPreview','1');return u.toString();}
+        function apriAnteprimaAndroid(){if(new URLSearchParams(location.search).get('androidPreview')==='1')return;const m=document.getElementById('android-preview-modal'),f=document.getElementById('android-preview-frame');m.classList.remove('hidden');if(!f.src)f.src=urlAnteprimaAndroid();impostaLarghezzaAnteprimaAndroid(androidPreviewWidth);}
+        function chiudiAnteprimaAndroid(){document.getElementById('android-preview-modal')?.classList.add('hidden');}
+        function impostaLarghezzaAnteprimaAndroid(w){androidPreviewWidth=w;androidPreviewLandscape=false;const d=document.getElementById('android-device-frame');if(d){d.style.width=w+'px';d.style.height='min(852px,calc(100vh - 75px))';}document.querySelectorAll('.android-size-btn').forEach(b=>{const active=b.textContent.includes(String(w));b.classList.toggle('bg-sky-600',active);b.classList.toggle('border-sky-400',active);b.classList.toggle('bg-slate-800',!active);});}
+        function ruotaAnteprimaAndroid(){const d=document.getElementById('android-device-frame');if(!d)return;androidPreviewLandscape=!androidPreviewLandscape;if(androidPreviewLandscape){d.style.width='min(852px,calc(100vw - 40px))';d.style.height=androidPreviewWidth+'px';}else{d.style.width=androidPreviewWidth+'px';d.style.height='min(852px,calc(100vh - 75px))';}}
+        function ricaricaAnteprimaAndroid(){const f=document.getElementById('android-preview-frame');if(f)f.src=urlAnteprimaAndroid()+'&r='+Date.now();}
+        document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.getElementById('android-preview-modal')?.classList.contains('hidden'))chiudiAnteprimaAndroid();});
         function aggiornaDrawerSezioneAttiva(){document.querySelectorAll('[data-drawer-section]').forEach(b=>b.classList.toggle('active',b.dataset.drawerSection===sezioneAttiva));}
         function toggleMobileDrawer(apri){const drawer=document.getElementById('mobile-drawer'),overlay=document.getElementById('mobile-drawer-overlay');if(!drawer||!overlay)return;const open=Boolean(apri);drawer.classList.toggle('drawer-open',open);overlay.classList.toggle('drawer-open',open);drawer.setAttribute('aria-hidden',open?'false':'true');document.body.classList.toggle('mobile-drawer-open',open);if(open)aggiornaDrawerSezioneAttiva();}
         function mobileDrawerNavigate(section){toggleMobileDrawer(false);switchSection(section);aggiornaDrawerSezioneAttiva();}
@@ -5985,6 +6016,7 @@ Cooldown
         let drawerTouchX=null;document.addEventListener('touchstart',e=>{if(document.getElementById('mobile-drawer')?.classList.contains('drawer-open'))drawerTouchX=e.touches[0].clientX;},{passive:true});document.addEventListener('touchend',e=>{if(drawerTouchX!==null&&e.changedTouches[0].clientX-drawerTouchX < -60)toggleMobileDrawer(false);drawerTouchX=null;},{passive:true});
         window.addEventListener('resize',()=>{aggiornaMobileRangeSelector(); if(sezioneAttiva==='piano')renderPianoAllenamento(); else if(sezioneAttiva==='registrate')renderTablesAndCharts(); else if(sezioneAttiva==='wellness')renderWellness();});
         if ('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+        if(new URLSearchParams(location.search).get('androidPreview')==='1'){document.documentElement.classList.add('android-preview-embedded');document.getElementById('android-preview-button')?.remove();}
         window.onload = async () => {
             inizializzaSchedeImpostazioni();
             caricaColonneWellnessLocali();
