@@ -628,7 +628,7 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
               <button id="coach-ai-clear-changes" type="button" onclick="annullaTutteModificheCoach()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px]">Rimuovi modifiche Coach</button>
               <span id="coach-ai-changes-summary" class="text-[10px] text-violet-300"></span>
             </div>
-            <div class="p-5 pt-2 flex gap-2"><textarea id="coach-ai-input" rows="3" placeholder="Fai una domanda sui dati dell'app..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();inviaDomandaCoachAI();}" class="flex-1 resize-none bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-violet-500"></textarea><button id="coach-ai-send" onclick="inviaDomandaCoachAI()" class="px-5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:bg-slate-700 text-white text-sm font-semibold">Invia</button></div>
+            <div class="p-5 pt-2 flex gap-2"><textarea id="coach-ai-input" rows="3" placeholder="Fai una domanda sui dati dell'app..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();inviaDomandaCoachAI();}" class="flex-1 resize-none bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-violet-500"></textarea><button id="coach-ai-mic" type="button" onclick="toggleCoachMicrofono()" title="Parla al Coach" class="w-12 min-w-12 rounded-xl bg-slate-800 border border-slate-600 text-xl">🎙️</button><button id="coach-ai-speak-toggle" type="button" onclick="toggleCoachVoceRisposte()" title="Ascolta le risposte" class="w-12 min-w-12 rounded-xl bg-emerald-700 border border-emerald-500/40 text-xl">🔊</button><button id="coach-ai-send" onclick="inviaDomandaCoachAI()" class="px-5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:bg-slate-700 text-white text-sm font-semibold">Invia</button></div><div class="px-5 pb-5"><button id="coach-ai-live" type="button" onclick="toggleCoachLive()" class="w-full rounded-xl bg-gradient-to-r from-violet-700 to-fuchsia-700 hover:from-violet-600 hover:to-fuchsia-600 border border-violet-400/40 text-white px-4 py-3 text-sm font-bold tracking-wide flex items-center justify-center gap-2"><span id="coach-ai-live-icon">🗣️</span><span id="coach-ai-live-label">PARLA CON IL COACH</span></button><div id="coach-ai-live-status" class="mt-2 min-h-[16px] text-[11px] font-mono text-slate-500 text-center">Conversazione vocale naturale con Gemini Live</div></div>
             <div id="coach-ai-status" class="px-5 pb-4 text-[10px] text-slate-500">Il Coach usa i dati attualmente caricati dall'app. Il parere è informativo e non sostituisce una valutazione medica.</div>
           </div>
         </section>
@@ -677,10 +677,11 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                             <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Parametri Piano di Allenamento</h3>
                             <p class="text-[11px] text-slate-400">Configura progressione, ciclo carico/scarico, ripartizione settimanale e vincoli TSS/CTL/TSB (salvati in JSON).</p>
                         </div>
-                        <button type="button" onclick="esportaPianoSuFoglioGoogle()" id="btn-esporta-piano-sheet"
+                        <button type="button" onclick="applicaPianoDaGiornoInizio()" id="btn-applica-piano"
                             class="bg-emerald-600/90 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-[11px] font-semibold transition shadow">
-                            Salva snapshot Piano
+                            Applica piano dal Giorno inizio piano
                         </button>
+                        <div id="piano-applicato-status" class="text-[10px] font-mono text-slate-500 mt-1 sm:mt-0">Piano non ancora applicato</div>
                     </div>
 
                     <!-- Riga 1: Parametri base + Ciclo Carico/Scarico -->
@@ -1657,10 +1658,10 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                 hrrcMin: 166,
                 hrZones: [134, 147, 154, 166, 185],
                 powerZones: {
-                    Z1: { min: 0, max: 55, targetPct: 52 },
-                    Z2: { min: 56, max: 75, targetPct: 70 },
-                    Z3: { min: 76, max: 90, targetPct: 84 },
-                    Z4: { min: 91, max: 105, targetPct: 98 },
+                    Z1: { min: 0, max: 55, targetPct: 50 },
+                    Z2: { min: 56, max: 75, targetPct: 67.27789971 },
+                    Z3: { min: 76, max: 90, targetPct: 81.80528872 },
+                    Z4: { min: 91, max: 105, targetPct: 105.93412799 },
                     Z5: { min: 106, max: 120, targetPct: 112 },
                     Z6: { min: 121, max: 150, targetPct: 135 },
                     Z7: { min: 151, max: null, targetPct: 165 },
@@ -1977,6 +1978,16 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
             return p.ride || PHYSIO_DEFAULTS.ride;
         }
 
+        // Profilo empirico ricavato confrontando i TSS restituiti da Intervals.icu
+        // con workout Ride contenenti "Zona power=3s". Questi coefficienti
+        // rappresentano l'intensita effettiva usata dal parser di Intervals.icu,
+        // non il semplice centro geometrico delle zone configurate.
+        const INTERVALS_RIDE_POWER_3S_IF = Object.freeze({
+            Z1: 50.00000000,
+            Z2: 67.27789971,
+            Z3: 81.80528872,
+            Z4: 105.93412799
+        });
         function risolviIntensitaZonaIntervals(zoneKey, sportKey, metricKey, physio) {
             const zUpper = String(zoneKey || '').toUpperCase();
             const sp = String(sportKey || '').toLowerCase();
@@ -1984,6 +1995,12 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
             const m = (metricKey || profilo.workoutMode || (sp === 'bici' ? 'power' : 'hr')).toLowerCase();
 
             if (m === 'power') {
+                // Per Ride + power=3s usa il profilo calibrato sui valori realmente
+                // calcolati da Intervals.icu. Vale anche se nel JSON sono rimasti
+                // targetPct precedenti, cosi il calcolo e la stringa restano coerenti.
+                if (sp === 'bici' && INTERVALS_RIDE_POWER_3S_IF[zUpper] !== undefined) {
+                    return INTERVALS_RIDE_POWER_3S_IF[zUpper];
+                }
                 const pz = profilo.powerZones && profilo.powerZones[zUpper];
                 if (pz) {
                     if (pz.targetPct !== undefined && pz.targetPct !== null) return Number(pz.targetPct);
@@ -2106,16 +2123,40 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
             return bestMin;
         }
 
-        function formattaStepStringaIntervals(minuti, zonaBase, metricaPreferita) {
+        function formattaStepStringaIntervals(minuti, zonaBase, metricaPreferita, sportKey = '') {
             if (metricaPreferita === 'pace') {
                 return `${minuti}m ${zonaBase} Pace`;
             }
             if (metricaPreferita === 'hr') {
                 return `${minuti}m ${zonaBase} HR`;
             }
+            // Per la Bici con metrica Zone di Potenza, Intervals.icu deve usare
+            // la potenza media a 3 secondi come target dello step.
+            const sport = String(sportKey || '').toLowerCase();
+            if (metricaPreferita === 'power' && (sport === 'bici' || sport === 'ride')) {
+                return `${minuti}m ${zonaBase} power=3s`;
+            }
             return `${minuti}m ${zonaBase}`;
         }
 
+        function ottimizzaRecuperoBiciPower(targetTss, durataMax, physio) {
+            let best={z1:Math.max(1,durataMax),z2:0,tss:0,diff:Infinity};
+            const maxMin=Math.max(1,Math.floor(durataMax));
+            for(let totale=1;totale<=maxMin;totale++){
+                // Mantiene la seduta prevalentemente di recupero: massimo 35% in Z2.
+                const maxZ2=Math.floor(totale*0.35);
+                for(let z2=0;z2<=maxZ2;z2++){
+                    const z1=totale-z2;
+                    const tss=calcolaTssStepSumIntervals([
+                        {seconds:z1*60,zone:'Z1',sport:'bici',metric:'power',physio},
+                        ...(z2>0?[{seconds:z2*60,zone:'Z2',sport:'bici',metric:'power',physio}]:[])
+                    ]);
+                    const diff=Math.abs(tss-targetTss);
+                    if(diff<best.diff || (diff===best.diff && totale<best.z1+best.z2))best={z1,z2,tss,diff};
+                }
+            }
+            return best;
+        }
         function formattaDurataMinutiTesto(minutiTotali) {
             const min = Math.max(0, Math.round(Number(minutiTotali) || 0));
             if (min < 60) return `${min} min`;
@@ -2197,19 +2238,21 @@ Rest`
                     const buildRidePower = (fn) => fn().map(s => Object.assign({ sport: 'bici', metric: 'power', physio }, s));
 
                     if (tipo === 'recupero' || tss < 35) {
-                        const min = ottimizzaMinutiPerTargetTss(
-                            tss,
-                            (m) => buildRidePower(() => [{ seconds: m * 60, zone: 'Z1' }]),
-                            calcolaTssStepSumIntervals,
-                            Math.min(20, durataMassimaSeduta),
-                            durataMassimaSeduta
-                        );
+                        const rec = ottimizzaRecuperoBiciPower(tss, durataMassimaSeduta, physio);
+                        const min = rec.z1 + rec.z2;
+                        const tssWorkout = Math.round(rec.tss);
+                        const deficit = Math.max(0,tss-tssWorkout);
+                        const notaDeficit = deficit ? ` · ⚠ ${deficit} TSS non realizzabili entro ${durataMassimaSeduta} min` : '';
+                        const stepZ2 = rec.z2>0 ? `
+- ${formattaStepStringaIntervals(rec.z2, 'Z2', 'power', 'bici')} 90rpm` : '';
                         return {
                             durataMin: min,
-                            descrizioneTabella: `${prefissoFase}Recupero attivo Bici Z1 · ${formattaDurataMinutiTesto(min)} agilità (90 rpm, Z1 Potenza) · Target ${tss} TSS`,
-                            stringaIntervals: `# ${giornoStr} ${dataStr} - Recupero Bici (${tss} TSS)
+                            tssRealizzabile:tssWorkout,
+                            deficitTss:deficit,
+                            descrizioneTabella: `${prefissoFase}Recupero attivo Bici · ${formattaDurataMinutiTesto(min)} (${rec.z1}' Z1${rec.z2>0?` + ${rec.z2}' Z2`:''}, 90 rpm) · ${tssWorkout} TSS${notaDeficit}`,
+                            stringaIntervals: `# ${giornoStr} ${dataStr} - Recupero Bici (${tssWorkout} TSS)${notaDeficit}
 Warmup
-- ${formattaStepStringaIntervals(min, 'Z1', 'power')} 90rpm`
+- ${formattaStepStringaIntervals(rec.z1, 'Z1', 'power', 'bici')} 90rpm${stepZ2}`
                         };
                     }
 
@@ -2235,14 +2278,14 @@ Warmup
                                 descrizioneTabella: `${prefissoFase}Qualità Bici (Sweet Spot) · ${formattaDurataMinutiTesto(durataTot)} con 2×${minBlocco} min in Z3 (rec. 5' Z1) · Target ${tss} TSS`,
                                 stringaIntervals: `# ${giornoStr} ${dataStr} - Qualità Sweet Spot (${tss} TSS)
 Warmup
-- ${formattaStepStringaIntervals(15, 'Z2', 'power')} 90rpm
+- ${formattaStepStringaIntervals(15, 'Z2', 'power', 'bici')} 90rpm
 
 2x
-- ${formattaStepStringaIntervals(minBlocco, 'Z3', 'power')} 90rpm
-- ${formattaStepStringaIntervals(5, 'Z1', 'power')} 90rpm
+- ${formattaStepStringaIntervals(minBlocco, 'Z3', 'power', 'bici')} 90rpm
+- ${formattaStepStringaIntervals(5, 'Z1', 'power', 'bici')} 90rpm
 
 Cooldown
-- ${formattaStepStringaIntervals(10, 'Z1', 'power')} 90rpm`
+- ${formattaStepStringaIntervals(10, 'Z1', 'power', 'bici')} 90rpm`
                             };
                         }
                         const minRip = ottimizzaMinutiPerTargetTss(
@@ -2269,14 +2312,14 @@ Cooldown
                             descrizioneTabella: `${prefissoFase}Qualità Bici (Soglia) · ${formattaDurataMinutiTesto(durataTot)} con 4×${minRip} min in Z4 (rec. 4' Z1) · Target ${tss} TSS`,
                             stringaIntervals: `# ${giornoStr} ${dataStr} - Qualità Soglia / VO2max (${tss} TSS)
 Warmup
-- ${formattaStepStringaIntervals(15, 'Z2', 'power')} 90rpm
+- ${formattaStepStringaIntervals(15, 'Z2', 'power', 'bici')} 90rpm
 
 4x
-- ${formattaStepStringaIntervals(minRip, 'Z4', 'power')} 95rpm
-- ${formattaStepStringaIntervals(4, 'Z1', 'power')} 85rpm
+- ${formattaStepStringaIntervals(minRip, 'Z4', 'power', 'bici')} 95rpm
+- ${formattaStepStringaIntervals(4, 'Z1', 'power', 'bici')} 85rpm
 
 Cooldown
-- ${formattaStepStringaIntervals(10, 'Z1', 'power')} 90rpm`
+- ${formattaStepStringaIntervals(10, 'Z1', 'power', 'bici')} 90rpm`
                         };
                     }
 
@@ -2298,12 +2341,12 @@ Cooldown
                             descrizioneTabella: `${prefissoFase}Fondo Bici Z2 · ${formattaDurataMinutiTesto(durataTot)} continui (10' risc. + ${minFondo}' Z2 + 5' def.) · Target ${tss} TSS`,
                             stringaIntervals: `# ${giornoStr} ${dataStr} - Fondo Z2 (${tss} TSS)
 Warmup
-- ${formattaStepStringaIntervals(10, 'Z2', 'power')} 90rpm
+- ${formattaStepStringaIntervals(10, 'Z2', 'power', 'bici')} 90rpm
 
-- ${formattaStepStringaIntervals(minFondo, 'Z2', 'power')} 90rpm
+- ${formattaStepStringaIntervals(minFondo, 'Z2', 'power', 'bici')} 90rpm
 
 Cooldown
-- ${formattaStepStringaIntervals(5, 'Z1', 'power')} 90rpm`
+- ${formattaStepStringaIntervals(5, 'Z1', 'power', 'bici')} 90rpm`
                         };
                     }
                     if (tss < 105) {
@@ -2325,13 +2368,13 @@ Cooldown
                             descrizioneTabella: `${prefissoFase}Fondo Medio-Lungo Bici · ${formattaDurataMinutiTesto(durataTot)} (${minZ2}' Z2 + 20' Z3) · Target ${tss} TSS`,
                             stringaIntervals: `# ${giornoStr} ${dataStr} - Fondo Medio-Lungo (${tss} TSS)
 Warmup
-- ${formattaStepStringaIntervals(15, 'Z2', 'power')} 90rpm
+- ${formattaStepStringaIntervals(15, 'Z2', 'power', 'bici')} 90rpm
 
-- ${formattaStepStringaIntervals(minZ2, 'Z2', 'power')} 90rpm
-- ${formattaStepStringaIntervals(20, 'Z3', 'power')} 90rpm
+- ${formattaStepStringaIntervals(minZ2, 'Z2', 'power', 'bici')} 90rpm
+- ${formattaStepStringaIntervals(20, 'Z3', 'power', 'bici')} 90rpm
 
 Cooldown
-- ${formattaStepStringaIntervals(10, 'Z1', 'power')} 90rpm`
+- ${formattaStepStringaIntervals(10, 'Z1', 'power', 'bici')} 90rpm`
                         };
                     }
                     const minLungoZ2 = ottimizzaMinutiPerTargetTss(
@@ -2352,13 +2395,13 @@ Cooldown
                         descrizioneTabella: `${prefissoFase}Fondo Lungo Bici · ${formattaDurataMinutiTesto(durataTot)} (${minLungoZ2}' Z2 + 30' Z3) · Target ${tss} TSS`,
                         stringaIntervals: `# ${giornoStr} ${dataStr} - Fondo Lungo (${tss} TSS)
 Warmup
-- ${formattaStepStringaIntervals(15, 'Z2', 'power')} 90rpm
+- ${formattaStepStringaIntervals(15, 'Z2', 'power', 'bici')} 90rpm
 
-- ${formattaStepStringaIntervals(minLungoZ2, 'Z2', 'power')} 90rpm
-- ${formattaStepStringaIntervals(30, 'Z3', 'power')} 88rpm
+- ${formattaStepStringaIntervals(minLungoZ2, 'Z2', 'power', 'bici')} 90rpm
+- ${formattaStepStringaIntervals(30, 'Z3', 'power', 'bici')} 88rpm
 
 Cooldown
-- ${formattaStepStringaIntervals(15, 'Z1', 'power')} 90rpm`
+- ${formattaStepStringaIntervals(15, 'Z1', 'power', 'bici')} 90rpm`
                     };
                 }
 
@@ -2825,21 +2868,39 @@ Cooldown
             };
         }
 
+        function formattaStringaIntervalsConRigheVuote(stringa) {
+            // Una riga vuota separa le FASI del workout, non ogni singola istruzione.
+            // Le righe appartenenti a una ripetuta (es. 5x + lavoro + recupero)
+            // restano quindi nello stesso blocco.
+            const righe = String(stringa || '')
+                .replace(/\r\n?/g, '\n')
+                .split('\n')
+                .map(riga => riga.trim())
+                .filter(riga => riga.length > 0);
+            const blocchi = [];
+            let corrente = [];
+            const chiudi = () => { if (corrente.length) { blocchi.push(corrente.join('\n')); corrente = []; } };
+            for (const riga of righe) {
+                const fase = /^(#|Warmup$|Cooldown$|Rest$)/i.test(riga);
+                const ripetizione = /^\d+x$/i.test(riga);
+                if (fase || ripetizione) {
+                    chiudi();
+                    corrente.push(riga);
+                    continue;
+                }
+                // Le righe di durata/intensita sono step Intervals.icu e devono sempre iniziare con '-'.
+                // Evitiamo il doppio trattino se la stringa originale lo contiene gia.
+                const step = riga.replace(/^[-•]\s*/, '').trim();
+                corrente.push('-' + step);
+            }
+            chiudi();
+            return blocchi.join('\n\n');
+        }
         function generaStringaIntervalsIcu(row) {
             if (!row) return '';
-            if (row.stringaIntervals) return row.stringaIntervals;
-            return costruisciPianoStrutturatoSeduta({
-                carico: row.carico,
-                tipoAllenamento: row.tipoAllenamento,
-                isScarico: row.isScarico,
-                isTaper: row.isTaper,
-                attivita: row.attivita,
-                dataFormattata: row.dataFormattata,
-                giornoNome: row.giornoNome,
-                settimana: row.settimana
-            }).stringaIntervals;
+            const originale = row.stringaIntervals || costruisciPianoStrutturatoSeduta({carico:row.carico,tipoAllenamento:row.tipoAllenamento,isScarico:row.isScarico,isTaper:row.isTaper,attivita:row.attivita,dataFormattata:row.dataFormattata,giornoNome:row.giornoNome,settimana:row.settimana}).stringaIntervals;
+            return formattaStringaIntervalsConRigheVuote(originale);
         }
-
         function mappaturaSportIntervalsIcu(attivitaKey) {
             if (attivitaKey === 'corsa') return 'Run';
             if (attivitaKey === 'camminata') return 'Walk';
@@ -2847,6 +2908,7 @@ Cooldown
         }
 
         function costruisciPayloadIntervalsWorkout(row, stringa) {
+            stringa = formattaStringaIntervalsConRigheVuote(stringa);
             const righe = String(stringa || '').split('\n');
             const primaRiga = (righe[0] || '').replace(/^#\s*/, '').trim();
             const corpo = righe.slice(1).join('\n').trim() || stringa;
@@ -6403,39 +6465,126 @@ Cooldown
 
         async function sincronizzazioneCompletaAttivita(){const b=document.getElementById('btn-sync-completa'),f=document.getElementById('sync-completa-feedback');if(!confirm('Ricostruire completamente la cache dati dalla Data Inizio?'))return;b.disabled=true;f.textContent='Sincronizzazione completa in corso...';try{const c=costruisciConfigPulitaDaForm();await fetch(WEB_APP_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'saveConfig',config:c})});await caricaDatiIntervals(`${WEB_APP_URL}?action=refreshFull`);await caricaDatiWellness();f.textContent='Sincronizzazione completa terminata.';}catch(x){f.textContent='Errore: '+(x.message||x);}finally{b.disabled=false;}}
 
-        async function esportaPianoSuFoglioGoogle() {
-            const btn = document.getElementById('btn-esporta-piano-sheet');
-            const feedback = document.getElementById('cfg-feedback');
-            const { pianoRows } = calcolaDatiPianoAllenamento();
-            if (btn) btn.disabled = true;
-            if (feedback) {
-                feedback.textContent = "Salvataggio snapshot piano nel backend...";
-                feedback.className = "text-xs text-blue-400";
+        const PIANO_APPLICATO_KEY='moioTrainingHub.pianoApplicato.v1';
+        function leggiPianoApplicato(){
+            try{return JSON.parse(localStorage.getItem(PIANO_APPLICATO_KEY)||'null');}catch(_){return null;}
+        }
+        function aggiornaStatoPianoApplicato(){
+            const el=document.getElementById('piano-applicato-status');if(!el)return;
+            const p=leggiPianoApplicato();
+            if(!p||!p.effectiveFrom){el.textContent='Piano non ancora applicato';el.className='text-[10px] font-mono text-slate-500 mt-1 sm:mt-0';return;}
+            const [y,m,d]=p.effectiveFrom.split('-');
+            el.textContent=`✓ Piano applicato dal ${d}/${m}/${y}`;
+            el.className='text-[10px] font-mono text-emerald-400 mt-1 sm:mt-0';
+        }
+        function rimuoviOverridePianoDaData(effectiveFrom) {
+            // Le scelte manuali per singola data hanno precedenza sulla ripartizione
+            // settimanale. Quando si applica un nuovo piano devono essere eliminate
+            // dalla data di entrata in vigore, altrimenti Lun/Mar/... non rispettano
+            // disciplina e tipologia configurate nella griglia settimanale.
+            Object.keys(pianoAttivitaPerData || {}).forEach(iso => {
+                if (iso >= effectiveFrom) delete pianoAttivitaPerData[iso];
+            });
+            Object.keys(pianoTipoAllenamentoPerData || {}).forEach(iso => {
+                if (iso >= effectiveFrom) delete pianoTipoAllenamentoPerData[iso];
+            });
+            Object.keys(coachModifichePiano || {}).forEach(iso => {
+                if (iso >= effectiveFrom) delete coachModifichePiano[iso];
+            });
+            salvaModificheCoach();
+        }
+        async function applicaPianoDaGiornoInizio() {
+            const btn=document.getElementById('btn-applica-piano');
+            const feedback=document.getElementById('cfg-feedback');
+            const cfgPiano=leggiConfigPianoDaForm();
+            const effectiveFrom=cfgPiano.usaOggiPiano?getOggiIsoLocale():String(cfgPiano.dataInizioPiano||document.getElementById('cfg-piano-dataInizio')?.value||'');
+            if(!/^\d{4}-\d{2}-\d{2}$/.test(effectiveFrom)){
+                alert('Imposta una data valida nel campo "Giorno inizio piano".');return;
             }
-            try {
-                await fetch(WEB_APP_URL, {
-                    method: "POST",
-                    mode: "no-cors",
-                    body: JSON.stringify({
-                        action: "saveTrainingPlan",
-                        nomeFoglioPiano: "Piano_Allenamento",
-                        rows: pianoRows
-                    })
+            const [yy,mm,dd]=effectiveFrom.split('-');
+            if(!confirm(`Applicare le impostazioni correnti del Piano a partire dal ${dd}/${mm}/${yy}?\n\nLe date precedenti non verranno considerate parte del nuovo piano.`))return;
+            if(btn){btn.disabled=true;btn.textContent='Applicazione piano...';}
+            if(feedback){feedback.textContent=`Applicazione piano dal ${dd}/${mm}/${yy}...`;feedback.className='text-xs text-blue-400';}
+            try{
+                rimuoviOverridePianoDaData(effectiveFrom);
+                const nuovaConfig=costruisciConfigPulitaDaForm();
+                nuovaConfig.pianoAllenamento=Object.assign({},nuovaConfig.pianoAllenamento,{
+                    dataInizioPiano:effectiveFrom,
+                    usaOggiPiano:false,
+                    attivitaPerData:Object.assign({},pianoAttivitaPerData),
+                    tipoAllenamentoPerData:Object.assign({},pianoTipoAllenamentoPerData)
                 });
-                if (feedback) {
-                    feedback.textContent = `Snapshot piano (${pianoRows.length} giorni) salvato nel backend.`;
-                    feedback.className = "text-xs text-emerald-400";
+                await inviaConfigAlServer(nuovaConfig);
+                configEsterna=Object.assign({},configEsterna,nuovaConfig);
+                localStorage.setItem(PIANO_APPLICATO_KEY,JSON.stringify({effectiveFrom,appliedAt:new Date().toISOString(),config:nuovaConfig.pianoAllenamento}));
+                // Congela la data esplicita scelta come entrata in vigore del piano.
+                const usaOggi=document.getElementById('cfg-piano-usaOggi');if(usaOggi)usaOggi.checked=false;
+                const dataEl=document.getElementById('cfg-piano-dataInizio');if(dataEl)dataEl.value=effectiveFrom;
+                sincronizzaStatoControlloDataPiano();
+                filtroDaOggiPiano=false;
+                salvaStatoFiltroDaOggiPiano();
+                pianoFiltroDa=effectiveFrom;
+                salvaRangeDateLocali();
+                if(sezioneAttiva==='piano'){
+                    const fd=document.getElementById('filtro-da');if(fd)fd.value=effectiveFrom;
+                    aggiornaControlloFiltroDaOggiPiano();
                 }
-            } catch (e) {
-                if (feedback) {
-                    feedback.textContent = "Errore esportazione piano: " + e.message;
-                    feedback.className = "text-xs text-red-400";
-                }
-            } finally {
-                if (btn) btn.disabled = false;
+                renderPianoAllenamento();
+                aggiornaStatoPianoApplicato();
+                if(feedback){feedback.textContent=`Piano applicato dal ${dd}/${mm}/${yy}. Ripartizione settimanale applicata; override manuali e Coach rimossi dalla data di inizio.`;feedback.className='text-xs text-emerald-400';}
+            }catch(e){
+                if(feedback){feedback.textContent='Errore applicazione piano: '+e.message;feedback.className='text-xs text-red-400';}
+            }finally{
+                if(btn){btn.disabled=false;btn.textContent='Applica piano dal Giorno inizio piano';}
             }
         }
 
+        let coachRecognition=null, coachStaAscoltando=false, coachVoceRisposte=true;
+        function inizializzaCoachVoce(){
+            const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+            const mic=document.getElementById('coach-ai-mic'), sp=document.getElementById('coach-ai-speak-toggle');
+            if(SR){coachRecognition=new SR();coachRecognition.lang='it-IT';coachRecognition.continuous=false;coachRecognition.interimResults=true;let finale='';
+                coachRecognition.onstart=()=>{coachStaAscoltando=true;finale='';if(mic){mic.textContent='⏹️';mic.classList.add('bg-rose-700');}const st=document.getElementById('coach-ai-status');if(st)st.textContent='Microfono attivo. Sto ascoltando...';};
+                coachRecognition.onresult=e=>{let tmp='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;if(e.results[i].isFinal)finale+=t+' ';else tmp+=t;}const input=document.getElementById('coach-ai-input');if(input)input.value=(finale+tmp).trim();};
+                coachRecognition.onerror=e=>{const st=document.getElementById('coach-ai-status');if(st)st.textContent=e.error==='not-allowed'?'Permesso microfono negato. Abilitalo nelle autorizzazioni del browser.':'Errore microfono: '+e.error;};
+                coachRecognition.onend=()=>{coachStaAscoltando=false;if(mic){mic.textContent='🎙️';mic.classList.remove('bg-rose-700');}};
+            }else if(mic){mic.disabled=true;mic.classList.add('opacity-40');mic.title='Riconoscimento vocale non disponibile in questo browser';}
+            try{coachVoceRisposte=localStorage.getItem('moioTrainingHub.coachVoice.v1')!=='0';}catch(_){}
+            if(sp)sp.textContent=coachVoceRisposte?'🔊':'🔇';
+        }
+        function toggleCoachMicrofono(){if(!coachRecognition){inizializzaCoachVoce();if(!coachRecognition)return;}try{coachStaAscoltando?coachRecognition.stop():coachRecognition.start();}catch(_){} }
+        function toggleCoachVoceRisposte(){coachVoceRisposte=!coachVoceRisposte;try{localStorage.setItem('moioTrainingHub.coachVoice.v1',coachVoceRisposte?'1':'0');}catch(_){}if(!coachVoceRisposte){if(window.speechSynthesis)window.speechSynthesis.cancel();if(coachTtsAudio){try{coachTtsAudio.pause();}catch(_){}coachTtsAudio=null;}}const b=document.getElementById('coach-ai-speak-toggle');if(b)b.textContent=coachVoceRisposte?'🔊':'🔇';}
+        let coachTtsAudio=null;
+        function wavBlobDaBase64(base64,mimeType='audio/wav'){
+            const bin=atob(base64),bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+            return new Blob([bytes],{type:mimeType||'audio/wav'});
+        }
+        async function parlaTestoCoach(testo){
+            if(!coachVoceRisposte||!testo)return;
+            const pulito=String(testo).replace(/```[\s\S]*?```/g,'').replace(/[*#_`]/g,' ').replace(/\s+/g,' ').trim();if(!pulito)return;
+            const cfg=localCfg();
+            if(!cfg.aiGeminiApiKey){return parlaTestoCoachFallback(pulito);}
+            try{
+                const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash-tts:generateContent?key=${encodeURIComponent(cfg.aiGeminiApiKey)}`;
+                const payload={contents:[{role:'user',parts:[{text:pulito,speech_metadata:{style:'Voce italiana naturale, calda e conversazionale. Tono di un coach endurance competente, diretto ma rassicurante. Ritmo medio, cadenza spontanea, volume uniforme. Pronuncia con chiarezza CTL, ATL, TSB, TSS, HRV e VO2max. Evita tono da annunciatore o sintetico.'}}]}],generationConfig:{responseModalities:['AUDIO'],speechConfig:{voiceConfig:{voice:'Kore'}}}};
+                const r=await NATIVE_FETCH(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+                if(!r.ok)throw new Error(`Gemini TTS HTTP ${r.status}: ${(await r.text()).slice(0,240)}`);
+                const j=await r.json(),part=j.candidates?.[0]?.content?.parts?.find(x=>x.inlineData?.data||x.inline_data?.data),audio=part?.inlineData||part?.inline_data;
+                if(!audio?.data)throw new Error('Gemini TTS: audio non ricevuto');
+                if(coachTtsAudio){try{coachTtsAudio.pause();URL.revokeObjectURL(coachTtsAudio.src);}catch(_){}coachTtsAudio=null;}
+                const blob=wavBlobDaBase64(audio.data,audio.mimeType||audio.mime_type||'audio/wav'),urlAudio=URL.createObjectURL(blob);
+                coachTtsAudio=new Audio(urlAudio);coachTtsAudio.onended=()=>{URL.revokeObjectURL(urlAudio);coachTtsAudio=null;};
+                await coachTtsAudio.play();
+            }catch(err){
+                console.warn('Gemini TTS non disponibile, uso fallback browser:',err);
+                parlaTestoCoachFallback(pulito);
+            }
+        }
+        function parlaTestoCoachFallback(testo){
+            if(!('speechSynthesis'in window)||!testo)return;
+            window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(testo);u.lang='it-IT';u.rate=.98;u.pitch=1;
+            const vv=window.speechSynthesis.getVoices();u.voice=vv.find(v=>/^it(?:-|_)/i.test(v.lang)&&/google|natural|enhanced/i.test(v.name))||vv.find(v=>/^it(?:-|_)/i.test(v.lang))||null;window.speechSynthesis.speak(u);
+        }
         let coachAiHistory = [];
         const COACH_PLAN_CHANGES_KEY='moioTrainingHub.coachPlanChanges.v1';
         let coachModifichePiano={};
@@ -6484,7 +6633,7 @@ Cooldown
             try {
                 const response=await fetch(WEB_APP_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'askTrainingCoachAI',question:domanda+'\n\nSe ritieni opportuno modificare allenamenti futuri, restituisci anche il blocco JSON strutturato richiesto nel contesto. Non modificare giorni completati e rispetta i constraint del piano.',context:costruisciContestoCoachAI(),history:coachAiHistory.slice(-8)})});
                 const data=await response.json(); if(data.status!=='success') throw new Error(data.message||'Risposta AI non valida');
-                aggiungiMessaggioCoachAI(data.answer,'assistant'); coachAiHistory.push({role:'assistant',text:data.answer}); const proposte=estraiModificheCoachDaRisposta(data.answer); mostraModificheCoachPendenti(proposte);
+                aggiungiMessaggioCoachAI(data.answer,'assistant'); parlaTestoCoach(data.answer); coachAiHistory.push({role:'assistant',text:data.answer}); const proposte=estraiModificheCoachDaRisposta(data.answer); mostraModificheCoachPendenti(proposte);
                 if(status) status.textContent='Analisi completata. Il parere AI è informativo e non sostituisce una valutazione medica.';
             } catch(err) { aggiungiMessaggioCoachAI('Errore: '+(err.message||err),'assistant'); if(status) status.textContent='Impossibile contattare il Coach AI.'; }
             finally { if(btn) btn.disabled=false; }
@@ -6508,6 +6657,7 @@ Cooldown
             caricaStatoFiltroAOggi();
             caricaStatoFiltroDaOggiPiano();
             caricaModificheCoach();
+            inizializzaCoachVoce();
             inizializzaDatePredefinite();
             const rangeRipristinati=caricaRangeDateLocali();
             if (!rangeRipristinati || (!storicoFiltroDa && !storicoFiltroA)) {
@@ -6519,23 +6669,12 @@ Cooldown
             impostaDataAOggiPerSezione();
             aggiornaControlloFiltroAOggi();
             aggiornaControlloFiltroDaOggiPiano();
-            const pianoStartInput = document.getElementById('cfg-piano-dataInizio');
-            const pianoUsaOggiCb = document.getElementById('cfg-piano-usaOggi');
-            if (pianoUsaOggiCb) pianoUsaOggiCb.checked = true;
-            if (pianoStartInput) {
-                pianoStartInput.value = getOggiIsoLocale();
-                sincronizzaStatoControlloDataPiano();
-            }
-            applicaConfigZoneTsbAlForm(TSB_ZONE_DEFAULTS);
-            applicaParametriPianoAvanzatiAlForm(PIANO_AVANZATO_DEFAULTS);
-            applicaConfigStileGraficiAlForm(CHART_STYLE_DEFAULTS);
-            applicaPreferenzeMetricaStringaAlForm(METRICHE_STRINGA_DEFAULTS);
-            applicaParametriFisiologiciAlForm(PHYSIO_DEFAULTS);
+            aggiornaStatoPianoApplicato();
+            // I campi vengono popolati dalla configurazione salvata durante
+            // caricaDatiIntervals(). Non forzare qui Oggi/RIPARTIZIONE_DEFAULT,
+            // perche sovrascriverebbe temporaneamente il piano applicato.
             selezionaSchedaPhysio('bici');
-            renderSchedePhysioZone();
-            renderGrigliaRipartizioneSettimanale(null);
             renderMappaturaBuilder();
-            renderPianoAllenamento();
             await caricaDatiIntervals(`${WEB_APP_URL}?action=getDashboard`);
             await caricaDatiWellness();
         };
