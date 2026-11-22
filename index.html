@@ -237,6 +237,13 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
 
 .sort-header-inline{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;white-space:nowrap!important;vertical-align:middle!important}
 .sort-col-btn{display:inline-grid!important;place-items:center!important;flex:0 0 18px!important;margin:0 0 0 5px!important;vertical-align:middle!important}
+
+/* Android: la tabella desktop e i suoi figli sono già sostituiti dalle card mobili.
+   Nascondiamo anche il contenitore esterno per evitare il riquadro grigio vuoto. */
+@media (max-width: 767px) {
+  #storico-desktop-table-card { display: none !important; }
+  #layout-save-status { margin: 0 !important; min-height: 0 !important; }
+}
 </style>
 </head>
 <body class="page-bg-container bg-slate-900 text-slate-100 font-sans h-screen overflow-hidden flex flex-col">
@@ -293,8 +300,14 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
             </div>
 
             <div class="flex items-center space-x-1 text-xs bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700/60">
-                <span class="text-slate-400">Da:</span>
-                <input type="date" id="filtro-da" onchange="onChangeFiltroDataGlobale()" class="bg-slate-900 text-slate-200 border border-slate-700 rounded px-1 py-0.5 text-xs">
+                <span class="text-slate-400 self-start mt-1">Da:</span>
+                <div class="flex flex-col items-start gap-0.5">
+                    <input type="date" id="filtro-da" onchange="onChangeFiltroDataGlobale()" class="bg-slate-900 text-slate-200 border border-slate-700 rounded px-1 py-0.5 text-xs">
+                    <label id="filtro-da-oggi-wrap" class="hidden inline-flex items-center gap-1 text-[10px] text-emerald-400 cursor-pointer select-none pl-0.5">
+                        <input type="checkbox" id="filtro-da-oggi" onchange="onToggleFiltroDaOggiPiano()" class="rounded bg-slate-900 border-slate-600 text-emerald-500">
+                        <span>Oggi</span>
+                    </label>
+                </div>
                 <span class="text-slate-400 ml-2 self-start mt-1">A:</span>
                 <div class="flex flex-col items-start gap-0.5">
                     <input type="date" id="filtro-a" onchange="onChangeFiltroDataGlobale()" class="bg-slate-900 text-slate-200 border border-slate-700 rounded px-1 py-0.5 text-xs">
@@ -386,7 +399,7 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
 
             <span id="layout-save-status" class="hidden" aria-live="polite"></span>
 
-            <div class="flex-1 overflow-hidden border border-slate-700/60 rounded-xl bg-slate-800/50 shadow-lg flex flex-col">
+            <div id="storico-desktop-table-card" class="flex-1 overflow-hidden border border-slate-700/60 rounded-xl bg-slate-800/50 shadow-lg flex flex-col">
                 <div class="v39-table-title">
                     <b>Storico giornaliero</b>
                     <div class="flex items-center gap-2">
@@ -1476,6 +1489,8 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
         const intervalloSelezionatoPerSezione = {registrate:'1m',piano:'7d',wellness:'1m',coach:'1m',impostazioni:'1m'};
         const RANGE_OGGI_STORAGE_KEY='moioTrainingHub.rangeOggi.v1';
         const filtroAOggiPerSezione={registrate:true,grafici:true,piano:true,wellness:true,coach:true,impostazioni:true};
+        const RANGE_DA_OGGI_PIANO_KEY='moioTrainingHub.rangeDaOggiPiano.v1';
+        let filtroDaOggiPiano=false;
         const etichetteIntervallo = { '7d':'7', '1m':'1 mese', '42d':'42', '3m':'3 mesi', '6m':'6 mesi', '1y':'1 anno' };
         function salvaIntervalliSelezionati(){try{localStorage.setItem(RANGE_INTERVAL_STORAGE_KEY,JSON.stringify(intervalloSelezionatoPerSezione));}catch(_){}}
         function caricaIntervalliSelezionati(){try{const r=JSON.parse(localStorage.getItem(RANGE_INTERVAL_STORAGE_KEY)||'{}');Object.keys(intervalloSelezionatoPerSezione).forEach(k=>{if(['7d','1m','42d','3m','6m','1y'].includes(r[k]))intervalloSelezionatoPerSezione[k]=r[k];});}catch(_){} aggiornaEtichetteNavigazioneIntervallo();}
@@ -1510,6 +1525,39 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
             const cb=document.getElementById('filtro-a-oggi');filtroAOggiPerSezione[sezioneAttiva]=Boolean(cb?.checked);salvaStatoFiltroAOggi();
             if(filtroAOggiPerSezione[sezioneAttiva]){impostaDataAOggiPerSezione();aggiornaControlloFiltroAOggi();onChangeFiltroDataGlobale();}
             else aggiornaControlloFiltroAOggi();
+        }
+        function caricaStatoFiltroDaOggiPiano(){
+            try{filtroDaOggiPiano=localStorage.getItem(RANGE_DA_OGGI_PIANO_KEY)==='1';}catch(_){filtroDaOggiPiano=false;}
+        }
+        function salvaStatoFiltroDaOggiPiano(){
+            try{localStorage.setItem(RANGE_DA_OGGI_PIANO_KEY,filtroDaOggiPiano?'1':'0');}catch(_){}
+        }
+        function aggiornaControlloFiltroDaOggiPiano(){
+            const wrap=document.getElementById('filtro-da-oggi-wrap');
+            const cb=document.getElementById('filtro-da-oggi');
+            const input=document.getElementById('filtro-da');
+            if(!wrap||!cb||!input)return;
+            const inPiano=sezioneAttiva==='piano';
+            wrap.classList.toggle('hidden',!inPiano);
+            cb.checked=inPiano&&filtroDaOggiPiano;
+            if(inPiano&&filtroDaOggiPiano){
+                const oggi=getOggiIsoLocale();
+                pianoFiltroDa=oggi;input.value=oggi;input.disabled=true;
+                input.classList.add('opacity-70','cursor-not-allowed');
+            }else{
+                input.disabled=false;input.classList.remove('opacity-70','cursor-not-allowed');
+            }
+        }
+        function onToggleFiltroDaOggiPiano(){
+            const cb=document.getElementById('filtro-da-oggi');
+            filtroDaOggiPiano=Boolean(cb?.checked);
+            salvaStatoFiltroDaOggiPiano();
+            if(filtroDaOggiPiano){
+                pianoFiltroDa=getOggiIsoLocale();
+                const input=document.getElementById('filtro-da');if(input)input.value=pianoFiltroDa;
+            }
+            aggiornaControlloFiltroDaOggiPiano();
+            onChangeFiltroDataGlobale();
         }
         function salvaRangeDateLocali() {
             try {
@@ -3378,6 +3426,7 @@ Cooldown
             }
             impostaDataAOggiPerSezione();
             aggiornaControlloFiltroAOggi();
+            aggiornaControlloFiltroDaOggiPiano();
             aggiornaEtichetteNavigazioneIntervallo();
             const activeClass = "px-3 py-1 rounded-md text-xs font-semibold bg-emerald-600 text-white transition";
             const inactiveClass = "px-3 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition";
@@ -5284,6 +5333,7 @@ Cooldown
         function aggiornaControlliSeriePiano(){const st=leggiConfigStileGraficiDaForm();const c={ctl:['btn-piano-serie-ctl',st.coloreCtl],atl:['btn-piano-serie-atl',st.coloreAtl],tsb:['btn-piano-serie-tsb',st.coloreTsb]};Object.entries(c).forEach(([k,v])=>{const b=document.getElementById(v[0]);if(!b)return;b.style.backgroundColor=v[1];b.style.borderColor=v[1];b.classList.toggle('inactive',!pianoSerieVisibili[k]);b.setAttribute('aria-pressed',pianoSerieVisibili[k]?'true':'false');});}
         function toggleSeriePiano(k){if(!(k in pianoSerieVisibili))return;pianoSerieVisibili[k]=!pianoSerieVisibili[k];if(k==='ctl'&&chartPianoInstance)chartPianoInstance.setDatasetVisibility(0,pianoSerieVisibili.ctl);if(k==='atl'&&chartPianoInstance)chartPianoInstance.setDatasetVisibility(1,pianoSerieVisibili.atl);if(k==='tsb'&&chartPianoTsbInstance)chartPianoTsbInstance.setDatasetVisibility(0,pianoSerieVisibili.tsb);chartPianoInstance?.update();chartPianoTsbInstance?.update();aggiornaControlliSeriePiano();}
         function renderPianoAllenamento() {
+            if(filtroDaOggiPiano){pianoFiltroDa=getOggiIsoLocale();if(sezioneAttiva==='piano'){const d=document.getElementById('filtro-da');if(d)d.value=pianoFiltroDa;}}
             if(filtroAOggiPerSezione.piano){pianoFiltroA=getOggiIsoLocale();if(sezioneAttiva==='piano'){const a=document.getElementById('filtro-a');if(a)a.value=pianoFiltroA;}}
             const { dataInizioPianoIso, caricoSettimanalePartenza, baselineStorica, metodoBaselineUsato, carichiQuattroSettimane, incrementoPct, numSettimane, pianoRows, mappaCaricoCompletato } = calcolaDatiPianoAllenamento();
             if (sezioneAttiva === 'piano' && (pianoFiltroDa || pianoFiltroA)) {
@@ -5661,6 +5711,7 @@ Cooldown
         function applicaRangeAllaSezione(da,a){
             const oggi=getOggiIsoLocale();
             if(filtroAOggiPerSezione[sezioneAttiva]) a=oggi;
+            if(sezioneAttiva==='piano'&&filtroDaOggiPiano) da=oggi;
             document.getElementById('filtro-da').value=da;document.getElementById('filtro-a').value=a;
             if(sezioneAttiva==='grafici'){storicoFiltroDa=da;storicoFiltroA=a;salvaRangeDateLocali();renderGraficiSection();}
             else if(sezioneAttiva==='piano'){pianoFiltroDa=da;pianoFiltroA=a;pianoPinnedChartIndex=null;pianoHoverChartIndex=null;pianoActiveChartIndex=null;salvaRangeDateLocali();renderPianoAllenamento();}
@@ -6455,6 +6506,7 @@ Cooldown
             caricaColonneWellnessLocali();
             caricaIntervalliSelezionati();
             caricaStatoFiltroAOggi();
+            caricaStatoFiltroDaOggiPiano();
             caricaModificheCoach();
             inizializzaDatePredefinite();
             const rangeRipristinati=caricaRangeDateLocali();
@@ -6466,6 +6518,7 @@ Cooldown
             document.getElementById('filtro-a').value=storicoFiltroA||document.getElementById('filtro-a').value;
             impostaDataAOggiPerSezione();
             aggiornaControlloFiltroAOggi();
+            aggiornaControlloFiltroDaOggiPiano();
             const pianoStartInput = document.getElementById('cfg-piano-dataInizio');
             const pianoUsaOggiCb = document.getElementById('cfg-piano-usaOggi');
             if (pianoUsaOggiCb) pianoUsaOggiCb.checked = true;
