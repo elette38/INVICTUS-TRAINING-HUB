@@ -244,6 +244,47 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
   #storico-desktop-table-card { display: none !important; }
   #layout-save-status { margin: 0 !important; min-height: 0 !important; }
 }
+.readiness-card{background:linear-gradient(145deg,#101b2c,#0b1422);border:1px solid #243044;border-radius:13px;padding:11px;min-height:82px}.readiness-label{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:#8492a6}.readiness-value{font-size:22px;line-height:1.1;font-weight:850;margin-top:6px;color:var(--readiness-color,#7dd3fc)}.readiness-note{font-size:9px;color:#94a3b8;margin-top:4px;line-height:1.25}#wellness-readiness-details{font-size:10px;color:#94a3b8;line-height:1.45}@media(max-width:767px){#wellness-readiness-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}.readiness-value{font-size:19px}}
+.athlete-response-card{background:linear-gradient(145deg,#111827,#0b1422);border:1px solid #334155;border-radius:11px;padding:10px}.athlete-response-label{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:#7c8ba1}.athlete-response-value{font-size:18px;font-weight:850;line-height:1.1;margin-top:5px}.athlete-response-note{font-size:9px;color:#94a3b8;margin-top:4px;line-height:1.3}
+
+.pattern-3c-card{background:linear-gradient(145deg,#111827,#0b1422);border:1px solid #334155;border-radius:11px;padding:10px}.pattern-3c-card[data-quality="high"]{border-color:#10b98166}.pattern-3c-card[data-quality="medium"]{border-color:#f59e0b66}.pattern-3c-chip{display:inline-flex;align-items:center;padding:2px 7px;border-radius:999px;font-size:9px;font-weight:800;background:#312e8155;color:#c4b5fd;border:1px solid #8b5cf633}
+  /* v42.48 - Piano di allenamento: pagina interamente scorrevole in verticale */
+  #page-piano{overflow-y:auto!important;overflow-x:hidden!important;min-height:0;scrollbar-width:thin;scrollbar-color:#475569 #0f172a;padding-right:4px;padding-bottom:18px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}
+  #page-piano::-webkit-scrollbar{width:9px}#page-piano::-webkit-scrollbar-track{background:#0f172a;border-radius:10px}#page-piano::-webkit-scrollbar-thumb{background:#475569;border-radius:10px;border:2px solid #0f172a}#page-piano::-webkit-scrollbar-thumb:hover{background:#64748b}
+  #page-piano > #goal-4a-card,#page-piano > #piano-info-card,#page-piano > #piano-chart-card,#page-piano > #adaptive-engine-card{flex:0 0 auto!important;}
+  #page-piano > div:has(> #table-piano){flex:0 0 auto!important;min-height:260px;max-height:65vh;overflow:auto!important;}
+  #page-piano > #mobile-piano-cards{flex:0 0 auto!important;}
+  @media(max-width:767px){#page-piano{overflow-y:auto!important;overflow-x:hidden!important;padding-bottom:18px!important;}#mobile-piano-cards{display:block!important;flex:0 0 auto!important;overflow:visible!important;max-height:none!important;min-height:0!important;}#page-piano > div:has(> #table-piano){display:none!important;}}
+  /* v42.42 - Wellness: pagina interamente scorrevole in verticale */
+  #page-wellness{overflow-y:auto!important;overflow-x:hidden!important;min-height:0;scrollbar-width:thin;scrollbar-color:#475569 #0f172a;padding-right:4px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}
+  #page-wellness::-webkit-scrollbar{width:9px}#page-wellness::-webkit-scrollbar-track{background:#0f172a;border-radius:10px}#page-wellness::-webkit-scrollbar-thumb{background:#475569;border-radius:10px;border:2px solid #0f172a}#page-wellness::-webkit-scrollbar-thumb:hover{background:#64748b}
+  #page-wellness > div:first-child{flex:0 0 auto!important;overflow:visible!important;}
+  #page-wellness > div:nth-last-child(2){flex:0 0 auto!important;max-height:55vh;min-height:220px;overflow:auto!important;}
+  #page-wellness > #mobile-wellness-cards{flex:0 0 auto!important;}
+  @media(max-width:767px){#page-wellness{overflow-y:auto!important;overflow-x:hidden!important;padding-bottom:18px!important;}#page-wellness > div:first-child{overflow:visible!important;}#mobile-wellness-cards{flex:0 0 auto!important;overflow:visible!important;max-height:none!important;min-height:0!important;}}
+.goal-4a-card{background:linear-gradient(145deg,#171226,#0b1422);border:1px solid #8b5cf64d;border-radius:14px}.goal-4a-kpi{background:#02061788;border:1px solid #334155;border-radius:10px;padding:9px}.goal-4a-label{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:#7c8ba1}.goal-4a-value{font-size:14px;font-weight:800;color:#e2e8f0;margin-top:4px}
+.macro-4b-wrap{margin-top:10px;padding-top:10px;border-top:1px solid #8b5cf633}.macro-4b-track{display:flex;min-height:34px;border-radius:9px;overflow:hidden;background:#020617;border:1px solid #334155}.macro-4b-phase{display:flex;align-items:center;justify-content:center;min-width:44px;padding:0 6px;font-size:9px;font-weight:900;letter-spacing:.05em;color:#fff;position:relative}.macro-4b-phase.current{box-shadow:inset 0 0 0 2px #fff}.macro-4b-base{background:#0f766e}.macro-4b-build{background:#2563eb}.macro-4b-specific{background:#7c3aed}.macro-4b-taper{background:#d97706}.macro-4b-event{background:#be123c}.macro-4b-kpi{background:#02061788;border:1px solid #334155;border-radius:9px;padding:8px}.macro-4b-warning{border:1px solid #f59e0b55;background:#f59e0b0d;color:#fbbf24;border-radius:8px;padding:7px 9px;font-size:10px}
+.goalplan-4c-card{margin-top:10px;padding:9px;border:1px solid #22d3ee44;background:#08334422;border-radius:10px}.goalplan-4c-chip{display:inline-flex;padding:2px 7px;border-radius:999px;font-size:9px;font-weight:900;background:#0891b233;color:#67e8f9;border:1px solid #22d3ee44}.goalplan-4c-row{display:grid;grid-template-columns:90px 1fr 62px;gap:7px;align-items:center;font-size:9px}.goalplan-4c-bar{height:6px;border-radius:999px;background:#1e293b;overflow:hidden}.goalplan-4c-fill{height:100%;background:linear-gradient(90deg,#06b6d4,#8b5cf6)}
+.race-4d-card{margin-top:10px;padding:10px;border:1px solid #10b98144;background:linear-gradient(135deg,#064e3b22,#0f172a);border-radius:11px}.race-4d-score{font-size:30px;line-height:1;font-weight:900}.race-4d-track{height:8px;background:#1e293b;border-radius:999px;overflow:hidden}.race-4d-fill{height:100%;background:linear-gradient(90deg,#f59e0b,#22c55e,#34d399);border-radius:999px;transition:width .35s ease}.race-4d-metric{background:#02061788;border:1px solid #334155;border-radius:8px;padding:7px}.race-4d-metric small{display:block;color:#64748b;font-size:8px;text-transform:uppercase;letter-spacing:.07em}.race-4d-metric b{display:block;margin-top:3px;font-size:12px}.race-4d-chip{display:inline-flex;padding:2px 7px;border-radius:999px;font-size:9px;font-weight:900;background:#10b98122;color:#6ee7b7;border:1px solid #10b98144}
+
+  /* v42.51 - Aree richiudibili e Allenamento di oggi */
+  .hub-area-card{background:rgba(14,23,38,.88);border:1px solid #243044;border-radius:18px;box-shadow:0 16px 44px #0003;overflow:hidden;flex:0 0 auto}
+  .hub-area-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid #202c3e}
+  .hub-area-head b{font-size:13px;color:#e7edf5}.hub-area-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .hub-toggle{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;background:#1e293b;border:1px solid #475569;color:#cbd5e1;font-size:12px;font-weight:800}
+  .hub-collapsible{overflow:hidden;opacity:1;max-height:1800px;transition:max-height .38s ease,opacity .24s ease,transform .38s ease,padding .38s ease}
+  .hub-collapsible.hub-collapsed{max-height:0!important;min-height:0!important;opacity:0;transform:translateY(-6px) scaleY(.98);padding-top:0!important;padding-bottom:0!important;border-width:0!important;pointer-events:none}
+  #page-oggi{overflow-y:auto!important;overflow-x:hidden!important;min-height:0;padding-right:4px;padding-bottom:18px;scrollbar-width:thin;scrollbar-color:#475569 #0f172a}
+  #today-readiness-host .mb-3,#today-adaptive-host #adaptive-engine-card{margin:0!important}
+  #today-readiness-host>div{border:0!important;border-radius:0!important;background:transparent!important}
+  #today-adaptive-host #adaptive-engine-card{border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+  #today-workout-content{padding:14px}.today-workout-main{font-size:15px;font-weight:800;color:#e2e8f0}.today-workout-meta{margin-top:7px;display:flex;gap:8px;flex-wrap:wrap}.today-chip{padding:4px 8px;border-radius:999px;background:#0f172a;border:1px solid #334155;color:#cbd5e1;font-size:10px}.today-workout-desc{margin-top:10px;padding:10px;border-radius:10px;background:#02061788;border:1px solid #334155;color:#cbd5e1;font-size:11px;line-height:1.5}
+
+  /* v42.52 fixes */
+  .hub-collapsible.hub-collapsed{display:none!important;}
+  #page-oggi{overflow-y:auto!important;overflow-x:hidden!important;min-height:0;padding-bottom:18px;}
+  #wellness-chart-content{max-height:900px;} #wellness-readiness-content{max-height:600px;}
+  #piano-batch-push-status{display:block;min-width:190px}
 </style>
 </head>
 <body class="page-bg-container bg-slate-900 text-slate-100 font-sans h-screen overflow-hidden flex flex-col">
@@ -252,7 +293,8 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
 <aside id="v39-sidebar" aria-label="Navigazione principale v39">
   <div class="v39-brand"><div class="v39-logo">M</div><div><b>Moio Training Hub</b><small>Performance dashboard · v39</small></div></div>
   <nav class="v39-nav">
-    <button type="button" data-v39-section="registrate" onclick="switchSection('registrate')"><span>◫</span>Storico</button>
+    <button type="button" data-v39-section="oggi" onclick="switchSection('oggi')"><span>☀</span>Allenamento di oggi</button>
+      <button type="button" data-v39-section="registrate" onclick="switchSection('registrate')"><span>◫</span>Storico</button>
     <button type="button" data-v39-section="grafici" onclick="switchSection('grafici')"><span>⌁</span>Grafici</button>
     <button type="button" data-v39-section="piano" onclick="switchSection('piano')"><span>◷</span>Piano allenamento</button>
     <button type="button" data-v39-section="wellness" onclick="switchSection('wellness')"><span>♡</span>Wellness</button>
@@ -347,7 +389,8 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
     <aside id="mobile-drawer" aria-hidden="true" class="mobile-only fixed z-[80] top-0 bottom-0 left-0 w-[82vw] max-w-[320px] bg-slate-950 border-r border-slate-700 shadow-2xl -translate-x-full transition-transform duration-200 ease-out flex flex-col">
         <div class="flex items-center gap-3 px-4 py-4 border-b border-slate-800"><button type="button" onclick="toggleMobileDrawer(false)" class="w-10 h-10 text-2xl text-slate-200">☰</button><div><div class="font-bold text-emerald-400">Moio Training Hub</div><div class="text-[10px] text-slate-500">Training dashboard</div></div></div>
         <nav class="py-3 flex-1 overflow-y-auto">
-            <button data-drawer-section="registrate" onclick="mobileDrawerNavigate('registrate')" class="mobile-drawer-item"><span>📊</span><span>Storico</span></button>
+            <button data-drawer-section="oggi" onclick="mobileDrawerNavigate('oggi')" class="mobile-drawer-item"><span>☀️</span><span>Allenamento di oggi</span></button>
+              <button data-drawer-section="registrate" onclick="mobileDrawerNavigate('registrate')" class="mobile-drawer-item"><span>📊</span><span>Storico</span></button>
             <button data-drawer-section="piano" onclick="mobileDrawerNavigate('piano')" class="mobile-drawer-item"><span>📅</span><span>Piano di allenamento</span></button>
             <button data-drawer-section="wellness" onclick="mobileDrawerNavigate('wellness')" class="mobile-drawer-item"><span>❤️</span><span>Wellness</span></button>
             <button data-drawer-section="coach" onclick="mobileDrawerNavigate('coach')" class="mobile-drawer-item"><span>🤖</span><span>Coach AI</span></button>
@@ -404,12 +447,15 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                     <b>Storico giornaliero</b>
                     <div class="flex items-center gap-2">
                         <span>Seleziona una riga per fissarla sul grafico</span>
+                          <button id="btn-toggle-storico-list" type="button" onclick="toggleHubArea('storico-list-content',this,'moioTrainingHub.storicoListHidden.v2')" class="hub-toggle" title="Nascondi Storico giornaliero" aria-expanded="true">⌃</button>
+                        <button type="button" onclick="esportaStoricoVisualizzatoCsv()" title="Esporta righe, colonne, filtro e ordinamento visualizzati" class="px-2.5 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/35 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold transition">⇩ ESPORTA CSV</button>
                         <button type="button" onclick="resetColonneStorico()" title="Rimuove tutte le colonne aggiunte manualmente e mantiene DATA, GIORNO, CTL, ATL, TSB e CARICO"
                             class="px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600/35 border border-rose-500/40 text-rose-300 text-[10px] font-bold transition">
                             RESET COLONNE
                         </button>
                     </div>
                 </div>
+                  <div id="storico-list-content" class="hub-collapsible flex-1 min-h-0 flex flex-col">
                 <!-- Intestazione delle colonne fissa sopra l'elenco, con tasto "+" in alto a sinistra -->
                 <div id="table-header-scroll" class="overflow-x-auto bg-slate-900 border-b border-slate-700 shrink-0">
                     <div class="flex items-stretch min-w-max">
@@ -436,11 +482,19 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                         </table>
                     </div>
                 </div>
+                  </div>
             </div>
         <div id="mobile-registrate-cards" class="mobile-only mobile-card-scroll flex-1 space-y-2"></div>
         </section>
 
-        <!-- SEZIONE GRAFICI v39 CONFIGURABILE -->
+        <!-- SEZIONE ALLENAMENTO DI OGGI -->
+          <section id="page-oggi" class="flex-1 flex flex-col space-y-3 hidden">
+            <div class="v39-page-heading"><div><h2>Allenamento di oggi</h2><p>Quadro operativo aggiornato con Wellness odierno, Readiness e decisione adattiva.</p></div><span class="v39-live-pill">● Oggi</span></div>
+            <div class="hub-area-card"><div class="hub-area-head"><b>Readiness personale</b><button type="button" onclick="toggleHubArea('today-readiness-content',this,'moioTrainingHub.todayReadinessHidden.v2')" class="hub-toggle">⌃</button></div><div id="today-readiness-content" class="hub-collapsible p-3"></div></div>
+            <div class="hub-area-card"><div class="hub-area-head"><b>ADAPTIVE ENGINE</b><button type="button" onclick="toggleHubArea('today-adaptive-content',this,'moioTrainingHub.todayAdaptiveHidden.v2')" class="hub-toggle">⌃</button></div><div id="today-adaptive-content" class="hub-collapsible p-3"></div></div>
+            <div class="hub-area-card"><div class="hub-area-head"><b>Allenamento aggiornato per oggi</b><button type="button" onclick="toggleHubArea('today-workout-content',this,'moioTrainingHub.todayWorkoutHidden.v2')" class="hub-toggle">⌃</button></div><div id="today-workout-content" class="hub-collapsible p-3"></div></div>
+          </section>
+          <!-- SEZIONE GRAFICI v39 CONFIGURABILE -->
         <section id="page-grafici" class="flex-1 flex flex-col space-y-3 overflow-hidden hidden">
           <div class="v39-page-heading"><div><h2>Grafici</h2><p>Crea aree grafiche indipendenti e scegli liberamente campi e colori.</p></div></div>
           <div id="grafici-aree-container" class="flex-1 overflow-y-auto space-y-4 pr-1"></div>
@@ -450,6 +504,21 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
         </section>
         <!-- SEZIONE 2: PIANO DI ALLENAMENTO -->
         <section id="page-piano" class="flex-1 flex flex-col space-y-3 overflow-hidden hidden">
+            <div id="goal-4a-card" class="goal-4a-card shadow-lg shrink-0 overflow-hidden">
+              <div class="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-violet-500/20"><div class="flex items-center gap-2"><span>🏁</span><span class="text-[13px] font-bold">OBIETTIVO · FASE 4A</span><span id="goal-4a-status" class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-slate-700 text-slate-300">NON CONFIGURATO</span></div><button id="btn-toggle-goal-4a" onclick="toggleGoal4APanel()" class="w-7 h-7 rounded-md bg-slate-800 border border-slate-600 text-xs">⌃</button></div>
+              <div id="goal-4a-content" class="p-3"><div class="grid grid-cols-2 md:grid-cols-6 gap-2"><div class="goal-4a-kpi"><div class="goal-4a-label">Disciplina</div><div id="goal-view-sport" class="goal-4a-value">-</div></div><div class="goal-4a-kpi"><div class="goal-4a-label">Evento</div><div id="goal-view-event" class="goal-4a-value">-</div></div><div class="goal-4a-kpi"><div class="goal-4a-label">Data</div><div id="goal-view-date" class="goal-4a-value">-</div></div><div class="goal-4a-kpi"><div class="goal-4a-label">Priorità</div><div id="goal-view-priority" class="goal-4a-value">-</div></div><div class="goal-4a-kpi"><div class="goal-4a-label">Target</div><div id="goal-view-target" class="goal-4a-value">-</div></div><div class="goal-4a-kpi"><div class="goal-4a-label">Tempo residuo</div><div id="goal-view-countdown" class="goal-4a-value text-violet-300">-</div></div></div><div id="goal-view-note" class="mt-2 text-[10px] text-slate-400">Configura l'obiettivo nelle Impostazioni.</div>
+<div id="macro-4b-panel" class="macro-4b-wrap hidden">
+  <div class="flex flex-wrap justify-between items-center gap-2 mb-2"><div><div class="text-[10px] font-bold uppercase tracking-wider text-violet-300">MACROCICLO · FASE 4B</div><div id="macro-4b-summary" class="text-[9px] text-slate-500">Calcolo...</div></div><span id="macro-4b-current" class="pattern-3c-chip">-</span></div>
+  <div id="macro-4b-track" class="macro-4b-track"></div>
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-2 mt-2"><div class="macro-4b-kpi"><div class="goal-4a-label">Settimane totali</div><div id="macro-4b-total" class="goal-4a-value">-</div></div><div class="macro-4b-kpi"><div class="goal-4a-label">Settimana corrente</div><div id="macro-4b-week" class="goal-4a-value">-</div></div><div class="macro-4b-kpi"><div class="goal-4a-label">Fase corrente</div><div id="macro-4b-phase" class="goal-4a-value text-violet-300">-</div></div><div class="macro-4b-kpi"><div class="goal-4a-label">Inizio fase</div><div id="macro-4b-start" class="goal-4a-value">-</div></div><div class="macro-4b-kpi"><div class="goal-4a-label">Fine fase</div><div id="macro-4b-end" class="goal-4a-value">-</div></div></div>
+  <div id="macro-4b-warning" class="macro-4b-warning mt-2 hidden"></div>
+    <div id="goalplan-4c-panel" class="goalplan-4c-card hidden">
+      <div class="flex flex-wrap items-center justify-between gap-2"><div><div class="text-[10px] font-bold uppercase tracking-wider text-cyan-300">GOAL → PLAN · FASE 4C</div><div id="goalplan-4c-summary" class="text-[9px] text-slate-500">Il macro-ciclo orienta carico e tipologia delle sedute.</div></div><span id="goalplan-4c-status" class="goalplan-4c-chip">ATTIVO</span></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2"><div class="macro-4b-kpi"><div class="goal-4a-label">Profilo fase</div><div id="goalplan-4c-phase" class="goal-4a-value text-cyan-300">-</div></div><div class="macro-4b-kpi"><div class="goal-4a-label">Fondo / Qualità / Recupero</div><div id="goalplan-4c-mix" class="goal-4a-value text-[12px]">-</div></div><div class="macro-4b-kpi"><div class="goal-4a-label">Fattore carico</div><div id="goalplan-4c-load" class="goal-4a-value">-</div></div><div class="macro-4b-kpi"><div class="goal-4a-label">Disciplina obiettivo</div><div id="goalplan-4c-sport" class="goal-4a-value">-</div></div></div>
+      <div id="goalplan-4c-bars" class="mt-2 space-y-1"></div><div id="goalplan-4c-note" class="mt-2 text-[9px] text-slate-400">Le protezioni Readiness, TSB, limiti TSS e giorni completati mantengono la priorità.</div><div id="race-4d-panel" class="race-4d-card hidden"><div class="flex flex-wrap items-start justify-between gap-3"><div><div class="text-[10px] font-bold uppercase tracking-wider text-emerald-300">RACE READINESS · FASE 4D</div><div id="race-4d-summary" class="text-[9px] text-slate-500 mt-0.5">Progressione verso l'obiettivo.</div></div><span id="race-4d-status" class="race-4d-chip">CALCOLO</span></div><div class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-3 mt-3"><div class="text-center md:text-left"><div id="race-4d-score" class="race-4d-score text-emerald-300">-</div><div class="text-[9px] text-slate-500 mt-1">Race Readiness / 100</div><div class="race-4d-track mt-2"><div id="race-4d-fill" class="race-4d-fill" style="width:0%"></div></div></div><div class="grid grid-cols-2 md:grid-cols-3 gap-2"><div class="race-4d-metric"><small>Consistency</small><b id="race-4d-consistency">-</b></div><div class="race-4d-metric"><small>Load progression</small><b id="race-4d-load">-</b></div><div class="race-4d-metric"><small>Specificity</small><b id="race-4d-specificity">-</b></div><div class="race-4d-metric"><small>Athlete Response</small><b id="race-4d-response">-</b></div><div class="race-4d-metric"><small>Recovery</small><b id="race-4d-recovery">-</b></div><div class="race-4d-metric"><small>Daily Readiness</small><b id="race-4d-daily">-</b></div></div></div><div id="race-4d-guidance" class="mt-2 text-[10px] text-slate-400">Indicatore osservazionale, non sostituisce l'Adaptive Engine.</div></div>
+    </div>
+  </div></div>
+            </div>
             <div id="piano-info-card" class="bg-slate-800/50 border border-slate-700/60 rounded-xl shadow-lg shrink-0 overflow-hidden">
                 <div class="flex items-center justify-between gap-2 px-4 py-3 border-b border-slate-700/60">
                     <span class="text-[13px] font-bold text-slate-100">INFO PIANO</span>
@@ -466,16 +535,8 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                         <span class="text-blue-400">CTL Finale: <strong id="val-ctl-piano">-</strong></span>
                         <span class="text-red-400">ATL Finale: <strong id="val-atl-piano">-</strong></span>
                         <span id="wrap-tsb-piano" class="text-emerald-400">TSB Finale: <strong id="val-tsb-piano">-</strong></span>
-                        <button type="button" id="btn-invia-allenamenti-intervals" onclick="inviaAllenamentiSelezionatiIntervalsIcu()" disabled
-                            class="bg-emerald-600 disabled:bg-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-[11px] font-sans font-semibold transition shadow">
-                            Invia allenamenti a Intervals (<span id="piano-selezionati-count">0</span>)
-                        </button>
-                        <button type="button" onclick="switchSection('impostazioni')" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-2.5 py-1.5 rounded text-[11px] font-sans transition">
-                            Modifica % incremento
-                        </button>
                     </div>
                 </div>
-                <div id="piano-batch-push-status" class="text-[11px] font-mono text-slate-400 min-h-[16px] mb-1"></div>
                 </div>
             </div>
             <div id="piano-chart-card" class="bg-slate-800/50 border border-slate-700/60 rounded-xl p-4 flex flex-col shadow-lg shrink-0 piano-resizable">
@@ -500,6 +561,21 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                 </div>
             </div>
 
+            <div id="adaptive-engine-card" class="bg-slate-800/50 border border-cyan-500/30 rounded-xl shadow-lg shrink-0 overflow-hidden">
+                <div class="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-slate-700/60">
+                    <div class="flex items-center gap-2"><span class="text-base">🧠</span><span class="text-[13px] font-bold text-slate-100">ADAPTIVE ENGINE</span><span id="adaptive-engine-status" class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-slate-700 text-slate-300">IN ATTESA</span></div>
+                    <button id="btn-toggle-adaptive-engine" type="button" onclick="toggleAdaptiveEnginePanel()" aria-label="Nascondi Adaptive Engine" title="Nascondi Adaptive Engine" class="w-7 h-7 inline-flex items-center justify-center rounded-md bg-slate-800 border border-slate-600 text-slate-300 hover:text-white hover:bg-slate-700 text-xs font-bold transition">⌃</button>
+                </div>
+                <div id="adaptive-engine-content" class="p-3">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
+                        <div class="rounded-lg bg-slate-950/55 border border-slate-700/60 p-2"><div class="text-[9px] uppercase tracking-wider text-slate-500">Readiness</div><div id="adaptive-readiness" class="text-lg font-bold text-emerald-300">-</div></div>
+                        <div class="rounded-lg bg-slate-950/55 border border-slate-700/60 p-2"><div class="text-[9px] uppercase tracking-wider text-slate-500">Confidence</div><div id="adaptive-confidence" class="text-lg font-bold text-sky-300">-</div></div>
+                        <div class="rounded-lg bg-slate-950/55 border border-slate-700/60 p-2"><div class="text-[9px] uppercase tracking-wider text-slate-500">TSB</div><div id="adaptive-tsb" class="text-lg font-bold text-violet-300">-</div></div>
+                        <div class="rounded-lg bg-slate-950/55 border border-slate-700/60 p-2"><div class="text-[9px] uppercase tracking-wider text-slate-500">Decisione</div><div id="adaptive-decision-label" class="text-sm font-bold text-slate-200 mt-1">Valutazione...</div></div>
+                    </div>
+                    <div class="rounded-lg border border-slate-700/60 bg-slate-950/45 px-3 py-2"><div id="adaptive-transition" class="text-[12px] font-semibold text-slate-200">Nessuna decisione disponibile</div><div id="adaptive-reasons" class="text-[10px] text-slate-400 mt-1">Il motore valuta oggi e il prossimo allenamento non completato.</div></div>
+                </div>
+            </div>
             <!-- Piccolo riquadro snippet mobile con stringa Intervals.icu mostrato quando si seleziona una riga -->
             <div id="piano-selected-intervals-box"
                 style="top: 130px; right: 32px;"
@@ -521,8 +597,15 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                 <pre id="piano-selected-intervals-text" class="text-[11px] font-mono text-emerald-200 bg-slate-950/80 px-3 py-2 whitespace-pre-wrap break-words select-all m-0"></pre>
             </div>
 
-            <div class="flex-1 overflow-auto border border-slate-700/60 rounded-xl bg-slate-800/50 shadow-lg">
-                <table id="table-piano" class="w-full text-left border-collapse text-xs">
+              <div id="piano-list-card" class="hub-area-card">
+                  <div class="hub-area-head"><b>Elenco allenamenti pianificati</b><div class="hub-area-actions">
+                    <span id="piano-batch-push-status" class="text-[10px] font-mono text-slate-400"></span>
+                    <button type="button" onclick="esportaPianoVisualizzatoCsv()" class="px-2.5 py-1.5 rounded-lg bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold">⇩ ESPORTA CSV</button>
+                    <button type="button" id="btn-invia-allenamenti-intervals" onclick="inviaAllenamentiSelezionatiIntervalsIcu()" disabled class="bg-emerald-600 disabled:bg-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-[11px] font-semibold">Invia allenamenti a Intervals (<span id="piano-selezionati-count">0</span>)</button>
+                    <button type="button" onclick="toggleHubArea('piano-list-content',this,'moioTrainingHub.pianoListHidden.v1')" class="hub-toggle" title="Nascondi elenco">⌃</button>
+                  </div></div>
+                  <div id="piano-list-content" class="hub-collapsible overflow-auto" style="max-height:65vh">
+                  <table id="table-piano" class="w-full text-left border-collapse text-xs">
                     <thead class="sticky top-0 bg-slate-900 text-slate-400 border-b border-slate-700 z-10">
                         <tr>
                             <th class="p-2.5 w-12 text-center" title="Stato allenamento">Stato</th>
@@ -544,7 +627,8 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                     </tbody>
                 </table>
             </div>
-        <div id="mobile-piano-cards" class="mobile-only mobile-card-scroll flex-1 space-y-2"></div>
+              </div>
+          <div id="mobile-piano-cards" class="mobile-only mobile-card-scroll flex-1 space-y-2"></div>
         </section>
 
         <!-- SEZIONE 3: DATI WELLNESS -->
@@ -552,15 +636,49 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
             <div class="bg-slate-800/50 border border-sky-500/30 rounded-xl p-4 shadow-lg shrink-0">
                 <div class="flex flex-wrap justify-between items-start gap-3 mb-2">
                     <div><div class="flex items-center gap-2"><h2 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Dati Wellness</h2></div><p id="wellness-riepilogo" class="text-[11px] text-slate-400 mt-1">Caricamento dati wellness...</p></div>
-                    <div class="flex items-start gap-2"><label class="text-[11px] text-slate-400">Colonne da plottare<select id="wellness-colonne-grafico" multiple size="4" onchange="onChangeColonneWellness()" class="block mt-1 min-w-64 bg-slate-950 border border-slate-700 rounded px-2 py-1 text-xs text-slate-100"></select></label><button onclick="caricaDatiWellness()" class="mt-5 bg-sky-600 hover:bg-sky-500 px-3 py-1.5 rounded text-xs font-semibold">Ricarica wellness</button></div>
-                </div>
-                <div id="wellness-kpi-cards" class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-2 mb-3"></div>
-                <div class="chart-bg-container bg-slate-900/60 rounded-lg p-2 border border-slate-700/40 relative" style="height:36vh"><canvas id="chartWellness" onmouseleave="wellnessHoverChartIndex = null; if (chartWellnessInstance) chartWellnessInstance.draw();"></canvas></div>
+                    <div class="flex items-start gap-2"><button type="button" onclick="toggleHubArea('wellness-overview-content',this,'moioTrainingHub.wellnessOverviewHidden.v1')" class="hub-toggle" title="Nascondi area">⌃</button></div>
+                  </div>
+                  <div id="wellness-overview-content" class="hub-collapsible">
+                  <div id="wellness-readiness-panel" class="mb-3 rounded-xl border border-emerald-500/25 bg-slate-950/55 p-3"><div class="flex flex-wrap items-start justify-between gap-2 mb-2"><div><div class="text-[10px] font-bold uppercase tracking-wider text-emerald-300">Readiness personale</div><div id="wellness-readiness-details">Calcolo su baseline personale mobile.</div></div><div class="flex items-center gap-2"><span id="wellness-readiness-date" class="text-[10px] font-mono text-slate-500">-</span><button id="btn-toggle-wellness-readiness" type="button" onclick="toggleHubArea('wellness-readiness-content',this,'moioTrainingHub.wellnessReadinessHidden.v2')" class="hub-toggle" aria-expanded="true">⌃</button></div></div><div id="wellness-readiness-content" class="hub-collapsible"><div id="wellness-readiness-cards" class="grid grid-cols-2 md:grid-cols-4 gap-2"></div></div></div><div id="athlete-response-panel" class="mb-3 rounded-xl border border-violet-500/30 bg-slate-950/55 overflow-hidden">
+  <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-slate-800"><div class="flex items-center gap-2"><span>⚡</span><span class="text-[10px] font-bold uppercase tracking-wider text-violet-300">Athlete Response · Fase 3A</span><span id="athlete-response-status" class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-slate-700 text-slate-300">IN ATTESA</span></div><button id="btn-toggle-athlete-response" type="button" onclick="toggleAthleteResponsePanel()" class="w-7 h-7 rounded-md bg-slate-800 border border-slate-600 text-slate-300 text-xs font-bold">⌃</button></div>
+  <div id="athlete-response-content" class="p-3">
+    <div id="athlete-response-sport-tabs" class="flex flex-wrap items-center gap-2 mb-2">
+      <button type="button" id="athlete-response-tab-bici" onclick="selezionaSportAthleteResponse('bici')" class="px-3 py-1.5 rounded-lg text-[10px] font-bold bg-violet-600 text-white">🚴 Bici</button>
+      <button type="button" id="athlete-response-tab-corsa" onclick="selezionaSportAthleteResponse('corsa')" class="px-3 py-1.5 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">🏃 Corsa</button>
+      <button type="button" id="athlete-response-tab-camminata" onclick="selezionaSportAthleteResponse('camminata')" class="px-3 py-1.5 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">🚶 Camminata</button>
+    </div>
+    <div id="athlete-response-workout" class="text-[10px] text-slate-400 mb-2">Ricerca dell'ultimo allenamento completato...</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2"><div class="athlete-response-card"><div class="athlete-response-label">Response</div><div id="athlete-response-score" class="athlete-response-value text-violet-300">-</div><div id="athlete-response-score-note" class="athlete-response-note">Assorbimento dello stimolo</div></div><div class="athlete-response-card"><div class="athlete-response-label">Efficiency</div><div id="athlete-response-efficiency" class="athlete-response-value text-cyan-300">-</div><div id="athlete-response-efficiency-note" class="athlete-response-note">Dati non disponibili</div></div><div class="athlete-response-card"><div class="athlete-response-label">External load</div><div id="athlete-response-external" class="athlete-response-value text-emerald-300">-</div><div id="athlete-response-external-note" class="athlete-response-note">TSS · durata · distanza</div></div><div class="athlete-response-card"><div class="athlete-response-label">Internal load</div><div id="athlete-response-internal" class="athlete-response-value text-amber-300">-</div><div id="athlete-response-internal-note" class="athlete-response-note">FC media / RPE</div></div></div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-[10px]"><div class="rounded-lg bg-slate-900/70 border border-slate-800 p-2"><span class="text-slate-500">HRV post</span><b id="athlete-response-hrv" class="block mt-1 text-slate-200">-</b></div><div class="rounded-lg bg-slate-900/70 border border-slate-800 p-2"><span class="text-slate-500">RHR post</span><b id="athlete-response-rhr" class="block mt-1 text-slate-200">-</b></div><div class="rounded-lg bg-slate-900/70 border border-slate-800 p-2"><span class="text-slate-500">Readiness post</span><b id="athlete-response-readiness" class="block mt-1 text-slate-200">-</b></div><div class="rounded-lg bg-slate-900/70 border border-slate-800 p-2"><span class="text-slate-500">Sonno post</span><b id="athlete-response-sleep" class="block mt-1 text-slate-200">-</b></div></div>
+    <div id="athlete-response-summary" class="mt-2 rounded-lg border border-slate-800 bg-slate-900/60 p-2 text-[10px] text-slate-400">La Fase 3A è osservazionale e non modifica il piano.</div>
+      <div class="mt-3 pt-3 border-t border-slate-800">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2"><div><div class="text-[10px] font-bold uppercase tracking-wider text-violet-300">Storico Response · Fase 3B</div><div id="athlete-response-trend-summary" class="text-[9px] text-slate-500">Calcolo trend e Recovery Time personale...</div></div><div id="athlete-response-recovery-badge" class="px-2 py-1 rounded-lg bg-slate-800 text-[10px] font-bold text-slate-300">Recovery -</div></div>
+        <div class="overflow-x-auto rounded-lg border border-slate-800"><table class="w-full text-left border-collapse text-[10px]"><thead class="bg-slate-900 text-slate-500"><tr><th class="p-2">Data</th><th class="p-2">Attività</th><th class="p-2 text-right">TSS</th><th class="p-2 text-right">Efficiency</th><th class="p-2 text-right">Response</th><th class="p-2 text-right">Recovery</th></tr></thead><tbody id="athlete-response-history-body" class="divide-y divide-slate-800"></tbody></table></div>
+          <div class="mt-3 pt-3 border-t border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2"><div><div class="text-[10px] font-bold uppercase tracking-wider text-fuchsia-300">Pattern personali · Fase 3C</div><div id="athlete-patterns-summary" class="text-[9px] text-slate-500">Apprendimento osservazionale dai dati storici reali.</div></div><span id="athlete-patterns-confidence" class="pattern-3c-chip">0 pattern</span></div>
+            <div id="athlete-patterns-cards" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"></div>
+            <div id="athlete-patterns-guidance" class="mt-2 rounded-lg border border-fuchsia-500/20 bg-fuchsia-500/5 p-2 text-[10px] text-slate-400">Servono almeno 3 attività confrontabili per riconoscere un pattern personale.</div>
+          </div>
+
+      </div>
+  </div>
+</div>
+                <div id="wellness-chart-card" class="hub-area-card mb-3"><div class="hub-area-head"><b>Grafico Wellness</b><button id="btn-toggle-wellness-chart" type="button" onclick="toggleHubArea('wellness-chart-content',this,'moioTrainingHub.wellnessChartHidden.v2',null,true)" class="hub-toggle" aria-expanded="true">⌃</button></div><div id="wellness-chart-content" class="hub-collapsible">
+                    <div class="p-3 pb-0">
+                      <label class="text-[11px] text-slate-400">Colonne da plottare
+                        <select id="wellness-colonne-grafico" multiple size="4" onchange="onChangeColonneWellness()" class="block mt-1 w-full md:min-w-64 md:w-auto bg-slate-950 border border-slate-700 rounded px-2 py-1 text-xs text-slate-100"></select>
+                      </label>
+                      <div id="wellness-kpi-cards" class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-2 mt-3 mb-3"></div>
+                    </div>
+                    <div class="chart-bg-container bg-slate-900/60 rounded-lg p-2 border border-slate-700/40 relative" style="height:36vh"><canvas id="chartWellness" onmouseleave="wellnessHoverChartIndex = null; if (chartWellnessInstance) chartWellnessInstance.draw();"></canvas></div>
             </div>
-            <div class="flex-1 overflow-auto border border-slate-700/60 rounded-xl bg-slate-800/50 shadow-lg">
-                <table id="table-wellness" class="w-full text-left border-collapse text-xs"><thead id="wellness-table-head" class="sticky top-0 bg-slate-900 text-slate-400 border-b border-slate-700 z-10"></thead><tbody id="wellness-table-body" class="divide-y divide-slate-800/60"></tbody></table>
+              <div id="wellness-list-card" class="hub-area-card">
+                <div class="hub-area-head"><b>Elenco Wellness</b><div class="hub-area-actions"><button type="button" onclick="esportaWellnessVisualizzatoCsv()" title="Esporta in CSV l’elenco Wellness attualmente visualizzato" class="bg-emerald-600/20 hover:bg-emerald-600/35 border border-emerald-500/40 text-emerald-300 px-3 py-1.5 rounded text-xs font-bold">⇩ ESPORTA CSV</button><button type="button" onclick="toggleHubArea('wellness-list-content',this,'moioTrainingHub.wellnessListHidden.v1')" class="hub-toggle">⌃</button></div></div>
+                <div id="wellness-list-content" class="hub-collapsible overflow-auto" style="max-height:55vh">
+                  <table id="table-wellness" class="w-full text-left border-collapse text-xs"><thead id="wellness-table-head" class="sticky top-0 bg-slate-900 text-slate-400 border-b border-slate-700 z-10"></thead><tbody id="wellness-table-body" class="divide-y divide-slate-800/60"></tbody></table>
             </div>
-            <div id="mobile-wellness-cards" class="mobile-only mobile-card-scroll flex-1 space-y-2"></div>
+              </div>
+              <div id="mobile-wellness-cards" class="mobile-only mobile-card-scroll flex-1 space-y-2"></div>
         </section>
         <!-- MENU MODALE AGGIUNTA COLONNA DA ELENCO ATTIVITÀ REGISTRATE -->
         <div id="modal-aggiungi-colonna" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-xs flex items-center justify-center p-4">
@@ -670,6 +788,11 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
                     <input type="hidden" id="cfg-formatoDataFoglio" value="dd:MM:yy">
                 </div>
 
+                <div id="settings-panel-goal-source" class="bg-slate-900/60 border border-violet-500/30 rounded-xl p-4 space-y-4 text-xs">
+                  <div class="border-b border-slate-800 pb-2"><h3 class="text-xs font-bold text-violet-300 uppercase tracking-wider">Obiettivo principale · Fase 4A</h3><p class="text-[11px] text-slate-400">Configurazione descrittiva dell'evento target. Non altera ancora il motore del piano.</p></div>
+                  <div class="grid grid-cols-1 md:grid-cols-6 gap-3"><label class="text-slate-400">Disciplina<select id="cfg-goal-sport" onchange="onChangeGoal4A()" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-100"><option value="">Nessuna</option><option value="corsa">Corsa</option><option value="bici">Bici</option><option value="camminata">Camminata</option></select></label><label class="text-slate-400">Tipo evento<select id="cfg-goal-event" onchange="onChangeGoal4A()" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-100"></select></label><label class="text-slate-400">Nome evento<input id="cfg-goal-name" oninput="onChangeGoal4A()" placeholder="Es. Milano Half Marathon" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-100"></label><label class="text-slate-400">Data evento<input type="date" id="cfg-goal-date" onchange="onChangeGoal4A()" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-100 font-mono"></label><label class="text-slate-400">Priorità<select id="cfg-goal-priority" onchange="onChangeGoal4A()" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-100"><option value="A">A · Picco principale</option><option value="B">B · Evento importante</option><option value="C">C · Allenamento</option></select></label><label class="text-slate-400">Target prestazione<input id="cfg-goal-target" oninput="onChangeGoal4A()" placeholder="Es. 1:45:00 / FTP 250 W" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-100 font-mono"></label></div>
+                  <label class="block text-slate-400">Note<textarea id="cfg-goal-notes" rows="2" oninput="onChangeGoal4A()" placeholder="Percorso, dislivello, vincoli o indicazioni utili..." class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-slate-100"></textarea></label><div id="goal-4a-validation" class="text-[10px] font-mono text-slate-500">Obiettivo non configurato.</div>
+                </div>
                 <!-- Parametri Piano di Allenamento -->
                 <div class="bg-slate-900/60 border border-emerald-500/30 rounded-xl p-4 space-y-4 text-xs">
                     <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
@@ -1625,6 +1748,69 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
             renderPianoAllenamento();
             pianificaSalvataggioLayout();
         }
+
+        const GOAL_4A_EVENTS={corsa:[['5k','5 km'],['10k','10 km'],['mezza','Mezza Maratona'],['maratona','Maratona'],['trail','Trail'],['generale','Miglioramento generale']],bici:[['granfondo','Gran Fondo'],['cronometro','Cronometro'],['ftp','FTP'],['endurance','Endurance'],['libero','Evento libero']],camminata:[['walking','Walking'],['trekking','Trekking'],['libero','Evento libero']]};
+        const GOAL_4A_PANEL_KEY='moioTrainingHub.goal4AHidden.v1';
+        function toggleGoal4APanel(force){const c=document.getElementById('goal-4a-content'),b=document.getElementById('btn-toggle-goal-4a');if(!c)return;const h=typeof force==='boolean'?force:!c.classList.contains('hidden');c.classList.toggle('hidden',h);if(b)b.textContent=h?'⌄':'⌃';try{localStorage.setItem(GOAL_4A_PANEL_KEY,h?'1':'0');}catch(_){}}
+        function ripristinaGoal4APanel(){try{toggleGoal4APanel(localStorage.getItem(GOAL_4A_PANEL_KEY)==='1');}catch(_){}}
+        function leggiGoal4ADaForm(){const v=id=>document.getElementById(id)?.value?.trim()||'';return{sport:v('cfg-goal-sport'),eventType:v('cfg-goal-event'),eventName:v('cfg-goal-name'),eventDate:v('cfg-goal-date'),priority:v('cfg-goal-priority')||'A',target:v('cfg-goal-target'),notes:v('cfg-goal-notes'),phase:'4A',descriptiveOnly:true};}
+        function aggiornaEventiGoal4A(selected){const sport=document.getElementById('cfg-goal-sport')?.value||'',el=document.getElementById('cfg-goal-event');if(!el)return;const opts=GOAL_4A_EVENTS[sport]||[];el.innerHTML='<option value="">Seleziona...</option>'+opts.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('');if(selected&&opts.some(x=>x[0]===selected))el.value=selected;}
+        function applicaGoal4AAlForm(g){g=g||{};const set=(id,v)=>{const e=document.getElementById(id);if(e)e.value=v??'';};set('cfg-goal-sport',g.sport);aggiornaEventiGoal4A(g.eventType);set('cfg-goal-name',g.eventName);set('cfg-goal-date',g.eventDate);set('cfg-goal-priority',g.priority||'A');set('cfg-goal-target',g.target);set('cfg-goal-notes',g.notes);renderGoal4A();}
+        function giorniAEvento4A(iso){if(!iso)return null;return Math.ceil((dataLocaleDaIso(iso)-dataLocaleDaIso(getOggiIsoLocale()))/86400000);}
+        function renderGoal4A(){const g=leggiGoal4ADaForm(),status=document.getElementById('goal-4a-status'),set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;},events=GOAL_4A_EVENTS[g.sport]||[],eventLabel=events.find(x=>x[0]===g.eventType)?.[1]||'',days=giorniAEvento4A(g.eventDate),valid=g.sport&&g.eventType&&g.eventDate;set('goal-view-sport',({corsa:'Corsa',bici:'Bici',camminata:'Camminata'})[g.sport]||'-');set('goal-view-event',g.eventName||eventLabel||'-');set('goal-view-date',g.eventDate?formattaDataCustom(g.eventDate):'-');set('goal-view-priority',g.priority||'-');set('goal-view-target',g.target||'-');set('goal-view-countdown',days==null?'-':days<0?'Evento trascorso':days===0?'Oggi':`${days} giorni · ${Math.ceil(days/7)} sett.`);set('goal-view-note',g.notes||'Fase 4C attiva: il macro-ciclo orienta carico, disciplina e tipologia delle sedute.');if(status){status.textContent=valid?(days<0?'SCADUTO':'CONFIGURATO'):'NON CONFIGURATO';status.className='px-2 py-0.5 rounded-full text-[9px] font-bold '+(valid&&days>=0?'bg-violet-500/20 text-violet-300 border border-violet-500/30':'bg-slate-700 text-slate-300');}const val=document.getElementById('goal-4a-validation');if(val){val.textContent=!g.sport?'Seleziona la disciplina.':!g.eventType?'Seleziona il tipo di evento.':!g.eventDate?'Imposta la data evento.':days<0?'La data evento è trascorsa.':`Obiettivo valido · ${days} giorni disponibili · Priorità ${g.priority}.`;val.className='text-[10px] font-mono '+(valid&&days>=0?'text-emerald-400':'text-amber-400');}window.trainingHubGoal4A=g;renderMacrocycle4B();}
+        function onChangeGoal4A(){const current=document.getElementById('cfg-goal-event')?.value||'';aggiornaEventiGoal4A(current);renderGoal4A();pianificaSalvataggioLayout();}
+
+        // FASE 4D - Race Readiness. Indicatore composito verso l'obiettivo; non modifica direttamente il piano.
+        const RACE_READINESS_4D_WEIGHTS=Object.freeze({consistency:.25,loadProgression:.20,specificity:.20,response:.15,recovery:.10,dailyReadiness:.10});
+        function clamp4D(v){return Math.max(0,Math.min(100,Number(v)||0));}
+        function mean4D(a){const x=a.filter(Number.isFinite);return x.length?x.reduce((s,v)=>s+v,0)/x.length:NaN;}
+        function calcolaConsistency4D(days=28){const {idxData,idxCarico}=trovaIndiciColonne();if(idxData<0||idxCarico<0)return null;const end=dataLocaleDaIso(getOggiIsoLocale()),start=new Date(end);start.setDate(end.getDate()-days+1);const startIso=isoDaData(start),plannedDays=new Set();const cfg=leggiConfigPianoDaForm();ORDINE_GIORNI_SETTIMANA.forEach(d=>{if(cfg.giorniAttivi.includes(d))plannedDays.add(d);});let expected=0,done=0;for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1)){if(plannedDays.has(d.getDay()))expected++;}tutteLeRighe.forEach(r=>{const iso=toIsoDate(r[idxData]);if(iso<startIso||iso>getOggiIsoLocale())return;const c=parseNumeroSafe(r[idxCarico]);if(Number.isFinite(c)&&c>0)done++;});return expected?clamp4D(done/expected*100):null;}
+        function calcolaLoadProgression4D(){const {idxData,idxCarico}=trovaIndiciColonne();if(idxData<0||idxCarico<0)return null;const end=dataLocaleDaIso(getOggiIsoLocale()),weeks=[];for(let w=3;w>=0;w--){const e=new Date(end);e.setDate(end.getDate()-w*7);const st=new Date(e);st.setDate(e.getDate()-6);const a=isoDaData(st),b=isoDaData(e);let sum=0;tutteLeRighe.forEach(r=>{const iso=toIsoDate(r[idxData]),c=parseNumeroSafe(r[idxCarico]);if(iso>=a&&iso<=b&&Number.isFinite(c)&&c>0)sum+=c;});weeks.push(sum);}const prior=weeks.slice(0,3).filter(v=>v>0),base=mean4D(prior),recent=weeks[3];if(!Number.isFinite(base)||base<=0)return null;return clamp4D(80+((recent/base)-1)*100);}
+        function athleteResponseScore4D(sport){const h=buildAthleteResponseHistory3B(sport,10),v=h.map(x=>x.response).filter(Number.isFinite);return v.length?clamp4D(mean4D(v.slice(0,5))):null;}
+        function recoveryScore4D(sport){const h=buildAthleteResponseHistory3B(sport,10),hrs=h.map(x=>calcolaRecoveryTime3B(x)?.hours).filter(Number.isFinite);if(!hrs.length)return null;const avg=mean4D(hrs);return clamp4D(100-Math.max(0,avg-24)*1.5);}
+        function calcolaRaceReadiness4D(){const goal=leggiGoal4ADaForm(),macro=buildMacrocycle4B(goal),gp=window.trainingHubGoalPlan4C;if(!goal?.sport||!macro)return null;const daily=calcolaReadinessWellness(getOggiIsoLocale()),metrics={consistency:calcolaConsistency4D(28),loadProgression:calcolaLoadProgression4D(),specificity:gp?.active?clamp4D((gp.specificity||0)*100):clamp4D(specificitaEvento4C(goal,macro.current?.key||'pre')*100),response:athleteResponseScore4D(goal.sport),recovery:recoveryScore4D(goal.sport),dailyReadiness:Number.isFinite(Number(daily?.score))?Number(daily.score):null};let sum=0,w=0;Object.entries(metrics).forEach(([k,v])=>{if(Number.isFinite(v)){sum+=v*RACE_READINESS_4D_WEIGHTS[k];w+=RACE_READINESS_4D_WEIGHTS[k];}});const score=w?Math.round(sum/w):null,coverage=Math.round(w*100),days=giorniAEvento4A(goal.eventDate);return{version:'4D',goal,macro,score,coverage,metrics,daysToEvent:days,status:score==null?'DATI INSUFFICIENTI':score>=80?'ON TRACK':score>=65?'BUONO':score>=50?'DA CONSOLIDARE':'ATTENZIONE'};}
+        function renderRaceReadiness4D(){const panel=document.getElementById('race-4d-panel');if(!panel)return;const r=calcolaRaceReadiness4D();if(!r){panel.classList.add('hidden');window.trainingHubRaceReadiness4D=null;return;}panel.classList.remove('hidden');const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;},pct=v=>Number.isFinite(v)?Math.round(v)+'%':'n.d.';set('race-4d-score',r.score==null?'-':r.score);set('race-4d-status',`${r.status} · C${r.coverage}%`);set('race-4d-consistency',pct(r.metrics.consistency));set('race-4d-load',pct(r.metrics.loadProgression));set('race-4d-specificity',pct(r.metrics.specificity));set('race-4d-response',pct(r.metrics.response));set('race-4d-recovery',pct(r.metrics.recovery));set('race-4d-daily',pct(r.metrics.dailyReadiness));const fill=document.getElementById('race-4d-fill');if(fill)fill.style.width=`${r.score||0}%`;set('race-4d-summary',`${r.goal.eventName||GOAL_4A_EVENTS[r.goal.sport]?.find(x=>x[0]===r.goal.eventType)?.[1]||'Evento'} · ${r.daysToEvent} giorni · ${r.macro.current?.label||'-'} · settimana ${r.macro.weekIndex}/${r.macro.totalWeeks}`);let weakest=Object.entries(r.metrics).filter(([,v])=>Number.isFinite(v)).sort((a,b)=>a[1]-b[1])[0];set('race-4d-guidance',weakest?`Area più debole: ${weakest[0]} (${Math.round(weakest[1])}%). Race Readiness osservazionale: Adaptive Engine e protezioni fisiologiche mantengono la priorità.`:'Dati insufficienti per individuare la priorità.');window.trainingHubRaceReadiness4D=r;}
+
+        // FASE 4C - Goal -> Plan. Il Goal Engine definisce l'intento; Adaptive Engine e constraint restano prioritari.
+        const GOAL_PLAN_4C_PROFILES=Object.freeze({
+          base:{label:'BASE',loadFactor:.95,mix:{fondo:.70,qualita:.10,recupero:.20},maxQuality:1,note:'Continuità aerobica, volume controllato e una sola seduta di qualità.'},
+          build:{label:'BUILD',loadFactor:1.05,mix:{fondo:.55,qualita:.30,recupero:.15},maxQuality:2,note:'Progressione del carico e maggiore densità di qualità.'},
+          specific:{label:'SPECIFIC',loadFactor:1.00,mix:{fondo:.50,qualita:.35,recupero:.15},maxQuality:2,note:'Sedute orientate alla disciplina e al profilo dell’evento.'},
+          taper:{label:'TAPER',loadFactor:.65,mix:{fondo:.40,qualita:.20,recupero:.40},maxQuality:1,note:'Volume ridotto, richiamo specifico breve e recupero elevato.'},
+          event:{label:'EVENT',loadFactor:1.00,mix:{fondo:0,qualita:1,recupero:0},maxQuality:1,note:'Evento obiettivo.'},
+          pre:{label:'PRE',loadFactor:1.00,mix:{fondo:.60,qualita:.20,recupero:.20},maxQuality:1,note:'Preparazione non ancora iniziata.'}
+        });
+        function faseMacroPerData4C(iso,macro=buildMacrocycle4B()){if(!macro)return null;return macro.phases.find(p=>iso>=p.start&&iso<=p.end)||null;}
+        function profiloGoalPlan4C(iso,macro=buildMacrocycle4B()){const phase=faseMacroPerData4C(iso,macro);return{phase:phase||{key:'pre',label:'PRE'},profile:GOAL_PLAN_4C_PROFILES[phase?.key||'pre']||GOAL_PLAN_4C_PROFILES.pre};}
+        function specificitaEvento4C(goal,phaseKey){const base={base:.20,build:.45,specific:.80,taper:.85,event:1,pre:.10}[phaseKey]??.20;const bonus=['mezza','maratona','granfondo','cronometro','trail'].includes(goal?.eventType)?.05:0;return Math.min(1,base+bonus);}
+        function applicaIntentoGoalPlan4C(giorni,weekIso,macro,goal){
+          if(!macro||!goal?.sport||!giorni?.length)return{active:false};const {phase,profile}=profiloGoalPlan4C(weekIso,macro),active=giorni.filter(g=>g.isGiornoAttivo);if(!active.length)return{active:false,phase,profile};
+          const q=Math.min(profile.maxQuality,Math.max(0,Math.round(active.length*profile.mix.qualita))),r=Math.min(active.length-q,Math.max(0,Math.round(active.length*profile.mix.recupero))),ordered=[...active].sort((a,b)=>a.dayOfWeek-b.dayOfWeek),qualityIdx=new Set();
+          // Qualità distanziata: primo giorno feriale utile e ultimo giorno utile, mai consecutivi se evitabile.
+          if(q>0){const first=ordered.findIndex(g=>![0,6].includes(g.dayOfWeek));qualityIdx.add(first>=0?first:0);}if(q>1){let ix=ordered.length-1;while(ix>=0&&[...qualityIdx].some(j=>Math.abs(j-ix)<2))ix--;qualityIdx.add(ix>=0?ix:ordered.length-1);}
+          const recoveryIdx=new Set();for(let i=0;i<ordered.length&&recoveryIdx.size<r;i++){if(!qualityIdx.has(i)&&![...qualityIdx].some(j=>Math.abs(j-i)===0))recoveryIdx.add(i);}
+          ordered.forEach((g,i)=>{const originalType=g.tipoSeduta,originalSport=g.attivitaKey;if(qualityIdx.has(i))g.tipoSeduta='qualita';else if(recoveryIdx.has(i))g.tipoSeduta='recupero';else g.tipoSeduta='fondo';
+            // La disciplina obiettivo guida qualità e specificità; recupero/cross-training configurato viene conservato.
+            if(g.tipoSeduta==='qualita'||phase.key==='specific'||phase.key==='taper')g.attivitaKey=goal.sport;
+            g.sportCfg=ATTIVITA_SPORTIVE_PIANO[g.attivitaKey]||ATTIVITA_SPORTIVE_PIANO.bici;g.goalPlan4C={phase:phase.key,phaseLabel:phase.label,profile:profile.label,originalType,originalSport,eventType:goal.eventType,goalSport:goal.sport,specificity:specificitaEvento4C(goal,phase.key)};
+          });return{active:true,phase,profile,specificity:specificitaEvento4C(goal,phase.key),mixActual:{fondo:ordered.filter(g=>g.tipoSeduta==='fondo').length,qualita:ordered.filter(g=>g.tipoSeduta==='qualita').length,recupero:ordered.filter(g=>g.tipoSeduta==='recupero').length,total:ordered.length}};
+        }
+        function renderGoalPlan4C(){const panel=document.getElementById('goalplan-4c-panel');if(!panel)return;const goal=leggiGoal4ADaForm(),macro=buildMacrocycle4B();if(!macro||!goal?.sport){panel.classList.add('hidden');window.trainingHubGoalPlan4C=null;return;}panel.classList.remove('hidden');const today=getOggiIsoLocale(),x=profiloGoalPlan4C(today,macro),p=x.profile,set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};set('goalplan-4c-phase',p.label);set('goalplan-4c-mix',`${Math.round(p.mix.fondo*100)} / ${Math.round(p.mix.qualita*100)} / ${Math.round(p.mix.recupero*100)}%`);set('goalplan-4c-load',`${p.loadFactor>=1?'+':''}${Math.round((p.loadFactor-1)*100)}%`);set('goalplan-4c-sport',({bici:'Bici',corsa:'Corsa',camminata:'Camminata'})[goal.sport]||goal.sport);set('goalplan-4c-summary',`${p.label} · ${p.note}`);const bars=document.getElementById('goalplan-4c-bars');if(bars)bars.innerHTML=Object.entries(p.mix).map(([k,v])=>`<div class="goalplan-4c-row"><span class="text-slate-400">${k.toUpperCase()}</span><div class="goalplan-4c-bar"><div class="goalplan-4c-fill" style="width:${Math.round(v*100)}%"></div></div><b class="text-right text-slate-300">${Math.round(v*100)}%</b></div>`).join('');window.trainingHubGoalPlan4C={version:'4C',active:true,goal,macro,currentPhase:x.phase,profile:p,specificity:specificitaEvento4C(goal,x.phase.key)};renderRaceReadiness4D();}
+
+        // FASE 4B - Macrocycle Engine descrittivo. Non modifica ancora carico o tipologia del Piano.
+        const MACROCYCLE_4B_CONFIG=Object.freeze({fullMinWeeks:12,taperDefaultWeeks:2,minTaperWeeks:1});
+        function addDaysIso4B(iso,days){const d=dataLocaleDaIso(iso);d.setDate(d.getDate()+days);return isoDaData(d);}
+        function giorniTraIso4B(a,b){return Math.max(0,Math.ceil((dataLocaleDaIso(b)-dataLocaleDaIso(a))/86400000));}
+        function resolveMacroStart4B(){const p=leggiConfigPianoDaForm();const today=getOggiIsoLocale();const x=p?.dataInizioPiano;return x&&/^\d{4}-\d{2}-\d{2}$/.test(x)&&x>today?x:today;}
+        function distribuisciSettimaneMacro4B(totalWeeks){
+          const w=Math.max(1,totalWeeks);if(w<=2)return{base:0,build:0,specific:Math.max(0,w-1),taper:1,limited:true};if(w<=5)return{base:0,build:1,specific:w-2,taper:1,limited:true};if(w<=8)return{base:1,build:Math.max(1,Math.round((w-2)*.35)),specific:0,taper:1,limited:true};
+          if(w<=11){const taper=1,rem=w-taper,base=Math.max(1,Math.round(rem*.20)),build=Math.max(2,Math.round(rem*.35));return{base,build,specific:Math.max(1,rem-base-build),taper,limited:true};}
+          const taper=Math.min(3,Math.max(1,Math.round(w*.10))),rem=w-taper,base=Math.max(2,Math.round(rem*.30)),build=Math.max(2,Math.round(rem*.30));return{base,build,specific:Math.max(2,rem-base-build),taper,limited:false};
+        }
+        function buildMacrocycle4B(goal=leggiGoal4ADaForm()){
+          const start=resolveMacroStart4B();if(!goal?.sport||!goal?.eventType||!goal?.eventDate||goal.eventDate<start)return null;const days=giorniTraIso4B(start,goal.eventDate),trainingDays=Math.max(0,days),weeks=Math.max(1,Math.ceil(trainingDays/7)),dist=distribuisciSettimaneMacro4B(weeks),defs=[['base','BASE',dist.base],['build','BUILD',dist.build],['specific','SPECIFIC',dist.specific],['taper','TAPER',dist.taper]];let cursor=start;const phases=[];defs.forEach(([key,label,w])=>{if(w<=0)return;const phaseStart=cursor,phaseEnd=addDaysIso4B(phaseStart,w*7-1)<goal.eventDate?addDaysIso4B(phaseStart,w*7-1):addDaysIso4B(goal.eventDate,-1);phases.push({key,label,weeks:w,start:phaseStart,end:phaseEnd});cursor=addDaysIso4B(phaseEnd,1);});phases.push({key:'event',label:'EVENT',weeks:0,start:goal.eventDate,end:goal.eventDate});const today=getOggiIsoLocale();let current=phases.find(p=>today>=p.start&&today<=p.end)||phases.find(p=>p.key==='event'&&today===p.start)||null;if(!current&&today<start)current={key:'pre',label:'PREPARAZIONE NON INIZIATA',start,end:addDaysIso4B(start,-1),weeks:0};const weekIndex=today<start?0:Math.min(weeks,Math.max(1,Math.floor(giorniTraIso4B(start,today)/7)+1));return{version:'4B',descriptiveOnly:true,start,eventDate:goal.eventDate,totalDays:days,totalWeeks:weeks,distribution:dist,phases,current,weekIndex,limited:dist.limited};
+        }
+        function renderMacrocycle4B(){const panel=document.getElementById('macro-4b-panel'),track=document.getElementById('macro-4b-track'),warn=document.getElementById('macro-4b-warning');if(!panel||!track)return;const m=buildMacrocycle4B();if(!m){panel.classList.add('hidden');window.trainingHubMacrocycle4B=null;return;}panel.classList.remove('hidden');const total=Math.max(1,m.totalWeeks);track.innerHTML=m.phases.map(p=>{const pct=p.key==='event'?Math.max(4,100/(total+1)):Math.max(7,(p.weeks/total)*96),current=m.current?.key===p.key?' current':'';return `<div class="macro-4b-phase macro-4b-${p.key}${current}" style="flex:${pct} 1 0" title="${p.label}: ${formattaDataCustom(p.start)} → ${formattaDataCustom(p.end)}">${p.label}${p.weeks?` · ${p.weeks}w`:''}</div>`;}).join('');const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};set('macro-4b-summary',`${formattaDataCustom(m.start)} → ${formattaDataCustom(m.eventDate)} · ${m.totalDays} giorni · generazione descrittiva`);set('macro-4b-current',m.current?.label||'-');set('macro-4b-total',m.totalWeeks);set('macro-4b-week',m.weekIndex?`${m.weekIndex}/${m.totalWeeks}`:'non iniziata');set('macro-4b-phase',m.current?.label||'-');set('macro-4b-start',m.current?.start?formattaDataCustom(m.current.start):'-');set('macro-4b-end',m.current?.end?formattaDataCustom(m.current.end):'-');if(warn){warn.classList.toggle('hidden',!m.limited);warn.textContent=m.limited?`⚠ Tempo di preparazione limitato (${m.totalWeeks} settimane): macro-ciclo compresso, con priorità a BUILD / SPECIFIC / TAPER.`:'';}window.trainingHubMacrocycle4B=m;renderGoalPlan4C();}
 
         const TIPI_ALLENAMENTO_PIANO = {
             fondo: { label: 'Fondo' },
@@ -3057,6 +3243,7 @@ Cooldown
         let schedaImpostazioniAttiva = 'connessione';
         const SCHEDE_IMPOSTAZIONI = [
             { id: 'connessione', label: 'Connessione' },
+            { id: 'obiettivo', label: 'Obiettivo' },
             { id: 'piano', label: 'Piano Allenamento' },
             { id: 'stile', label: 'Stile & Grafici' },
             { id: 'metriche', label: 'Metriche' },
@@ -3091,12 +3278,13 @@ Cooldown
             };
             const byHeading = text => directChild(Array.from(root.querySelectorAll('h3')).find(h => h.textContent.includes(text)));
             const connessione = document.getElementById('settings-panel-connessione-source') || directChild(document.getElementById('cfg-nomeFoglio'));
+            const obiettivo = document.getElementById('settings-panel-goal-source');
             const piano = byHeading('Parametri Piano di Allenamento');
             const stile = byHeading('Stile Pagina');
             const metriche = byHeading('Preferenza Metrica');
             const fisiologia = byHeading('Parametri Fisiologici');
             const colonne = document.getElementById('settings-panel-colonne-source') || byHeading('Mappatura Colonne');
-            const targets = { connessione, piano, stile, metriche, fisiologia, colonne };
+            const targets = { connessione, obiettivo, piano, stile, metriche, fisiologia, colonne };
             const nav = document.createElement('div');
             nav.id = 'settings-tabs-nav';
             nav.setAttribute('role', 'tablist');
@@ -3432,8 +3620,32 @@ Cooldown
             });
             canvas.addEventListener('mouseleave',()=>{graficiHoverIndex=null;Object.values(graficiInstances).forEach(ch=>ch?.draw());});
         }
+          function toggleHubArea(contentId,btn,storageKey,force,resizeChart){
+              const c=document.getElementById(contentId);if(!c)return;
+              const hidden=typeof force==='boolean'?force:!c.classList.contains('hub-collapsed');
+              c.classList.toggle('hub-collapsed',hidden);c.setAttribute('aria-hidden',hidden?'true':'false');
+              if(btn){btn.textContent=hidden?'⌄':'⌃';btn.title=hidden?'Mostra area':'Nascondi area';btn.setAttribute('aria-expanded',hidden?'false':'true');}
+              if(storageKey)try{localStorage.setItem(storageKey,hidden?'1':'0');}catch(_){}
+              if(!hidden&&resizeChart)setTimeout(()=>chartWellnessInstance?.resize(),50);
+          }
+          function restoreHubArea(id,key,resize){const c=document.getElementById(id);if(!c)return;let h=false;try{h=localStorage.getItem(key)==='1';}catch(_){}const b=document.querySelector(`[onclick*="${id}"]`);toggleHubArea(id,b,key,h,resize);}
+          function initHubAreas(){[
+            ['storico-list-content','moioTrainingHub.storicoListHidden.v2'],['piano-list-content','moioTrainingHub.pianoListHidden.v2'],
+            ['wellness-readiness-content','moioTrainingHub.wellnessReadinessHidden.v2'],['wellness-chart-content','moioTrainingHub.wellnessChartHidden.v2',true],
+            ['wellness-list-content','moioTrainingHub.wellnessListHidden.v2'],['today-readiness-content','moioTrainingHub.todayReadinessHidden.v2'],
+            ['today-adaptive-content','moioTrainingHub.todayAdaptiveHidden.v2'],['today-workout-content','moioTrainingHub.todayWorkoutHidden.v2']
+          ].forEach(x=>restoreHubArea(...x));}
+          function renderAllenamentoOggi(){
+              const oggi=getOggiIsoLocale(),read=calcolaReadinessWellness(oggi),rbox=document.getElementById('today-readiness-content'),abox=document.getElementById('today-adaptive-content'),wbox=document.getElementById('today-workout-content');
+              let rows=[];try{rows=calcolaDatiPianoAllenamento().pianoRows||[];}catch(e){console.warn(e);}const row=rows.find(x=>x.isoDate===oggi)||rows.filter(x=>x.isoDate>=oggi&&!x.completato)[0]||null;
+              if(rbox){const h=read?.metrics?.hrv,rr=read?.metrics?.restingHR;rbox.innerHTML=read?`<div class="grid grid-cols-2 md:grid-cols-4 gap-2"><div class="readiness-card" style="--readiness-color:${readinessColor(read.score)}"><div class="readiness-label">Readiness</div><div class="readiness-value">${read.score}/100</div><div class="readiness-note">${read.stato}</div></div><div class="readiness-card"><div class="readiness-label">Confidence</div><div class="readiness-value">${read.confidence}%</div><div class="readiness-note">Copertura e storicità</div></div><div class="readiness-card"><div class="readiness-label">HRV vs baseline</div><div class="readiness-value">${Number.isFinite(h?.dev)?h.dev.toFixed(1)+'%':'-'}</div><div class="readiness-note">${formatReadinessMetric(h)}</div></div><div class="readiness-card"><div class="readiness-label">Recupero autonomico</div><div class="readiness-value">${Number.isFinite(rr?.dev)?'RHR '+rr.dev.toFixed(1)+'%':'-'}</div><div class="readiness-note">${formatReadinessMetric(rr)}</div></div></div>`:'<div class="text-slate-500 text-xs">Dati Wellness odierni non disponibili.</div>';}
+              if(abox){const d=row?.adaptiveDecision;abox.innerHTML=row?`<div class="grid grid-cols-2 md:grid-cols-4 gap-2"><div class="readiness-card"><div class="readiness-label">Readiness</div><div class="readiness-value">${read?.score??'-'}/100</div></div><div class="readiness-card"><div class="readiness-label">Confidence</div><div class="readiness-value">${read?.confidence??'-'}%</div></div><div class="readiness-card"><div class="readiness-label">TSB</div><div class="readiness-value">${Number(row.tsb).toFixed(1)}</div></div><div class="readiness-card"><div class="readiness-label">Decisione</div><div class="readiness-value" style="font-size:15px">${d?'ADATTATO':'PIANO CONFERMATO'}</div></div></div><div class="today-workout-desc">${d?(d.reasons||[]).join(' · '):'Readiness e TSB non richiedono modifiche automatiche.'}</div>`:'<div class="text-slate-500 text-xs">Nessuna seduta disponibile per la valutazione adattiva.</div>';}
+              if(wbox)wbox.innerHTML=row?`<div class="today-workout-main">${row.giornoNome} ${row.dataFormattata} · ${String(row.attivita||'').toUpperCase()} · ${String(row.tipoAllenamento||'').toUpperCase()}</div><div class="today-workout-meta"><span class="today-chip">${Math.round(row.carico||0)} TSS</span><span class="today-chip">${row.durataAllenamentoMin?Math.round(row.durataAllenamentoMin)+' min':'Durata n.d.'}</span><span class="today-chip">${row.completato?'COMPLETATO':row.adattatoFase2?'ADATTATO':'PIANIFICATO'}</span><span class="today-chip">TSB ${Number(row.tsb).toFixed(1)}</span></div><div class="today-workout-desc">${row.allenamento||'Descrizione non disponibile.'}</div>`:'<div class="text-slate-500 text-xs">Nessun allenamento pianificato per oggi.</div>';
+          }
+          async function aggiornaWellnessOggiPerCoach(){const oggi=getOggiIsoLocale(),da=sottraiGiorniIsoReadiness(oggi,READINESS_CONFIG.baselineDays);const res=await fetch(`${WEB_APP_URL}?action=getWellness&oldest=${encodeURIComponent(da)}&newest=${encodeURIComponent(oggi)}&_ts=${Date.now()}`,{cache:'no-store'});if(!res.ok)throw new Error(`Wellness HTTP ${res.status}`);const data=await res.json(),p=estraiPayloadWellness(data);if(!p.headers.length)throw new Error('Wellness odierno non disponibile');wellnessHeaders=p.headers;wellnessRows=p.rows;aggiornaSelettoreWellness();return calcolaReadinessWellness(oggi);}
         function switchSection(section) {
             sezioneAttiva = section;
+            const isOggi = section === 'oggi';
             const isReg = section === 'registrate';
             const isGrafici = section === 'grafici';
             const isPiano = section === 'piano';
@@ -3442,6 +3654,7 @@ Cooldown
             const isCoach = section === 'coach';
             if (isImp) inizializzaSchedeImpostazioni();
 
+            document.getElementById('page-oggi')?.classList.toggle('hidden', !isOggi);
             document.getElementById('page-registrate').classList.toggle('hidden', !isReg);
             document.getElementById('page-grafici')?.classList.toggle('hidden', !isGrafici);
             document.getElementById('page-piano').classList.toggle('hidden', !isPiano);
@@ -3449,7 +3662,8 @@ Cooldown
             document.getElementById('page-wellness').classList.toggle('hidden', !isWellness);
             document.getElementById('page-coach').classList.toggle('hidden', !isCoach);
 
-            if (isReg) {
+            if (isOggi) { renderAllenamentoOggi();
+            } else if (isReg) {
                 if (!storicoFiltroDa) storicoFiltroDa=document.getElementById('filtro-da').value||'';
                 if (!storicoFiltroA) storicoFiltroA=document.getElementById('filtro-a').value||'';
                 document.getElementById('filtro-da').value=storicoFiltroDa;
@@ -4374,6 +4588,7 @@ Cooldown
             document.getElementById('cfg-SHOW_ONLY_ACTIVITIES_WITH_LOAD').checked = false;
             document.getElementById('cfg-ADD_DAYS_WITHOUT_ACTIVITY').checked = true;
 
+            applicaGoal4AAlForm(cfg.obiettivoPrincipale || null);
             const pianoCfg = cfg.pianoAllenamento || {};
             const usaOggiDefault = pianoCfg.usaOggiPiano !== undefined ? Boolean(pianoCfg.usaOggiPiano) : true;
             document.getElementById('cfg-piano-usaOggi').checked = usaOggiDefault;
@@ -4498,6 +4713,7 @@ Cooldown
                 RESET_DATA: false,
                 SHOW_ONLY_ACTIVITIES_WITH_LOAD: false,
                 ADD_DAYS_WITHOUT_ACTIVITY: true,
+                obiettivoPrincipale: leggiGoal4ADaForm(),
                 pianoAllenamento: leggiConfigPianoDaForm(),
                 stileGrafici: leggiConfigStileGraficiDaForm(),
                 preferenzeMetricaStringa: leggiPreferenzeMetricaStringaDaForm(),
@@ -4712,10 +4928,40 @@ Cooldown
             return Array.from(mappaPerData.values()).sort((a, b) => a.iso.localeCompare(b.iso));
         }
 
+        // v42.34 - FASE 2: Adaptive Training Engine prudenziale.
+        // Agisce solo su oggi non completato e sul primo allenamento futuro; non tocca mai giorni completati.
+        const ADAPTIVE_TRAINING_CONFIG=Object.freeze({confidenceFull:70,confidencePrudent:50,readinessHigh:80,readinessMedium:60,readinessLow:40,tsbCaution:-10,tsbProtect:-20,reduceModerate:.85,reduceLow:.70,reduceVeryLow:.45,reducePrudent:.90});
+        const ADAPTIVE_DECISIONS_KEY='moioTrainingHub.adaptiveDecisions.v1';
+        function caricaDecisioniAdaptive(){try{const x=JSON.parse(localStorage.getItem(ADAPTIVE_DECISIONS_KEY)||'{}');return x&&typeof x==='object'&&!Array.isArray(x)?x:{};}catch(_){return {};}}
+        function salvaDecisioniAdaptive(x){try{localStorage.setItem(ADAPTIVE_DECISIONS_KEY,JSON.stringify(x||{}));}catch(_){}}
+        function firmaReadinessAdaptive(r,tsb){return [r?.date,r?.score,r?.confidence,Math.round((Number(tsb)||0)*10)/10].join('|');}
+        function prossimeDateAdaptive(giorniSettimana,oggiIso,mappaCarico){return giorniSettimana.filter(g=>g.isGiornoAttivo&&g.isoDate>=oggiIso&&!mappaCarico.has(g.isoDate)).sort((a,b)=>a.isoDate.localeCompare(b.isoDate)).slice(0,2).map(g=>g.isoDate);}
+        function valutaAdattamentoAllenamento({isoDate,oggiIso,carico,tipo,tsb,completatoReale,dateAdaptive}){
+          if(completatoReale||isoDate<oggiIso||!dateAdaptive.includes(isoDate)||!(carico>0))return null;
+          const readiness=calcolaReadinessWellness(oggiIso),score=Number(readiness?.score),confidence=Number(readiness?.confidence);
+          if(!Number.isFinite(score)||!Number.isFinite(confidence)||confidence<ADAPTIVE_TRAINING_CONFIG.confidencePrudent)return null;
+          let factor=1,newType=tipo,level=0,reasons=[];
+          if(tsb<ADAPTIVE_TRAINING_CONFIG.tsbProtect){factor=.70;level=2;newType=tipo==='qualita'?'fondo':tipo;reasons.push(`TSB ${tsb.toFixed(1)} sotto soglia di protezione ${ADAPTIVE_TRAINING_CONFIG.tsbProtect}`);}
+          if(score<ADAPTIVE_TRAINING_CONFIG.readinessLow){factor=Math.min(factor,ADAPTIVE_TRAINING_CONFIG.reduceVeryLow);level=3;newType='recupero';reasons.push(`Readiness molto bassa ${Math.round(score)}/100`);}
+          else if(score<ADAPTIVE_TRAINING_CONFIG.readinessMedium){factor=Math.min(factor,ADAPTIVE_TRAINING_CONFIG.reduceLow);level=Math.max(level,2);newType=tipo==='qualita'?'fondo':tipo;reasons.push(`Readiness bassa ${Math.round(score)}/100`);}
+          else if(score<ADAPTIVE_TRAINING_CONFIG.readinessHigh&&tsb<ADAPTIVE_TRAINING_CONFIG.tsbCaution){factor=Math.min(factor,ADAPTIVE_TRAINING_CONFIG.reduceModerate);level=Math.max(level,1);reasons.push(`Readiness media ${Math.round(score)}/100 con TSB ${tsb.toFixed(1)}`);}
+          if(confidence<ADAPTIVE_TRAINING_CONFIG.confidenceFull&&factor<1){factor=Math.max(factor,ADAPTIVE_TRAINING_CONFIG.reducePrudent);newType=tipo;level=1;reasons.push(`Confidence ${Math.round(confidence)}%: applicata solo correzione prudente`);}
+          if(factor>=.999&&newType===tipo)return null;
+          const proposed=Math.max(0,Math.round(carico*factor));
+          const firma=firmaReadinessAdaptive(readiness,tsb),store=caricaDecisioniAdaptive(),old=store[isoDate];
+          if(old&&old.firma===firma)return old;
+          const d={date:isoDate,firma,originalLoad:Math.round(carico),adaptedLoad:proposed,originalType:tipo,adaptedType:newType,readiness:Math.round(score),confidence:Math.round(confidence),tsb:Number(tsb.toFixed(1)),level,reasons,createdAt:new Date().toISOString()};store[isoDate]=d;
+          // elimina decisioni storiche per non accumulare stato obsoleto
+          Object.keys(store).forEach(k=>{if(k<oggiIso)delete store[k];});salvaDecisioniAdaptive(store);return d;
+        }
+        function applicaLimitiAdaptive(decisione,avanzati,attivitaKey,maxGiornaliero){if(!decisione)return null;let max=maxGiornaliero===null?Infinity:Number(maxGiornaliero);const ms=avanzati.limitiDisciplina[attivitaKey]?.tssMax;if(ms!==null&&ms!==''&&Number(ms)>0)max=Math.min(max,Number(ms));if(decisione.adaptedType==='recupero')max=Math.min(max,Number(avanzati.protezioni.tssMaxRecupero)||30);return Math.max(0,Math.round(Math.min(decisione.adaptedLoad,max)));}
+
         function calcolaDatiPianoAllenamento() {
             const { dataIso: ultimaDataCaricoIso, righeOrdinate, idxData, idxCtl, idxAtl, idxCarico } = trovaUltimaAttivitaConCarico();
 
             const pianoCfg = leggiConfigPianoDaForm();
+            const goal4C = leggiGoal4ADaForm();
+            const macro4C = buildMacrocycle4B(goal4C);
             const incrementoPct = pianoCfg.incrementoSettimanalePct;
             const numSettimane = pianoCfg.settimane;
             const giorniAttivi = pianoCfg.giorniAttivi;
@@ -4857,7 +5103,9 @@ Cooldown
 
                 const fattoreCrescita = Math.pow(1 + (incrementoPct / 100), settimanaIdx);
                 let targetSettimanale = caricoSettimanalePartenza * fattoreCrescita;
-
+                const settimanaStartIso = isoDaData(dataCorrente);
+                const goalPhase4C = profiloGoalPlan4C(settimanaStartIso, macro4C);
+                if (macro4C && goal4C?.sport) targetSettimanale *= goalPhase4C.profile.loadFactor;
                 if (isScarico) {
                     targetSettimanale = targetSettimanale * (1 - riduzioneScaricoPct / 100);
                 }
@@ -4920,6 +5168,7 @@ Cooldown
                     dataCorrente.setDate(dataCorrente.getDate() + 1);
                 }
 
+                const goalIntent4C = applicaIntentoGoalPlan4C(giorniSettimana, settimanaStartIso, macro4C, goal4C);
                 const maxGiornaliero = (
                     vincoliCfg.tssMaxGiornaliero !== null &&
                     vincoliCfg.tssMaxGiornaliero !== undefined &&
@@ -5022,6 +5271,7 @@ Cooldown
                 let residuoNonAllocabileSettimana = 0;
                 let totaleRaggiungibileSettimana = targetSettimanaleReale;
                 let caricoFuturoPianificatoSettimana = 0;
+                const dateAdaptiveSettimana = prossimeDateAdaptive(giorniSettimana, oggiIso, mappaCaricoCompletato);
                 const calcolaTettoGiorno = g => {
                     const rawLimiteSport = avanzati.limitiDisciplina[g.attivitaKey]?.tssMax;
                     const limiteSport = (rawLimiteSport === null || rawLimiteSport === '') ? Infinity : Number(rawLimiteSport);
@@ -5082,8 +5332,19 @@ Cooldown
                     if(modificaCoach?.sport) g.attivitaKey=modificaCoach.sport;
                     if(modificaCoach?.tipo) g.tipoSeduta=modificaCoach.tipo;
                     let caricoProgrammato = (g.isoDate < oggiIso || completatoReale) ? g.caricoProgrammatoOriginale : g.caricoGiorno;
+                    // Prima il Coach esplicito, poi l'Adaptive Engine: una modifica manualmente accettata dal Coach ha priorita e non viene riscritta automaticamente.
                     if(modificaCoach && modificaCoach.carico!==null){
                         let limiteCoach=maxGiornaliero===null?Infinity:maxGiornaliero;const maxSport=avanzati.limitiDisciplina[g.attivitaKey]?.tssMax;if(maxSport!==null&&maxSport!==''&&Number(maxSport)>0)limiteCoach=Math.min(limiteCoach,Number(maxSport));if(g.tipoSeduta==='recupero')limiteCoach=Math.min(limiteCoach,avanzati.protezioni.tssMaxRecupero);caricoProgrammato=Math.min(modificaCoach.carico,limiteCoach);
+                    }
+                    let adattamentoFase2=null;
+                    if(!modificaCoach){
+                        // TSB pre-seduta: valuta lo stato prima di applicare il carico del giorno.
+                        const tsbPre=ctl-atl;
+                        adattamentoFase2=valutaAdattamentoAllenamento({isoDate:g.isoDate,oggiIso,carico:caricoProgrammato,tipo:g.tipoSeduta,tsb:tsbPre,completatoReale,dateAdaptive:dateAdaptiveSettimana});
+                        if(adattamentoFase2){
+                            g.tipoSeduta=adattamentoFase2.adaptedType;
+                            caricoProgrammato=applicaLimitiAdaptive(adattamentoFase2,avanzati,g.attivitaKey,maxGiornaliero);
+                        }
                     }
                     // Il carico fisiologico usa la stessa mappa unica: reale se completato;
                     // zero per giorni trascorsi senza attività; programmato per oggi non ancora completato e futuro.
@@ -5130,6 +5391,9 @@ Cooldown
                         tipoAllenamento: g.tipoSeduta,
                         isScarico: g.isScarico,
                         isTaper: g.isTaper,
+                        goalPhase4C: g.goalPlan4C?.phaseLabel || '',
+                        goalProfile4C: g.goalPlan4C || null,
+                        specificity4C: g.goalPlan4C?.specificity ?? null,
                         carico: caricoProgrammato,
                         caricoOriginale: g.caricoProgrammatoOriginale,
                         caricoFisiologico: caricoGiorno,
@@ -5151,11 +5415,16 @@ Cooldown
                         vincoloImpatto: Boolean(g.amlLimitato),
                         modificatoDalCoach: Boolean(modificaCoach),
                         motivoModificaCoach: modificaCoach?.motivo || '',
+                        adattatoFase2: Boolean(adattamentoFase2),
+                        adaptiveDecision: adattamentoFase2,
+                        motivoAdattamento: adattamentoFase2 ? adattamentoFase2.reasons.join(' · ') : '',
+                        caricoPreAdattamento: adattamentoFase2 ? adattamentoFase2.originalLoad : null,
+                        tipoPreAdattamento: adattamentoFase2 ? adattamentoFase2.originalType : null,
                         durataAllenamentoMin: workoutFinale.durataMin,
                         tssAllenamentoRealizzabile: workoutFinale.tssRealizzabile !== undefined ? workoutFinale.tssRealizzabile : caricoProgrammato,
                         deficitAllenamentoTss: workoutFinale.deficitTss || 0,
                         stringaIntervals: workoutFinale.stringaIntervals,
-                        allenamento: workoutFinale.descrizioneTabella + (modificaCoach ? ` · 🤖 Modificato dal Coach: ${modificaCoach.motivo}` : '') + (g.rimodulato ? ' · ↻ Aggiornato sul carico rimodulato' : '') + (g.amlLimitato ? ' · ⚠ Ridotta per evitare due giorni consecutivi di corsa ad alto impatto' : '')
+                        allenamento: (g.goalPlan4C?.phaseLabel ? `[${g.goalPlan4C.phaseLabel}] ` : '') + workoutFinale.descrizioneTabella + (adattamentoFase2 ? ` · 🧠 Adaptive: ${adattamentoFase2.originalType} ${adattamentoFase2.originalLoad}→${adattamentoFase2.adaptedType} ${caricoProgrammato} TSS · R${adattamentoFase2.readiness} C${adattamentoFase2.confidence}% TSB ${adattamentoFase2.tsb}` : '') + (modificaCoach ? ` · 🤖 Modificato dal Coach: ${modificaCoach.motivo}` : '') + (g.rimodulato ? ' · ↻ Aggiornato sul carico rimodulato' : '') + (g.amlLimitato ? ' · ⚠ Ridotta per evitare due giorni consecutivi di corsa ad alto impatto' : '')
                     });
                 }
             }
@@ -5362,13 +5631,17 @@ Cooldown
             const { idxData, idxCarico } = trovaIndiciColonne();
             const mappa = new Map();
             if (idxData === -1 || idxCarico === -1 || !Array.isArray(tutteLeRighe)) return mappa;
+            const oggiIso = getOggiIsoLocale();
             tutteLeRighe.forEach(row => {
                 if (!row) return;
                 const iso = toIsoDate(row[idxData]);
                 if (!iso || iso.length !== 10) return;
                 const carico = parseNumeroSafe(row[idxCarico]);
-                // Se l'attivita esiste nello Storico, anche CARICO = 0 e un valore completato valido.
-                if (!isNaN(carico)) mappa.set(iso, (mappa.get(iso) || 0) + carico);
+                if (isNaN(carico)) return;
+                const dataPassata = iso < oggiIso;
+                const oggiConAttivita = iso === oggiIso && carico > 0;
+                if (!dataPassata && !oggiConAttivita) return;
+                mappa.set(iso, (mappa.get(iso) || 0) + Math.max(0, carico));
             });
             return mappa;
         }
@@ -5394,6 +5667,10 @@ Cooldown
         const pianoSerieVisibili={ctl:true,atl:true,tsb:true};
         function aggiornaControlliSeriePiano(){const st=leggiConfigStileGraficiDaForm();const c={ctl:['btn-piano-serie-ctl',st.coloreCtl],atl:['btn-piano-serie-atl',st.coloreAtl],tsb:['btn-piano-serie-tsb',st.coloreTsb]};Object.entries(c).forEach(([k,v])=>{const b=document.getElementById(v[0]);if(!b)return;b.style.backgroundColor=v[1];b.style.borderColor=v[1];b.classList.toggle('inactive',!pianoSerieVisibili[k]);b.setAttribute('aria-pressed',pianoSerieVisibili[k]?'true':'false');});}
         function toggleSeriePiano(k){if(!(k in pianoSerieVisibili))return;pianoSerieVisibili[k]=!pianoSerieVisibili[k];if(k==='ctl'&&chartPianoInstance)chartPianoInstance.setDatasetVisibility(0,pianoSerieVisibili.ctl);if(k==='atl'&&chartPianoInstance)chartPianoInstance.setDatasetVisibility(1,pianoSerieVisibili.atl);if(k==='tsb'&&chartPianoTsbInstance)chartPianoTsbInstance.setDatasetVisibility(0,pianoSerieVisibili.tsb);chartPianoInstance?.update();chartPianoTsbInstance?.update();aggiornaControlliSeriePiano();}
+        const ADAPTIVE_PANEL_KEY='moioTrainingHub.adaptivePanelHidden.v1';
+        function toggleAdaptiveEnginePanel(forceState){const c=document.getElementById('adaptive-engine-content'),b=document.getElementById('btn-toggle-adaptive-engine');if(!c)return;let hidden=typeof forceState==='boolean'?forceState:!c.classList.contains('hidden');c.classList.toggle('hidden',hidden);c.setAttribute('aria-hidden',hidden?'true':'false');if(b){b.textContent=hidden?'⌄':'⌃';b.title=hidden?'Mostra Adaptive Engine':'Nascondi Adaptive Engine';b.setAttribute('aria-label',b.title);b.setAttribute('aria-expanded',hidden?'false':'true');}try{localStorage.setItem(ADAPTIVE_PANEL_KEY,hidden?'1':'0');}catch(_){}}
+        function ripristinaAdaptiveEnginePanel(){try{toggleAdaptiveEnginePanel(localStorage.getItem(ADAPTIVE_PANEL_KEY)==='1');}catch(_){toggleAdaptiveEnginePanel(false);}}
+        function renderAdaptiveEnginePanel(rows){const status=document.getElementById('adaptive-engine-status');if(!status)return;const oggi=getOggiIsoLocale(),r=calcolaReadinessWellness(oggi),future=(rows||[]).filter(x=>!x.completato&&x.isoDate>=oggi).sort((a,b)=>a.isoDate.localeCompare(b.isoDate)),next=future[0]||null,adapted=future.find(x=>x.adattatoFase2),d=adapted?.adaptiveDecision||null,score=r?.score,conf=r?.confidence,tsb=d?.tsb??next?.tsb;const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};set('adaptive-readiness',score==null?'-':score+'/100');set('adaptive-confidence',conf==null?'-':conf+'%');set('adaptive-tsb',Number.isFinite(Number(tsb))?Number(tsb).toFixed(1):'-');const label=document.getElementById('adaptive-decision-label'),trans=document.getElementById('adaptive-transition'),reasons=document.getElementById('adaptive-reasons');if(d){status.textContent='ADATTATO';status.className='px-2 py-0.5 rounded-full text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30';if(label)label.textContent=d.level>=2?'MODIFICA SEDUTA':'RIDUZIONE';if(trans)trans.innerHTML=`${String(d.originalType||'').toUpperCase()} <span class="text-slate-500">${d.originalLoad} TSS</span> <span class="text-cyan-400 mx-1">→</span> ${String(d.adaptedType||'').toUpperCase()} <span class="text-cyan-300">${d.adaptedLoad} TSS</span>`;if(reasons)reasons.innerHTML=(d.reasons||[]).map(x=>`<span class="block">• ${x}</span>`).join('');}else{const low=conf!=null&&conf<ADAPTIVE_TRAINING_CONFIG.confidencePrudent;status.textContent=low?'DATI INSUFFICIENTI':'ATTIVO';status.className='px-2 py-0.5 rounded-full text-[9px] font-bold '+(low?'bg-slate-700 text-slate-300':'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30');if(label)label.textContent=low?'NESSUN INTERVENTO':'PIANO CONFERMATO';if(trans)trans.textContent=next?`${next.dataFormattata} · ${String(next.tipoAllenamento||'').toUpperCase()} · ${Math.round(next.carico||0)} TSS`:'Nessun allenamento futuro da valutare';if(reasons)reasons.textContent=low?`Confidence ${conf}% sotto la soglia ${ADAPTIVE_TRAINING_CONFIG.confidencePrudent}%: nessuna modifica automatica.`:'Readiness e TSB non richiedono una modifica automatica della prossima seduta.';}}
         function renderPianoAllenamento() {
             if(filtroDaOggiPiano){pianoFiltroDa=getOggiIsoLocale();if(sezioneAttiva==='piano'){const d=document.getElementById('filtro-da');if(d)d.value=pianoFiltroDa;}}
             if(filtroAOggiPerSezione.piano){pianoFiltroA=getOggiIsoLocale();if(sezioneAttiva==='piano'){const a=document.getElementById('filtro-a');if(a)a.value=pianoFiltroA;}}
@@ -5409,11 +5686,14 @@ Cooldown
                 r.conformita = r.completato ? calcolaConformitaCarico(r.carico, r.caricoCompletato) : null;
             });
             pianoRowsCorrenti = pianoRows;
+            renderGoal4A();
+            renderMacrocycle4B();
+            renderAdaptiveEnginePanel(pianoRows);
             if(isMobileUi()) renderMobilePianoCards(pianoRows);
 
             const riepilogoEl = document.getElementById('piano-riepilogo-parametri');
             if (riepilogoEl) {
-                let testoRiepilogo = `Baseline storica: ${baselineStorica} TSS (${metodoBaselineUsato}; S-4..S-1: ${carichiQuattroSettimane.join(' / ')}) • Target sett. 1: ${caricoSettimanalePartenza} TSS (${incrementoPct >= 0 ? '+' : ''}${incrementoPct}%) • Orizzonte: ${numSettimane} settimane`;
+                const gp4c=window.trainingHubGoalPlan4C;let testoRiepilogo = `${gp4c?.active?`Goal→Plan ${gp4c.profile.label} · ${Math.round(gp4c.specificity*100)}% specificità • `:''}Baseline storica: ${baselineStorica} TSS (${metodoBaselineUsato}; S-4..S-1: ${carichiQuattroSettimane.join(' / ')}) • Target sett. 1: ${caricoSettimanalePartenza} TSS (${incrementoPct >= 0 ? '+' : ''}${incrementoPct}%) • Orizzonte: ${numSettimane} settimane`;
                 const primaRigaAdattiva = pianoRows.find(r => r.completatoSettimana > 0);
                 if (primaRigaAdattiva) {
                     const completatiVisibili = pianoRows.filter(r => r.completato).sort((a,b) => a.isoDate.localeCompare(b.isoDate));
@@ -5677,6 +5957,44 @@ Cooldown
             tutteLeRighe=rowsServerStorico.map(raw=>{const obj={};headersServerStorico.forEach((h,i)=>obj[h]=raw[i]);const dv=valutaFormulaMappatura(m.data.formula||'val',raw[rawMap.get(String(m.data.chiave))],obj);const cv=valutaFormulaMappatura(m.ctl.formula||'val',raw[rawMap.get(String(m.ctl.chiave))],obj);const av=valutaFormulaMappatura(m.atl.formula||'val',raw[rawMap.get(String(m.atl.chiave))],obj);const lv=valutaFormulaMappatura(m.carico.formula||'val',raw[rawMap.get(String(m.carico.chiave))],obj);const cn=parseNumeroSafe(cv),an=parseNumeroSafe(av);const base=[dv,cv,av,Number.isFinite(cn)&&Number.isFinite(an)?cn-an:'',lv];const ex=extras.map(x=>{if(x.calcolato)return calcolaFormulaStoricoLibera(x.formula||'0',raw);const ix=rawMap.get(String(x.chiave));return ix===undefined?'':valutaFormulaMappatura(x.formula||'val',raw[ix],obj);});return [...base,...ex];});
             indiciSorgenteStoricoVisibili=[rawMap.get(String(m.data.chiave)),rawMap.get(String(m.ctl.chiave)),rawMap.get(String(m.atl.chiave)),-1,rawMap.get(String(m.carico.chiave)),...extras.map(x=>rawMap.get(String(x.chiave))??-1)];return true;
         }
+        function csvEscapeStorico(value,sep=';'){const t=String(value??'').replace(/\r?\n/g,' ').trim();return(t.includes(sep)||/["\r\n]/.test(t))?'"'+t.replace(/"/g,'""')+'"':t;}
+        function testoCsvDaCella(cell){
+            if(!cell)return'';
+            const clone=cell.cloneNode(true);
+            clone.querySelectorAll('button,input,.sort-col-btn,.th-actions,.col-resizer').forEach(x=>x.remove());
+            clone.querySelectorAll('select').forEach(sel=>{const t=document.createTextNode(sel.selectedOptions?.[0]?.textContent||sel.value||'');sel.replaceWith(t);});
+            return String(clone.textContent||'').replace(/[↕↑↓✎✕]/g,'').replace(/\s+/g,' ').trim();
+        }
+        function scaricaMatriceCsv(headers,rows,nomeFile){
+            if(!rows.length){alert('Nessuna riga visualizzata da esportare.');return false;}
+            const sep=';',csv=[headers,...rows].map(r=>r.map(v=>csvEscapeStorico(v,sep)).join(sep)).join('\r\n');
+            const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+            a.href=url;a.download=nomeFile;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);return true;
+        }
+        function righeTabellaVisualizzata(headSelector,bodySelector){
+            const head=document.querySelector(headSelector),body=document.querySelector(bodySelector),hr=head?.querySelector(':scope > tr')||head?.querySelector('tr');
+            if(!hr||!body)return null;
+            return{headers:[...hr.cells].map(testoCsvDaCella),rows:[...body.rows].map(tr=>[...tr.cells].map(testoCsvDaCella))};
+        }
+        function esportaPianoVisualizzatoCsv(){
+            const x=righeTabellaVisualizzata('#table-piano thead','#table-body-piano');if(!x){alert('Elenco Piano non disponibile.');return;}
+            const da=pianoFiltroDa||document.getElementById('filtro-da')?.value||'inizio',al=pianoFiltroA||document.getElementById('filtro-a')?.value||'fine';
+            scaricaMatriceCsv(x.headers,x.rows,`training_hub_piano_${da}_${al}.csv`);
+        }
+        function esportaWellnessVisualizzatoCsv(){
+            const x=righeTabellaVisualizzata('#wellness-table-head','#wellness-table-body');if(!x){alert('Elenco Wellness non disponibile.');return;}
+            const da=wellnessFiltroDa||document.getElementById('filtro-da')?.value||'inizio',al=wellnessFiltroA||document.getElementById('filtro-a')?.value||'fine';
+            scaricaMatriceCsv(x.headers,x.rows,`training_hub_wellness_${da}_${al}.csv`);
+        }
+        function esportaStoricoVisualizzatoCsv(){
+            const hr=document.querySelector('#table-head-content tr'),body=document.getElementById('table-body-registrate');if(!hr||!body){alert('Elenco Storico non disponibile.');return;}
+            const headers=[...hr.cells].map(th=>{const c=th.cloneNode(true);c.querySelectorAll('button,.sort-col-btn,.th-actions,.col-resizer,input').forEach(x=>x.remove());return c.textContent.replace(/[↕↑↓✎✕]/g,'').replace(/\s+/g,' ').trim();});
+            const rows=[...body.rows].map(tr=>[...tr.cells].map(td=>String(td.dataset.sortValue??td.textContent??'').replace(/\s+/g,' ').trim()));if(!rows.length){alert('Nessuna riga visualizzata da esportare.');return;}
+            const sep=';',csv=[headers,...rows].map(r=>r.map(v=>csvEscapeStorico(v,sep)).join(sep)).join('\r\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+            const da=storicoFiltroDa||document.getElementById('filtro-da')?.value||'inizio',al=storicoFiltroA||document.getElementById('filtro-a')?.value||'fine';a.href=url;a.download=`training_hub_storico_${da}_${al}.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+            const st=document.getElementById('layout-save-status');if(st){st.className='font-mono text-emerald-400';st.textContent=`CSV esportato: ${rows.length} righe · ${headers.length} colonne`;}
+        }
+
         function resetColonneStorico() {
             if(!headersServerStorico.length||!rowsServerStorico.length)return;
             if(!applicaColonneBaseStorico([])){alert('Impossibile identificare DATA, CTL, ATL o CARICO nei dati Intervals.icu.');return;}
@@ -6349,6 +6667,79 @@ Cooldown
             if(!sel.selectedOptions.length) Array.from(sel.options).slice(0,Math.min(3,sel.options.length)).forEach(o=>o.selected=true);
             salvaColonneWellnessLocali();
         }
+        const READINESS_CONFIG=Object.freeze({baselineDays:28,shortDays:7,minBaselineValues:5,weights:{hrv:.30,restingHR:.20,sleep:.20,bodyBattery:.15,stress:.10,soreness:.05}});
+        function wellnessFieldIndexPrioritario(aliases){for(const alias of aliases){const k=normalizzaChiaveWellness(alias),i=wellnessHeaders.findIndex(h=>normalizzaChiaveWellness(h)===k);if(i>=0)return i;}return-1;}
+        function medianaNumerica(v){const a=v.map(Number).filter(Number.isFinite).sort((x,y)=>x-y);if(!a.length)return NaN;const m=Math.floor(a.length/2);return a.length%2?a[m]:(a[m-1]+a[m])/2;}
+        function clampReadiness(v){return Math.max(0,Math.min(100,Number(v)||0));}
+        function scoreDeviazionePercentuale(d,dir){const f=dir==='high-good'?d:-d;return clampReadiness(80+f*2);}
+        function scoreSonno(h,b){if(!Number.isFinite(h))return NaN;const rel=Number.isFinite(b)&&b>0?clampReadiness(80+((h-b)/b*100)*2):80,abs=h>=8?100:h>=7?90:h>=6?72:h>=5?50:30;return clampReadiness(rel*.55+abs*.45);}
+        function sottraiGiorniIsoReadiness(iso,g){const d=dataLocaleDaIso(iso);if(!(d instanceof Date)||Number.isNaN(d.getTime()))return iso;d.setDate(d.getDate()-g);return isoDaData(d);}
+        function costruisciSerieWellness(){const di=trovaIndiceDataWellness();return wellnessRows.map(r=>({iso:toIsoDate(r[di]),row:r})).filter(x=>x.iso).sort((a,b)=>a.iso.localeCompare(b.iso));}
+        function calcolaReadinessWellness(dataIso){const serie=costruisciSerieWellness();if(!serie.length)return null;const req=dataIso||getOggiIsoLocale(),target=serie.find(x=>x.iso===req)||serie.filter(x=>x.iso<=req).slice(-1)[0];if(!target)return null;const td=dataLocaleDaIso(target.iso),prev=serie.filter(x=>x.iso<target.iso).map(x=>({...x,days:Math.round((td-dataLocaleDaIso(x.iso))/86400000)})),baseRows=prev.filter(x=>x.days>=1&&x.days<=28),shortRows=prev.filter(x=>x.days>=1&&x.days<=7);const defs={hrv:{aliases:['hrv','hrvSDNN'],weight:.30,direction:'high-good',unit:'ms',mode:'baseline'},restingHR:{aliases:['restingHR'],weight:.20,direction:'low-good',unit:'bpm',mode:'baseline'},sleep:{aliases:['sleepSecs'],weight:.20,direction:'high-good',unit:'h',mode:'baseline'},bodyBattery:{aliases:['bodyBattery'],weight:.15,direction:'high-good',unit:'',mode:'absolute'},stress:{aliases:['stress','averageStress'],weight:.10,direction:'low-good',unit:'',mode:'absolute'},soreness:{aliases:['soreness','fatigue'],weight:.05,direction:'low-good',unit:'',mode:'absolute'}};const metrics={};let weighted=0,used=0,cn=0,cd=0;Object.entries(defs).forEach(([key,d])=>{cd+=d.weight;const i=wellnessFieldIndexPrioritario(d.aliases);if(i<0){metrics[key]={...d,available:false,baselineCount:0,baselineReliable:false};return;}const cv=v=>{const n=wellnessNumero(v);return key==='sleep'&&Number.isFinite(n)?n/3600:n},current=cv(target.row[i]),bv=baseRows.map(x=>cv(x.row[i])).filter(Number.isFinite),sv=shortRows.map(x=>cv(x.row[i])).filter(Number.isFinite),baseline=medianaNumerica(bv),short=medianaNumerica(sv),reliable=bv.length>=5,dev=reliable&&Number.isFinite(current)&&Number.isFinite(baseline)&&baseline?(current-baseline)/baseline*100:NaN,shortDev=reliable&&Number.isFinite(short)&&Number.isFinite(baseline)&&baseline?(short-baseline)/baseline*100:NaN;let score=NaN;if(Number.isFinite(current)){if(key==='bodyBattery')score=clampReadiness(current);else if(key==='stress'||key==='soreness')score=clampReadiness(100-current);else if(reliable&&key==='sleep')score=scoreSonno(current,baseline);else if(reliable&&Number.isFinite(dev))score=scoreDeviazionePercentuale(dev,d.direction);}const coverage=Math.min(1,bv.length/5),present=Number.isFinite(current)?1:0;cn+=d.weight*(present*.55+coverage*.45);if(Number.isFinite(score)){weighted+=score*d.weight;used+=d.weight;}metrics[key]={...d,available:Number.isFinite(current),current,baseline,short,dev,shortDev,score,baselineCount:bv.length,baselineReliable:reliable};});const score=used?Math.round(weighted/used):null,confidence=cd?Math.round(100*cn/cd):0,stato=score==null?'DATI INSUFFICIENTI':score>=80?'ALTO':score>=60?'MEDIO':score>=40?'BASSO':'MOLTO BASSO';return{date:target.iso,score,confidence,stato,metrics,baselineDays:28,shortDays:7,minBaselineValues:5};}
+        function readinessColor(s){return s==null?'#94a3b8':s>=80?'#34d399':s>=60?'#fbbf24':s>=40?'#fb923c':'#f87171';}
+        function statoTrendReadiness(m){if(!m||!Number.isFinite(m.shortDev))return'non disponibile';const f=m.direction==='high-good'?m.shortDev:-m.shortDev;return f>=5?'miglioramento':f<=-5?'peggioramento':'stabile';}
+        function formatReadinessMetric(m){if(!m||!m.available)return'Dato odierno assente';const dec=m.unit==='h'?1:0,c=Number(m.current).toFixed(dec),b=Number.isFinite(m.baseline)?Number(m.baseline).toFixed(dec):'-',d=Number.isFinite(m.dev)?`${m.dev>=0?'+':''}${m.dev.toFixed(1)}%`:'n.d.',t=Number.isFinite(m.shortDev)?`${m.shortDev>=0?'+':''}${m.shortDev.toFixed(1)}% (${statoTrendReadiness(m)})`:'n.d.';return`${c}${m.unit?' '+m.unit:''} · base ${b}${m.unit?' '+m.unit:''} · oggi ${d} · trend 7g ${t} · n=${m.baselineCount}${m.baselineReliable?'':' · baseline preliminare'}`;}
+        function renderReadinessWellness(){const box=document.getElementById('wellness-readiness-cards'),det=document.getElementById('wellness-readiness-details'),date=document.getElementById('wellness-readiness-date');if(!box)return;const r=calcolaReadinessWellness(wellnessFiltroA||getOggiIsoLocale());if(!r){box.innerHTML='<div class="col-span-full text-xs text-slate-500">Dati insufficienti.</div>';return;}if(date)date.textContent=`Rilevazione ${formattaDataCustom(r.date)}`;const h=r.metrics.hrv,rr=r.metrics.restingHR,sl=r.metrics.sleep;box.innerHTML=`<div class="readiness-card" style="--readiness-color:${readinessColor(r.score)}"><div class="readiness-label">Readiness</div><div class="readiness-value">${r.score==null?'-':r.score+'/100'}</div><div class="readiness-note">${r.stato}</div></div><div class="readiness-card"><div class="readiness-label">Confidence</div><div class="readiness-value">${r.confidence}%</div><div class="readiness-note">Copertura e storicità</div></div><div class="readiness-card"><div class="readiness-label">HRV vs baseline</div><div class="readiness-value">${Number.isFinite(h?.dev)?`${h.dev>=0?'+':''}${h.dev.toFixed(1)}%`:'-'}</div><div class="readiness-note">${formatReadinessMetric(h)}</div></div><div class="readiness-card"><div class="readiness-label">Recupero autonomico</div><div class="readiness-value">${Number.isFinite(rr?.dev)?`RHR ${rr.dev>=0?'+':''}${rr.dev.toFixed(1)}%`:'RHR -'}</div><div class="readiness-note">${formatReadinessMetric(rr)}<br>${formatReadinessMetric(sl)}</div></div>`;if(det)det.textContent=`Baseline mediana 28 giorni · minimo 5 valori · fase 1 attiva`;window.trainingHubReadiness=r;}
+        const ATHLETE_RESPONSE_PANEL_KEY='moioTrainingHub.athleteResponseHidden.v1';
+        function toggleAthleteResponsePanel(force){const c=document.getElementById('athlete-response-content'),b=document.getElementById('btn-toggle-athlete-response');if(!c)return;const h=typeof force==='boolean'?force:!c.classList.contains('hidden');c.classList.toggle('hidden',h);if(b){b.textContent=h?'⌄':'⌃';b.title=h?'Mostra Athlete Response':'Nascondi Athlete Response';}try{localStorage.setItem(ATHLETE_RESPONSE_PANEL_KEY,h?'1':'0');}catch(_){}}
+        function ripristinaAthleteResponsePanel(){try{toggleAthleteResponsePanel(localStorage.getItem(ATHLETE_RESPONSE_PANEL_KEY)==='1');}catch(_){toggleAthleteResponsePanel(false);}}
+        function rawFieldIndex3A(aliases){const norms=aliases.map(normalizzaChiaveWellness);return headersServerStorico.findIndex(h=>norms.includes(normalizzaChiaveWellness(h)));}
+        function rawValue3A(row,aliases){const i=rawFieldIndex3A(aliases);return i>=0?row?.[i]:null;}
+        function num3A(v){const n=Number(String(v??'').replace(',','.'));return Number.isFinite(n)?n:NaN;}
+        function nextIso3A(iso){const d=dataLocaleDaIso(iso);d.setDate(d.getDate()+1);return isoDaData(d);}
+        function classifySport3A(v){const s=String(v||'').toLowerCase();return /run|corsa/.test(s)?'corsa':/ride|bike|cycling|bici/.test(s)?'bici':/walk|hike|cammin/.test(s)?'camminata':'attivita';}
+        function readinessAt3A(iso){return calcolaReadinessWellness(iso);}
+        const ATHLETE_RESPONSE_SPORT_KEY='moioTrainingHub.athleteResponseSport.v1';
+        let athleteResponseSportSelezionato='bici';
+        try{const savedSport=localStorage.getItem(ATHLETE_RESPONSE_SPORT_KEY);if(['bici','corsa','camminata'].includes(savedSport))athleteResponseSportSelezionato=savedSport;}catch(_){}
+        function aggiornaTabSportAthleteResponse(){['bici','corsa','camminata'].forEach(k=>{const b=document.getElementById(`athlete-response-tab-${k}`);if(!b)return;const active=k===athleteResponseSportSelezionato;b.className=`px-3 py-1.5 rounded-lg text-[10px] font-bold ${active?'bg-violet-600 text-white':'bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700'}`;b.setAttribute('aria-pressed',active?'true':'false');});}
+        function selezionaSportAthleteResponse(sport){if(!['bici','corsa','camminata'].includes(sport))return;athleteResponseSportSelezionato=sport;try{localStorage.setItem(ATHLETE_RESPONSE_SPORT_KEY,sport);}catch(_){}renderAthleteResponse3A();}
+        function buildAthleteResponse3A(sportRichiesto=athleteResponseSportSelezionato){
+          if(!headersServerStorico.length||!rowsServerStorico.length)return null;const di=rawFieldIndex3A(['start_date_local','start_date','date','data']),li=rawFieldIndex3A(['icu_training_load','power_load','tss','training_load','load']);if(di<0||li<0)return null;
+          const oggi=getOggiIsoLocale(),candidates=rowsServerStorico.map(r=>{const sport=classifySport3A(rawValue3A(r,['type','sport','activity_type']));return{r,iso:toIsoDate(r[di]),load:num3A(r[li]),sport};}).filter(x=>x.iso&&x.iso<oggi&&x.load>0&&x.sport===sportRichiesto).sort((a,b)=>b.iso.localeCompare(a.iso));if(!candidates.length)return null;const x=candidates[0],postIso=nextIso3A(x.iso),pre=readinessAt3A(x.iso),post=readinessAt3A(postIso);
+          const sport=x.sport,name=String(rawValue3A(x.r,['name','title'])||sport),duration=num3A(rawValue3A(x.r,['moving_time','movingTime','elapsed_time','elapsedTime','duration'])),distance=num3A(rawValue3A(x.r,['distance'])),avgHr=num3A(rawValue3A(x.r,['average_heartrate','averageHeartRate','avg_hr','avgHr','average_hr'])),maxHr=num3A(rawValue3A(x.r,['max_heartrate','maxHeartRate','max_hr','maxHr'])),avgPower=num3A(rawValue3A(x.r,['average_watts','averageWatts','avg_power','avgPower','weighted_average_watts'])),np=num3A(rawValue3A(x.r,['normalized_power','normalizedPower','icu_weighted_avg_watts','weightedAverageWatts'])),rpe=num3A(rawValue3A(x.r,['rpe','perceived_exertion']));
+          let efficiency=NaN,effUnit='',effSource='';if(avgHr>0&&(sport==='bici'||sport==='corsa')&&(np>0||avgPower>0)){efficiency=(np>0?np:avgPower)/avgHr;effUnit='W/bpm';effSource=np>0?'NP / FC media':'Potenza media / FC media (fallback: NP non disponibile)';}else if(avgHr>0&&sport==='camminata'&&distance>0&&duration>0){const speed=(distance>100?distance/1000:distance)/(duration/3600);efficiency=speed/avgHr;effUnit='km/h/bpm';effSource='Velocità / FC media';}
+          const hPre=pre?.metrics?.hrv?.current,hPost=post?.metrics?.hrv?.current,rPre=pre?.metrics?.restingHR?.current,rPost=post?.metrics?.restingHR?.current,sleepPost=post?.metrics?.sleep?.current,readyPre=pre?.score,readyPost=post?.score;
+          const dH=Number.isFinite(hPre)&&Number.isFinite(hPost)&&hPre?((hPost-hPre)/hPre)*100:NaN,dR=Number.isFinite(rPre)&&Number.isFinite(rPost)&&rPre?((rPost-rPre)/rPre)*100:NaN,dReady=Number.isFinite(readyPre)&&Number.isFinite(readyPost)?readyPost-readyPre:NaN;
+          let sum=0,w=0;const add=(score,weight)=>{if(Number.isFinite(score)){sum+=clampReadiness(score)*weight;w+=weight;}};add(Number.isFinite(dH)?80+dH*2:NaN,.30);add(Number.isFinite(dR)?80-dR*2:NaN,.20);add(Number.isFinite(dReady)?80+dReady:NaN,.30);add(Number.isFinite(sleepPost)?scoreSonno(sleepPost,post?.metrics?.sleep?.baseline):NaN,.20);const response=w?Math.round(sum/w):null,confidence=Math.round(w*100);
+          return{date:x.iso,postIso,name,sport,load:x.load,duration,distance,avgHr,maxHr,avgPower,np,rpe,efficiency,effUnit,effSource,pre,post,dH,dR,dReady,sleepPost,response,confidence};
+        }
+        function addDaysIso3B(iso,days){const d=dataLocaleDaIso(iso);d.setDate(d.getDate()+days);return isoDaData(d);}
+        function buildAthleteResponseForCandidate3B(x){
+          const postIso=nextIso3A(x.iso),pre=readinessAt3A(x.iso),post=readinessAt3A(postIso),sport=x.sport,r=x.r;
+          const name=String(rawValue3A(r,['name','title'])||sport),duration=num3A(rawValue3A(r,['moving_time','movingTime','elapsed_time','elapsedTime','duration'])),distance=num3A(rawValue3A(r,['distance'])),avgHr=num3A(rawValue3A(r,['average_heartrate','averageHeartRate','avg_hr','avgHr','average_hr'])),maxHr=num3A(rawValue3A(r,['max_heartrate','maxHeartRate','max_hr','maxHr'])),avgPower=num3A(rawValue3A(r,['average_watts','averageWatts','avg_power','avgPower','weighted_average_watts'])),np=num3A(rawValue3A(r,['normalized_power','normalizedPower','icu_weighted_avg_watts','weightedAverageWatts'])),rpe=num3A(rawValue3A(r,['rpe','perceived_exertion']));
+          let efficiency=NaN,effUnit='',effSource='';if(avgHr>0&&(sport==='bici'||sport==='corsa')&&(np>0||avgPower>0)){efficiency=(np>0?np:avgPower)/avgHr;effUnit='W/bpm';effSource=np>0?'NP / FC media':'Potenza media / FC media (fallback)';}else if(avgHr>0&&sport==='camminata'&&distance>0&&duration>0){const speed=(distance>100?distance/1000:distance)/(duration/3600);efficiency=speed/avgHr;effUnit='km/h/bpm';effSource='Velocità / FC media';}
+          const hPre=pre?.metrics?.hrv?.current,hPost=post?.metrics?.hrv?.current,rPre=pre?.metrics?.restingHR?.current,rPost=post?.metrics?.restingHR?.current,sleepPost=post?.metrics?.sleep?.current,readyPre=pre?.score,readyPost=post?.score;
+          const dH=Number.isFinite(hPre)&&Number.isFinite(hPost)&&hPre?((hPost-hPre)/hPre)*100:NaN,dR=Number.isFinite(rPre)&&Number.isFinite(rPost)&&rPre?((rPost-rPre)/rPre)*100:NaN,dReady=Number.isFinite(readyPre)&&Number.isFinite(readyPost)?readyPost-readyPre:NaN;
+          let sum=0,w=0;const add=(score,weight)=>{if(Number.isFinite(score)){sum+=clampReadiness(score)*weight;w+=weight;}};add(Number.isFinite(dH)?80+dH*2:NaN,.30);add(Number.isFinite(dR)?80-dR*2:NaN,.20);add(Number.isFinite(dReady)?80+dReady:NaN,.30);add(Number.isFinite(sleepPost)?scoreSonno(sleepPost,post?.metrics?.sleep?.baseline):NaN,.20);const response=w?Math.round(sum/w):null,confidence=Math.round(w*100);
+          return{date:x.iso,postIso,name,sport,load:x.load,duration,distance,avgHr,maxHr,avgPower,np,rpe,efficiency,effUnit,effSource,pre,post,dH,dR,dReady,sleepPost,response,confidence};
+        }
+        function buildAthleteResponseHistory3B(sport=athleteResponseSportSelezionato,limit=20){
+          if(!headersServerStorico.length||!rowsServerStorico.length)return[];const di=rawFieldIndex3A(['start_date_local','start_date','date','data']),li=rawFieldIndex3A(['icu_training_load','power_load','tss','training_load','load']);if(di<0||li<0)return[];const oggi=getOggiIsoLocale();
+          return rowsServerStorico.map(r=>{const sp=classifySport3A(rawValue3A(r,['type','sport','activity_type']));return{r,iso:toIsoDate(r[di]),load:num3A(r[li]),sport:sp};}).filter(x=>x.iso&&x.iso<oggi&&x.load>0&&x.sport===sport).sort((a,b)=>b.iso.localeCompare(a.iso)).slice(0,Math.max(1,limit)).map(buildAthleteResponseForCandidate3B);
+        }
+        function calcolaRecoveryTime3B(item,maxDays=5){
+          if(!item)return null;const preScore=Number(item.pre?.score);for(let d=1;d<=maxDays;d++){const iso=addDaysIso3B(item.date,d),r=readinessAt3A(iso);if(!r||!Number.isFinite(Number(r.score))||Number(r.confidence)<50)continue;const h=r.metrics?.hrv,rhr=r.metrics?.restingHR;const readyRecovered=Number.isFinite(preScore)?Number(r.score)>=preScore-5:Number(r.score)>=80;const hrvRecovered=!h?.baselineReliable||!Number.isFinite(h.dev)||h.dev>=-5;const rhrRecovered=!rhr?.baselineReliable||!Number.isFinite(rhr.dev)||rhr.dev<=5;if(readyRecovered&&hrvRecovered&&rhrRecovered)return{hours:d*24,days:d,date:iso,status:'recuperato'};}
+          return{hours:null,days:null,date:null,status:'oltre '+maxDays+' giorni o dati insufficienti'};
+        }
+        function trendAthleteResponse3B(history){const valid=history.filter(x=>Number.isFinite(x.response));if(valid.length<3)return{label:'Trend non disponibile',delta:NaN};const recent=valid.slice(0,3).map(x=>x.response),older=valid.slice(3,6).map(x=>x.response);if(!older.length)return{label:'Storico ancora breve',delta:NaN};const avg=a=>a.reduce((s,v)=>s+v,0)/a.length,delta=avg(recent)-avg(older);return{delta,label:delta>=5?'Miglioramento':delta<=-5?'Peggioramento':'Stabile'};}
+        function renderAthleteResponseHistory3B(){const body=document.getElementById('athlete-response-history-body'),sum=document.getElementById('athlete-response-trend-summary'),badge=document.getElementById('athlete-response-recovery-badge');if(!body)return;const h=buildAthleteResponseHistory3B(athleteResponseSportSelezionato,20),trend=trendAthleteResponse3B(h);if(!h.length){body.innerHTML='<tr><td colspan="6" class="p-3 text-center text-slate-500">Nessuna attività disponibile per lo storico.</td></tr>';if(sum)sum.textContent='Nessun dato sufficiente per trend e Recovery Time.';if(badge)badge.textContent='Recovery -';renderPersonalPatterns3C();return;}const rows=h.slice(0,10).map(x=>({...x,recovery:calcolaRecoveryTime3B(x)}));body.innerHTML=rows.map(x=>`<tr class="hover:bg-slate-900/60"><td class="p-2 font-mono text-slate-300">${formattaDataCustom(x.date)}</td><td class="p-2 text-slate-300">${escapeHtmlMobile(x.name)}</td><td class="p-2 text-right font-mono text-emerald-300">${Math.round(x.load)}</td><td class="p-2 text-right font-mono text-cyan-300">${Number.isFinite(x.efficiency)?x.efficiency.toFixed(2):'-'}</td><td class="p-2 text-right font-mono ${x.response>=80?'text-emerald-300':x.response>=60?'text-amber-300':'text-rose-300'}">${x.response==null?'-':x.response}</td><td class="p-2 text-right font-mono text-violet-300">${x.recovery?.hours?x.recovery.hours+'h':'n.d.'}</td></tr>`).join('');const recs=rows.map(x=>x.recovery?.hours).filter(Number.isFinite),avgRec=recs.length?Math.round(recs.reduce((a,b)=>a+b,0)/recs.length):null;if(sum)sum.textContent=`${h.length} attività analizzate · Trend Response: ${trend.label}${Number.isFinite(trend.delta)?` (${trend.delta>=0?'+':''}${trend.delta.toFixed(1)} punti)`:''} · recovery calcolabile su ${recs.length}/${rows.length} recenti.`;if(badge){badge.textContent=avgRec?`Recovery medio ${avgRec}h`:'Recovery n.d.';badge.className='px-2 py-1 rounded-lg text-[10px] font-bold '+(avgRec&&avgRec<=24?'bg-emerald-500/20 text-emerald-300':avgRec&&avgRec<=48?'bg-amber-500/20 text-amber-300':'bg-slate-800 text-slate-300');}window.trainingHubAthleteResponseHistory={sport:athleteResponseSportSelezionato,history:h,trend,recoveryAverageHours:avgRec};renderPersonalPatterns3C();}
+
+        const ATHLETE_PATTERNS_3C_CONFIG=Object.freeze({minSamples:3,strongSamples:6,loadBands:[0,50,80,110,9999]});
+        function tipoAllenamentoPattern3C(item){const n=String(item?.name||'').toLowerCase();if(/ripet|interval|vo2|soglia|threshold|tempo|qualit|sweet spot/.test(n))return'qualita';if(/recuper|recovery|easy|defatic|rigener/.test(n))return'recupero';return'fondo';}
+        function fasciaCaricoPattern3C(load){const v=Number(load)||0,b=ATHLETE_PATTERNS_3C_CONFIG.loadBands;if(v<b[1])return{key:'lt50',label:'<50 TSS'};if(v<b[2])return{key:'50_79',label:'50–79 TSS'};if(v<b[3])return{key:'80_109',label:'80–109 TSS'};return{key:'gte110',label:'≥110 TSS'};}
+        function media3C(values){const a=values.filter(Number.isFinite);return a.length?a.reduce((s,v)=>s+v,0)/a.length:NaN;}
+        function deviazioneStandard3C(values){const a=values.filter(Number.isFinite);if(a.length<2)return NaN;const m=media3C(a);return Math.sqrt(a.reduce((s,v)=>s+(v-m)**2,0)/(a.length-1));}
+        function buildPersonalPatterns3C(sport=athleteResponseSportSelezionato){
+          const history=buildAthleteResponseHistory3B(sport,80),groups=new Map();history.forEach(x=>{const type=tipoAllenamentoPattern3C(x),band=fasciaCaricoPattern3C(x.load),key=`${type}|${band.key}`;if(!groups.has(key))groups.set(key,{key,sport,type,band:band.label,items:[]});groups.get(key).items.push(x);});
+          return [...groups.values()].map(g=>{const responses=g.items.map(x=>x.response).filter(Number.isFinite),eff=g.items.map(x=>x.efficiency).filter(Number.isFinite),rec=g.items.map(x=>calcolaRecoveryTime3B(x)?.hours).filter(Number.isFinite),loads=g.items.map(x=>Number(x.load)).filter(Number.isFinite),avgResponse=media3C(responses),avgRecovery=media3C(rec),avgEfficiency=media3C(eff),sdResponse=deviazioneStandard3C(responses),n=g.items.length,coverage=Math.round(100*(responses.length+rec.length+eff.length)/(Math.max(1,n)*3)),confidence=Math.min(100,Math.round((n/ATHLETE_PATTERNS_3C_CONFIG.strongSamples)*70+coverage*.30));let label='Dati preliminari',impact='neutral';if(n>=ATHLETE_PATTERNS_3C_CONFIG.minSamples&&Number.isFinite(avgResponse)){if(avgResponse>=80&&(avgRecovery<=24||!Number.isFinite(avgRecovery))){label='Ben tollerato';impact='positive';}else if(avgResponse<60||avgRecovery>48){label='Stimolo impegnativo';impact='negative';}else{label='Risposta moderata';impact='neutral';}}return{...g,n,avgLoad:media3C(loads),avgResponse,sdResponse,avgRecovery,avgEfficiency,coverage,confidence,label,impact,eligible:n>=ATHLETE_PATTERNS_3C_CONFIG.minSamples};}).sort((a,b)=>(Number(b.eligible)-Number(a.eligible))||(b.confidence-a.confidence)||(b.n-a.n));
+        }
+        function bestPatternInsight3C(patterns){const eligible=patterns.filter(p=>p.eligible);if(!eligible.length)return'Servono almeno 3 attività nella stessa combinazione di tipo e fascia TSS.';const best=eligible.filter(p=>Number.isFinite(p.avgResponse)).sort((a,b)=>b.avgResponse-a.avgResponse)[0],hard=eligible.filter(p=>Number.isFinite(p.avgResponse)).sort((a,b)=>a.avgResponse-b.avgResponse)[0];const bits=[];if(best)bits.push(`Miglior risposta: ${best.type} ${best.band}, media ${best.avgResponse.toFixed(0)}/100${Number.isFinite(best.avgRecovery)?`, recovery ${Math.round(best.avgRecovery)}h`:''}.`);if(hard&&hard!==best)bits.push(`Più impegnativo: ${hard.type} ${hard.band}, media ${hard.avgResponse.toFixed(0)}/100${Number.isFinite(hard.avgRecovery)?`, recovery ${Math.round(hard.avgRecovery)}h`:''}.`);return bits.join(' ');}
+        function renderPersonalPatterns3C(){const box=document.getElementById('athlete-patterns-cards'),sum=document.getElementById('athlete-patterns-summary'),badge=document.getElementById('athlete-patterns-confidence'),guide=document.getElementById('athlete-patterns-guidance');if(!box)return;const patterns=buildPersonalPatterns3C(athleteResponseSportSelezionato),eligible=patterns.filter(p=>p.eligible);if(!patterns.length){box.innerHTML='<div class="text-[10px] text-slate-500">Nessuna attività disponibile per questa disciplina.</div>';if(badge)badge.textContent='0 pattern';if(sum)sum.textContent='Nessun pattern calcolabile.';if(guide)guide.textContent='Sincronizza attività e dati Wellness. Non vengono creati dati sintetici.';return;}box.innerHTML=patterns.slice(0,6).map(p=>`<article class="pattern-3c-card" data-quality="${p.confidence>=70?'high':p.confidence>=45?'medium':'low'}"><div class="flex justify-between gap-2"><div><div class="text-[10px] font-bold text-slate-200">${p.type.toUpperCase()} · ${p.band}</div><div class="text-[9px] text-slate-500 mt-0.5">${p.n} attività · carico medio ${Number.isFinite(p.avgLoad)?p.avgLoad.toFixed(0):'-'} TSS</div></div><span class="pattern-3c-chip">C${p.confidence}%</span></div><div class="grid grid-cols-3 gap-1 mt-2 text-center"><div class="rounded bg-slate-950/60 p-1.5"><small class="block text-slate-600">Response</small><b class="${p.avgResponse>=80?'text-emerald-300':p.avgResponse>=60?'text-amber-300':'text-rose-300'}">${Number.isFinite(p.avgResponse)?p.avgResponse.toFixed(0):'-'}</b></div><div class="rounded bg-slate-950/60 p-1.5"><small class="block text-slate-600">Recovery</small><b class="text-violet-300">${Number.isFinite(p.avgRecovery)?Math.round(p.avgRecovery)+'h':'-'}</b></div><div class="rounded bg-slate-950/60 p-1.5"><small class="block text-slate-600">Efficiency</small><b class="text-cyan-300">${Number.isFinite(p.avgEfficiency)?p.avgEfficiency.toFixed(2):'-'}</b></div></div><div class="mt-2 text-[9px] ${p.impact==='positive'?'text-emerald-300':p.impact==='negative'?'text-rose-300':'text-slate-400'}">${p.eligible?p.label:'Preliminare: servono '+ATHLETE_PATTERNS_3C_CONFIG.minSamples+' attività'} · copertura ${p.coverage}%${Number.isFinite(p.sdResponse)?` · variabilità ±${p.sdResponse.toFixed(1)}`:''}</div></article>`).join('');if(badge)badge.textContent=`${eligible.length} pattern validi`;if(sum)sum.textContent=`${patterns.reduce((n,p)=>n+p.n,0)} attività raggruppate per tipo e fascia TSS · minimo ${ATHLETE_PATTERNS_3C_CONFIG.minSamples} campioni.`;if(guide)guide.textContent=bestPatternInsight3C(patterns)+' Fase 3C osservazionale: nessuna modifica automatica del piano.';window.trainingHubPersonalPatterns={sport:athleteResponseSportSelezionato,patterns,generatedAt:new Date().toISOString()};}
+
+        function fmtDelta3A(v,suffix='%'){return Number.isFinite(v)?`${v>=0?'+':''}${v.toFixed(1)}${suffix}`:'n.d.';}
+        function renderAthleteResponse3A(){const status=document.getElementById('athlete-response-status');if(!status)return;aggiornaTabSportAthleteResponse();const a=buildAthleteResponse3A(athleteResponseSportSelezionato),set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};if(!a){status.textContent='NESSUNA ATTIVITÀ';status.className='px-2 py-0.5 rounded-full text-[9px] font-bold bg-slate-700 text-slate-300';set('athlete-response-workout',`Nessun allenamento completato di ${athleteResponseSportSelezionato.toUpperCase()} precedente a oggi con carico > 0.`);['athlete-response-score','athlete-response-efficiency','athlete-response-external','athlete-response-internal','athlete-response-hrv','athlete-response-rhr','athlete-response-readiness','athlete-response-sleep'].forEach(id=>set(id,'-'));set('athlete-response-summary','Seleziona un’altra disciplina oppure sincronizza le attività.');renderAthleteResponseHistory3B();return;}status.textContent=a.response==null?'PARZIALE':'OSSERVAZIONALE';status.className='px-2 py-0.5 rounded-full text-[9px] font-bold '+(a.response==null?'bg-slate-700 text-slate-300':'bg-violet-500/20 text-violet-300 border border-violet-500/30');set('athlete-response-workout',`${formattaDataCustom(a.date)} · ${a.name} · ${a.sport.toUpperCase()} · ${Math.round(a.load)} TSS · risposta ${formattaDataCustom(a.postIso)}`);set('athlete-response-score',a.response==null?'-':`${a.response}/100`);set('athlete-response-score-note',`Copertura segnali ${a.confidence}%`);set('athlete-response-efficiency',Number.isFinite(a.efficiency)?a.efficiency.toFixed(a.sport==='bici'?2:3):'-');set('athlete-response-efficiency-note',Number.isFinite(a.efficiency)?`${a.effSource} · ${a.effUnit}`:a.sport==='corsa'?'NP (o potenza fallback) e FC media non disponibili':'Potenza/velocità e FC non entrambe disponibili');set('athlete-response-external',`${Math.round(a.load)} TSS`);const dur=Number.isFinite(a.duration)?`${Math.round(a.duration/60)} min`:null,dist=Number.isFinite(a.distance)?`${(a.distance>100?a.distance/1000:a.distance).toFixed(1)} km`:null;set('athlete-response-external-note',[dur,dist,Number.isFinite(a.np)?`NP ${Math.round(a.np)} W`:Number.isFinite(a.avgPower)?`${Math.round(a.avgPower)} W`:null].filter(Boolean).join(' · ')||'Solo carico disponibile');set('athlete-response-internal',Number.isFinite(a.avgHr)?`${Math.round(a.avgHr)} bpm`:Number.isFinite(a.rpe)?`RPE ${a.rpe}`:'-');set('athlete-response-internal-note',[Number.isFinite(a.maxHr)?`max ${Math.round(a.maxHr)} bpm`:null,Number.isFinite(a.rpe)?`RPE ${a.rpe}`:null].filter(Boolean).join(' · ')||'FC/RPE assenti');set('athlete-response-hrv',fmtDelta3A(a.dH));set('athlete-response-rhr',fmtDelta3A(a.dR));set('athlete-response-readiness',fmtDelta3A(a.dReady,''));set('athlete-response-sleep',Number.isFinite(a.sleepPost)?`${a.sleepPost.toFixed(1)} h`:'n.d.');const label=a.response==null?'Risposta non calcolabile':a.response>=80?'Stimolo ben assorbito':a.response>=60?'Stress fisiologico moderato':a.response>=40?'Recupero incompleto':'Risposta fisiologica critica';set('athlete-response-summary',`${label}. Fase 3A osservazionale: nessuna modifica automatica del piano. Dati mancanti riducono la copertura, senza valori sintetici.`);window.trainingHubAthleteResponse=a;renderAthleteResponseHistory3B();}
+
         function renderWellnessKpi(rows){
             const box=document.getElementById('wellness-kpi-cards'); if(!box)return;
             const sel=document.getElementById('wellness-colonne-grafico');
@@ -6395,14 +6786,15 @@ Cooldown
                 drawLine(wellnessHoverChartIndex,stile.coloreLineaHover||'#ffffff',1,[3,3],getEtichettaCrosshairWellness(wellnessHoverChartIndex));
             }
         };
-        function renderWellness(){if(filtroAOggiPerSezione.wellness){wellnessFiltroA=getOggiIsoLocale();if(sezioneAttiva==='wellness'){const a=document.getElementById('filtro-a');if(a)a.value=wellnessFiltroA;}}const head=document.getElementById('wellness-table-head'),body=document.getElementById('wellness-table-body'),summary=document.getElementById('wellness-riepilogo');if(!head||!body)return;const idxData=trovaIndiceDataWellness();let rows=wellnessRows.filter(r=>{const iso=toIsoDate(r[idxData]);return iso&&(!wellnessFiltroDa||iso>=wellnessFiltroDa)&&(!wellnessFiltroA||iso<=wellnessFiltroA)}).sort((a,b)=>toIsoDate(a[idxData]).localeCompare(toIsoDate(b[idxData])));const wm=new Map(rows.map(r=>[toIsoDate(r[idxData]),r]));const wDa=wellnessFiltroDa||([...wm.keys()].sort()[0]||getOggiIsoLocale()),wA=wellnessFiltroA||getOggiIsoLocale();rows=elencoDateIsoInclusivo(wDa,wA).map(d=>wm.get(d)||(()=>{const r=Array(wellnessHeaders.length).fill('');r[idxData]=d;return r;})());wellnessRowsGraficoCorrenti=rows;if(isMobileUi())renderMobileWellnessCards(rows);head.innerHTML=`<tr>${wellnessHeaders.map(h=>`<th class="p-2.5 whitespace-nowrap">${wellnessLabel(h)}</th>`).join('')}</tr>`;body.innerHTML=[...rows].reverse().map(r=>`<tr class="hover:bg-slate-800/60">${wellnessHeaders.map((h,i)=>`<td class="p-2.5 font-mono text-slate-300 whitespace-nowrap">${i===idxData?formattaDataCustom(r[i]):wellnessValore(r[i],h)}</td>`).join('')}</tr>`).join('');renderWellnessKpi(rows);if(summary)summary.textContent=`${rows.length} registrazioni · ${wellnessHeaders.length} metriche${wellnessFiltroDa||wellnessFiltroA?` · periodo ${wellnessFiltroDa||'inizio'} → ${wellnessFiltroA||'fine'}`:''}`;const sel=document.getElementById('wellness-colonne-grafico');const idxs=sel?Array.from(sel.selectedOptions).map(o=>Number(o.value)):[];const colors=['#38bdf8','#a78bfa','#34d399','#fbbf24','#f87171','#fb7185','#22d3ee','#c084fc'];const ctx=document.getElementById('chartWellness')?.getContext('2d');if(!ctx)return;if(chartWellnessInstance)chartWellnessInstance.destroy();chartWellnessInstance=new Chart(ctx,{type:'line',data:{labels:rows.map(r=>formattaDataCustom(r[idxData])),datasets:idxs.map((i,n)=>({label:wellnessLabel(wellnessHeaders[i]),data:rows.map(r=>{const v=wellnessNumero(r[i]);return isNaN(v)?null:(WELLNESS_DURATION_FIELDS.has(wellnessHeaders[i])?v/3600:v)}),borderColor:colors[n%colors.length],backgroundColor:colors[n%colors.length],borderWidth:2,pointRadius:2,tension:.25,spanGaps:true,yAxisID:`y${n}`}))},options:{responsive:true,maintainAspectRatio:false,onHover:(event,elements,chart)=>{let idx=(elements&&elements.length)?elements[0].index:null;if(idx===null&&chart&&event){const nearest=chart.getElementsAtEventForMode(event,'index',{intersect:false},false);if(nearest&&nearest.length)idx=nearest[0].index;}if(wellnessHoverChartIndex!==idx){wellnessHoverChartIndex=idx;chart.draw();}},onClick:(event,elements,chart)=>{let idx=(elements&&elements.length)?elements[0].index:null;if(idx===null&&chart&&event){const nearest=chart.getElementsAtEventForMode(event,'index',{intersect:false},false);if(nearest&&nearest.length)idx=nearest[0].index;}if(idx!==null&&idx!==undefined){wellnessPinnedChartIndex=idx;chart.draw();}},interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#cbd5e1'}},tooltip:{enabled:false}},scales:Object.fromEntries(idxs.map((i,n)=>[`y${n}`,{type:'linear',display:n<2,position:n%2?'right':'left',ticks:{color:colors[n%colors.length]},grid:{color:n===0?'#33415533':'transparent'},title:{display:true,text:wellnessLabel(wellnessHeaders[i]),color:colors[n%colors.length]}}]).concat([['x',{ticks:{color:'#94a3b8'},grid:{color:'#33415533'}}]]))},plugins:[wellnessCrosshairHighlightPlugin]});}
+        function renderWellness(){if(filtroAOggiPerSezione.wellness){wellnessFiltroA=getOggiIsoLocale();if(sezioneAttiva==='wellness'){const a=document.getElementById('filtro-a');if(a)a.value=wellnessFiltroA;}}const head=document.getElementById('wellness-table-head'),body=document.getElementById('wellness-table-body'),summary=document.getElementById('wellness-riepilogo');if(!head||!body)return;const idxData=trovaIndiceDataWellness();let rows=wellnessRows.filter(r=>{const iso=toIsoDate(r[idxData]);return iso&&(!wellnessFiltroDa||iso>=wellnessFiltroDa)&&(!wellnessFiltroA||iso<=wellnessFiltroA)}).sort((a,b)=>toIsoDate(a[idxData]).localeCompare(toIsoDate(b[idxData])));const wm=new Map(rows.map(r=>[toIsoDate(r[idxData]),r]));const wDa=wellnessFiltroDa||([...wm.keys()].sort()[0]||getOggiIsoLocale()),wA=wellnessFiltroA||getOggiIsoLocale();rows=elencoDateIsoInclusivo(wDa,wA).map(d=>wm.get(d)||(()=>{const r=Array(wellnessHeaders.length).fill('');r[idxData]=d;return r;})());wellnessRowsGraficoCorrenti=rows;if(isMobileUi())renderMobileWellnessCards(rows);head.innerHTML=`<tr>${wellnessHeaders.map(h=>`<th class="p-2.5 whitespace-nowrap">${wellnessLabel(h)}</th>`).join('')}</tr>`;body.innerHTML=[...rows].reverse().map(r=>`<tr class="hover:bg-slate-800/60">${wellnessHeaders.map((h,i)=>`<td class="p-2.5 font-mono text-slate-300 whitespace-nowrap">${i===idxData?formattaDataCustom(r[i]):wellnessValore(r[i],h)}</td>`).join('')}</tr>`).join('');renderReadinessWellness();renderAthleteResponse3A();renderWellnessKpi(rows);renderRaceReadiness4D();if(summary)summary.textContent=`${rows.length} registrazioni · ${wellnessHeaders.length} metriche${wellnessFiltroDa||wellnessFiltroA?` · periodo ${wellnessFiltroDa||'inizio'} → ${wellnessFiltroA||'fine'}`:''}`;const sel=document.getElementById('wellness-colonne-grafico');const idxs=sel?Array.from(sel.selectedOptions).map(o=>Number(o.value)):[];const colors=['#38bdf8','#a78bfa','#34d399','#fbbf24','#f87171','#fb7185','#22d3ee','#c084fc'];const ctx=document.getElementById('chartWellness')?.getContext('2d');if(!ctx)return;if(chartWellnessInstance)chartWellnessInstance.destroy();chartWellnessInstance=new Chart(ctx,{type:'line',data:{labels:rows.map(r=>formattaDataCustom(r[idxData])),datasets:idxs.map((i,n)=>({label:wellnessLabel(wellnessHeaders[i]),data:rows.map(r=>{const v=wellnessNumero(r[i]);return isNaN(v)?null:(WELLNESS_DURATION_FIELDS.has(wellnessHeaders[i])?v/3600:v)}),borderColor:colors[n%colors.length],backgroundColor:colors[n%colors.length],borderWidth:2,pointRadius:2,tension:.25,spanGaps:true,yAxisID:`y${n}`}))},options:{responsive:true,maintainAspectRatio:false,onHover:(event,elements,chart)=>{let idx=(elements&&elements.length)?elements[0].index:null;if(idx===null&&chart&&event){const nearest=chart.getElementsAtEventForMode(event,'index',{intersect:false},false);if(nearest&&nearest.length)idx=nearest[0].index;}if(wellnessHoverChartIndex!==idx){wellnessHoverChartIndex=idx;chart.draw();}},onClick:(event,elements,chart)=>{let idx=(elements&&elements.length)?elements[0].index:null;if(idx===null&&chart&&event){const nearest=chart.getElementsAtEventForMode(event,'index',{intersect:false},false);if(nearest&&nearest.length)idx=nearest[0].index;}if(idx!==null&&idx!==undefined){wellnessPinnedChartIndex=idx;chart.draw();}},interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#cbd5e1'}},tooltip:{enabled:false}},scales:Object.fromEntries(idxs.map((i,n)=>[`y${n}`,{type:'linear',display:n<2,position:n%2?'right':'left',ticks:{color:colors[n%colors.length]},grid:{color:n===0?'#33415533':'transparent'},title:{display:true,text:wellnessLabel(wellnessHeaders[i]),color:colors[n%colors.length]}}]).concat([['x',{ticks:{color:'#94a3b8'},grid:{color:'#33415533'}}]]))},plugins:[wellnessCrosshairHighlightPlugin]});}
         async function caricaDatiWellness(){
             const summary=document.getElementById('wellness-riepilogo');
             if(summary)summary.textContent='Lettura dati wellness da Intervals.icu...';
             try{
-                const da=wellnessFiltroDa||document.getElementById('filtro-da')?.value||configEsterna.dataInizio||'';
+                const daVisualizzato=wellnessFiltroDa||document.getElementById('filtro-da')?.value||configEsterna.dataInizio||'';
                 const a=wellnessFiltroA||document.getElementById('filtro-a')?.value||getOggiIsoLocale();
-                const res=await fetch(`${WEB_APP_URL}?action=getWellness&oldest=${encodeURIComponent(da)}&newest=${encodeURIComponent(a)}&_ts=${Date.now()}`,{cache:'no-store'});
+                const daApi=sottraiGiorniIsoReadiness(daVisualizzato||a,READINESS_CONFIG.baselineDays);
+                const res=await fetch(`${WEB_APP_URL}?action=getWellness&oldest=${encodeURIComponent(daApi)}&newest=${encodeURIComponent(a)}&_ts=${Date.now()}`,{cache:'no-store'});
                 if(!res.ok)throw new Error(`HTTP ${res.status}`);
                 const data=await res.json();
                 if(data.status==='error')throw new Error(data.message||'Errore Wellness');
@@ -6623,7 +7015,7 @@ Cooldown
             const wi=trovaIndiceDataWellness();
             const wellness=wellnessRows.filter(r=>{const iso=toIsoDate(r[wi]);return iso&&(!wellnessFiltroDa||iso>=wellnessFiltroDa)&&(!wellnessFiltroA||iso<=wellnessFiltroA)}).map(r=>Object.fromEntries(wellnessHeaders.map((h,i)=>[h,r[i]])));
             const sel=document.getElementById('wellness-colonne-grafico');
-            return {tipoAnalisi:'coach_integrato',istruzioniModificaPiano:'Se proponi modifiche operative al piano, aggiungi alla fine un blocco JSON fenced con oggetto {"modifiche":[{"data":"YYYY-MM-DD","sport":"bici|corsa|camminata","tipo":"fondo|qualita|recupero","carico":numero,"motivo":"testo"}]}. Non includere giorni completati.',modificheCoachAttive:coachModifichePiano,dataOggi:getOggiIsoLocale(),periodi:{attivita:{da:storicoFiltroDa,a:storicoFiltroA},piano:{da:pianoFiltroDa,a:pianoFiltroA},wellness:{da:wellnessFiltroDa,a:wellnessFiltroA}},parametriPiano:leggiConfigPianoDaForm(),parametriFisiologici:leggiParametriFisiologiciDaForm(),attivitaRegistrate:storico,intestazioniAttivita:intestazioniFoglio,pianoAllenamento:piano,datiWellness:wellness,colonneWellness:wellnessHeaders,colonneWellnessPlottate:sel?Array.from(sel.selectedOptions).map(o=>wellnessHeaders[Number(o.value)]):[]};
+            return {tipoAnalisi:'coach_integrato',istruzioniModificaPiano:'Se proponi modifiche operative al piano, aggiungi alla fine un blocco JSON fenced con oggetto {"modifiche":[{"data":"YYYY-MM-DD","sport":"bici|corsa|camminata","tipo":"fondo|qualita|recupero","carico":numero,"motivo":"testo"}]}. Non includere giorni completati.',modificheCoachAttive:coachModifichePiano,dataOggi:getOggiIsoLocale(),periodi:{attivita:{da:storicoFiltroDa,a:storicoFiltroA},piano:{da:pianoFiltroDa,a:pianoFiltroA},wellness:{da:wellnessFiltroDa,a:wellnessFiltroA}},obiettivoFase4A:leggiGoal4ADaForm(),macrocycleFase4B:buildMacrocycle4B(),goalToPlanFase4C:window.trainingHubGoalPlan4C||null,raceReadinessFase4D:calcolaRaceReadiness4D(),parametriPiano:leggiConfigPianoDaForm(),parametriFisiologici:leggiParametriFisiologiciDaForm(),wellnessOdiernoAggiornato:(()=>{const oggi=getOggiIsoLocale(),i=trovaIndiceDataWellness(),r=wellnessRows.find(x=>toIsoDate(x[i])===oggi);return r?Object.fromEntries(wellnessHeaders.map((h,j)=>[h,r[j]])):null;})(),readinessFase1:calcolaReadinessWellness(getOggiIsoLocale()),adaptiveFase2:pianoRowsCorrenti.filter(r=>r.adattatoFase2).map(r=>({data:r.isoDate,decisione:r.adaptiveDecision})),athleteResponseFase3A:{bici:buildAthleteResponse3A('bici'),corsa:buildAthleteResponse3A('corsa'),camminata:buildAthleteResponse3A('camminata')},athleteResponseFase3B:{bici:buildAthleteResponseHistory3B('bici',20),corsa:buildAthleteResponseHistory3B('corsa',20),camminata:buildAthleteResponseHistory3B('camminata',20)},athletePatternsFase3C:{bici:buildPersonalPatterns3C('bici'),corsa:buildPersonalPatterns3C('corsa'),camminata:buildPersonalPatterns3C('camminata')},attivitaRegistrate:storico,intestazioniAttivita:intestazioniFoglio,pianoAllenamento:piano,datiWellness:wellness,colonneWellness:wellnessHeaders,colonneWellnessPlottate:sel?Array.from(sel.selectedOptions).map(o=>wellnessHeaders[Number(o.value)]):[]};
         }
         async function inviaDomandaCoachAI(domandaRapida) {
             const input=document.getElementById('coach-ai-input'), btn=document.getElementById('coach-ai-send'), status=document.getElementById('coach-ai-status');
@@ -6651,6 +7043,9 @@ Cooldown
             inizializzaRidimensionamentoGraficiStorico();
             try{togglePianoInfo(localStorage.getItem('moioTrainingHub.pianoInfoHidden.v1')==='1');}catch(_){togglePianoInfo(false);}
             try{togglePianoChart(localStorage.getItem('moioTrainingHub.pianoChartHidden.v1')==='1');}catch(_){togglePianoChart(false);}
+            ripristinaAdaptiveEnginePanel();
+            ripristinaGoal4APanel();
+            ripristinaAthleteResponsePanel();
             inizializzaRidimensionamentoGraficiPiano();
             caricaColonneWellnessLocali();
             caricaIntervalliSelezionati();
