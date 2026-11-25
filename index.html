@@ -1508,7 +1508,10 @@ body.v39-ui{background:radial-gradient(circle at 12% -12%,#173129 0,transparent 
             const c=localCfg(),ath=encodeURIComponent(c.intervalsAthleteId||'0'),today=new Date().toISOString().slice(0,10),start=c.dataInizio||new Date(Date.now()-365*86400000).toISOString().slice(0,10);
             let cache={activities:{},wellness:{}};try{cache=JSON.parse(localStorage.getItem(TRAINING_HUB_RUNTIME.cacheKey)||'{"activities":{},"wellness":{}}');}catch(_){}
             const lastJson=Object.values(cache.activities||{}).map(a=>isoDate(a.start_date_local||a.start_date)).filter(Boolean).sort().pop()||'';
-            let oldest=full?start:(!lastJson?start:(lastJson!==today?(()=>{const d=new Date(lastJson+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+1);return d.toISOString().slice(0,10);})():''));
+            // v42.59: ad ogni apertura il giorno odierno viene SEMPRE risincronizzato.
+            // Se la cache arriva a ieri (o prima), scarica dal giorno successivo; se arriva gia a oggi,
+            // ripete comunque la richiesta oldest=today&newest=today per catturare attivita/Wellness registrati dopo l'ultimo accesso.
+            let oldest=full?start:(!lastJson?start:(lastJson<today?(()=>{const d=new Date(lastJson+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+1);return d.toISOString().slice(0,10);})():today));
             if(!TRAINING_HUB_SKIP_SYNC_ONCE && oldest && oldest<=today){
                 const [acts,well]=await Promise.all([intervalsGet(`/athlete/${ath}/activities?oldest=${oldest}&newest=${today}`,c),intervalsGet(`/athlete/${ath}/wellness?oldest=${oldest}&newest=${today}`,c)]);
                 if(full)cache={activities:{},wellness:{}};for(const a of (acts||[]))if(a&&a.id!=null)cache.activities[String(a.id)]=a;for(const w of (well||[])){const d=isoDate(w&&w.id);if(d)cache.wellness[d]=w;}cache.lastSync=new Date().toISOString();
@@ -6848,6 +6851,13 @@ let schedaImpostazioniAttiva = 'connessione';
             }
         };
         function renderWellness(){if(filtroAOggiPerSezione.wellness){wellnessFiltroA=getOggiIsoLocale();if(sezioneAttiva==='wellness'){const a=document.getElementById('filtro-a');if(a)a.value=wellnessFiltroA;}}const head=document.getElementById('wellness-table-head'),body=document.getElementById('wellness-table-body'),summary=document.getElementById('wellness-riepilogo');if(!head||!body)return;const idxData=trovaIndiceDataWellness();let rows=wellnessRows.filter(r=>{const iso=toIsoDate(r[idxData]);return iso&&(!wellnessFiltroDa||iso>=wellnessFiltroDa)&&(!wellnessFiltroA||iso<=wellnessFiltroA)}).sort((a,b)=>toIsoDate(a[idxData]).localeCompare(toIsoDate(b[idxData])));const wm=new Map(rows.map(r=>[toIsoDate(r[idxData]),r]));const wDa=wellnessFiltroDa||([...wm.keys()].sort()[0]||getOggiIsoLocale()),wA=wellnessFiltroA||getOggiIsoLocale();rows=elencoDateIsoInclusivo(wDa,wA).map(d=>wm.get(d)||(()=>{const r=Array(wellnessHeaders.length).fill('');r[idxData]=d;return r;})());wellnessRowsGraficoCorrenti=rows;if(isMobileUi())renderMobileWellnessCards(rows);head.innerHTML=`<tr>${wellnessHeaders.map(h=>`<th class="p-2.5 whitespace-nowrap">${wellnessLabel(h)}</th>`).join('')}</tr>`;body.innerHTML=[...rows].reverse().map(r=>`<tr class="hover:bg-slate-800/60">${wellnessHeaders.map((h,i)=>`<td class="p-2.5 font-mono text-slate-300 whitespace-nowrap">${i===idxData?formattaDataCustom(r[i]):wellnessValore(r[i],h)}</td>`).join('')}</tr>`).join('');renderReadinessWellness();renderAthleteResponse3A();renderWellnessKpi(rows);renderRaceReadiness4D();if(summary)summary.textContent=`${rows.length} registrazioni · ${wellnessHeaders.length} metriche${wellnessFiltroDa||wellnessFiltroA?` · periodo ${wellnessFiltroDa||'inizio'} → ${wellnessFiltroA||'fine'}`:''}`;const sel=document.getElementById('wellness-colonne-grafico');const idxs=sel?Array.from(sel.selectedOptions).map(o=>Number(o.value)):[];const colors=['#38bdf8','#a78bfa','#34d399','#fbbf24','#f87171','#fb7185','#22d3ee','#c084fc'];const ctx=document.getElementById('chartWellness')?.getContext('2d');if(!ctx)return;if(chartWellnessInstance)chartWellnessInstance.destroy();chartWellnessInstance=new Chart(ctx,{type:'line',data:{labels:rows.map(r=>formattaDataCustom(r[idxData])),datasets:idxs.map((i,n)=>({label:wellnessLabel(wellnessHeaders[i]),data:rows.map(r=>{const v=wellnessNumero(r[i]);return isNaN(v)?null:(WELLNESS_DURATION_FIELDS.has(wellnessHeaders[i])?v/3600:v)}),borderColor:colors[n%colors.length],backgroundColor:colors[n%colors.length],borderWidth:2,pointRadius:2,tension:.25,spanGaps:true,yAxisID:`y${n}`}))},options:{responsive:true,maintainAspectRatio:false,onHover:(event,elements,chart)=>{let idx=(elements&&elements.length)?elements[0].index:null;if(idx===null&&chart&&event){const nearest=chart.getElementsAtEventForMode(event,'index',{intersect:false},false);if(nearest&&nearest.length)idx=nearest[0].index;}if(wellnessHoverChartIndex!==idx){wellnessHoverChartIndex=idx;chart.draw();}},onClick:(event,elements,chart)=>{let idx=(elements&&elements.length)?elements[0].index:null;if(idx===null&&chart&&event){const nearest=chart.getElementsAtEventForMode(event,'index',{intersect:false},false);if(nearest&&nearest.length)idx=nearest[0].index;}if(idx!==null&&idx!==undefined){wellnessPinnedChartIndex=idx;chart.draw();}},interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#cbd5e1'}},tooltip:{enabled:false}},scales:Object.fromEntries(idxs.map((i,n)=>[`y${n}`,{type:'linear',display:n<2,position:n%2?'right':'left',ticks:{color:colors[n%colors.length]},grid:{color:n===0?'#33415533':'transparent'},title:{display:true,text:wellnessLabel(wellnessHeaders[i]),color:colors[n%colors.length]}}]).concat([['x',{ticks:{color:'#94a3b8'},grid:{color:'#33415533'}}]]))},plugins:[wellnessCrosshairHighlightPlugin]});}
+        async function sincronizzaDatiOdierniAllApertura(){
+            const oggi=getOggiIsoLocale();
+            // Attività: syncQuick aggiorna il dashboard/cache. Wellness viene poi letto live con no-store.
+            await caricaDatiIntervals(`${WEB_APP_URL}?action=syncQuick&today=${encodeURIComponent(oggi)}`);
+            wellnessFiltroA=oggi;
+            await caricaDatiWellness();
+        }
         async function caricaDatiWellness(){
             const summary=document.getElementById('wellness-riepilogo');
             if(summary)summary.textContent='Lettura dati wellness da Intervals.icu...';
@@ -7131,8 +7141,8 @@ let schedaImpostazioniAttiva = 'connessione';
             // perche sovrascriverebbe temporaneamente il piano applicato.
             selezionaSchedaPhysio('bici');
             renderMappaturaBuilder();
-            await caricaDatiIntervals(`${WEB_APP_URL}?action=getDashboard`);
-            await caricaDatiWellness();
+            // Sincronizzazione di apertura: attività e Wellness odierni vengono sempre richiesti live.
+            await sincronizzaDatiOdierniAllApertura();
         };
     </script>
 
